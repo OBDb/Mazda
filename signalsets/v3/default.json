@@ -49,6 +49,38 @@
     {"id": "MAZDA_TIRE_RL_TEMP", "path": "Tires", "fmt": {"bix": 16, "len": 8, "max": 200, "mul": 1.8, "add": -58, "unit": "fahrenheit" }, "name": "Rear left tire Temperature"},
     {"id": "MAZDA_TIRE_RR_TEMP", "path": "Tires", "fmt": {"bix": 24, "len": 8, "max": 200, "mul": 1.8, "add": -58, "unit": "fahrenheit" }, "name": "Rear right tire Temperature"}
   ]},
+{ "hdr": "726", "dbg": true, "cmd": {"22": "D922"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TP_FL", "path": "Tires", "fmt": { "len": 8, "max": 255, "unit": "psi" }, "name": "Front left pressure", "suggestedMetric": "frontLeftTirePressure"}
+  ]},
+{ "hdr": "726", "dbg": true, "cmd": {"22": "D923"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TP_FR", "path": "Tires", "fmt": { "len": 8, "max": 255, "unit": "psi" }, "name": "Front right pressure", "suggestedMetric": "frontRightTirePressure"}
+  ]},
+{ "hdr": "726", "dbg": true, "cmd": {"22": "D924"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TP_RL", "path": "Tires", "fmt": { "len": 8, "max": 255, "unit": "psi" }, "name": "Rear left pressure", "suggestedMetric": "rearLeftTirePressure"}
+  ]},
+{ "hdr": "726", "dbg": true, "cmd": {"22": "D925"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TP_RR", "path": "Tires", "fmt": { "len": 8, "max": 255, "unit": "psi" }, "name": "Rear right pressure", "suggestedMetric": "rearRightTirePressure"}
+  ]},
+{ "hdr": "726", "dbg": true, "cmd": {"22": "D926"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TT_FL", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Front left temperature"}
+  ]},
+{ "hdr": "726", "dbg": true, "cmd": {"22": "D927"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TT_FR", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Front right temperature"}
+  ]},
+{ "hdr": "726", "dbg": true, "cmd": {"22": "D928"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TT_RL", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Rear left temperature"}
+  ]},
+{ "hdr": "726", "dbg": true, "cmd": {"22": "D929"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TT_RR", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Rear right temperature"}
+  ]},
 { "hdr": "793", "dbg": true, "cmd": {"22": "D901"}, "freq": 0.25,
   "signals": [
     {"id": "MAZDA_CC_TGT_DIST", "path": "Cruise control", "fmt": {"bix": 8, "len": 8, "max": 63.75, "div": 4, "unit": "meters" }, "name": "Distance from bumper to target"}
