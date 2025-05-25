@@ -33,7 +33,8 @@
   ]},
 { "hdr": "720", "dbg": true, "cmd": {"22": "61B1"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_FUEL_LEVEL", "path": "Fuel", "fmt": { "len": 8, "max": 55, "unit": "liters" }, "name": "Fuel level"}
+    {"id": "MAZDA_FUEL_LEVEL", "path": "Fuel", "fmt": { "len": 8, "max": 55,  "unit": "liters" }, "name": "Fuel level"},
+    {"id": "MAZDA_FLV",        "path": "Fuel", "fmt": { "len": 8, "max": 255, "unit": "liters" }, "name": "Fuel level"}
   ]},
 { "hdr": "720", "dbg": true, "cmd": {"22": "C901"}, "freq": 1,
   "signals": [
