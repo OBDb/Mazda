@@ -272,10 +272,6 @@
   "signals": [
     {"id": "MAZDA_MAF_V", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "Mass air-flow voltage"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "11BD"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_TRANS_T_V1", "path": "Transmission", "fmt": { "len": 16, "max": 60.6875, "mul": 9, "div": 80, "add": 32, "unit": "fahrenheit" }, "name": "Transmission temperature v1"}
-  ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1340"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_APP", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Accelerator pedal position (full range)"}
@@ -338,18 +334,6 @@
   "signals": [
     {"id": "MAZDA_KNOCKR", "path": "Engine", "fmt": { "len": 8, "max": 89.78, "mul": 100, "div": 284, "unit": "degrees" }, "name": "Knock retard"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "176B"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LDP_VSL_DV", "path": "Emissions", "fmt": { "len": 16, "max": 0.35, "mul": 0.0000053406, "unit": "scalar" }, "name": "EVAP LDP very small leak detect value"}
-  ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "179A"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LDP_VSL_SV", "path": "Emissions", "fmt": { "len": 16, "max": 0.35, "mul": 0.0000053406, "unit": "scalar" }, "name": "EVAP LDP very small leak safe value"}
-  ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "17B3"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_TRANS_T_V2", "path": "Transmission", "fmt": { "len": 8, "max": 371.4, "min": -57, "mul": 42, "div": 25, "add": -57, "unit": "fahrenheit" }, "name": "Transmission temperature v2"}
-  ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "17F4"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_LDP_MON_CURRENT", "path": "Emissions", "fmt": { "len": 16, "max": 0.037, "mul": 0.000000561, "unit": "amps" }, "name": "EVAP LDP monitoring current"}
@@ -366,17 +350,9 @@
   "signals": [
     {"id": "MAZDA_LDP_SL_DV", "path": "Emissions", "fmt": { "len": 16, "max": 0.037, "mul": 0.000000561, "unit": "amps" }, "name": "EVAP LDP small leak detect value"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "17F9"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LDP_VSL_FV", "path": "Emissions", "fmt": { "len": 16, "max": 0.35, "mul": 0.0000053406, "unit": "scalar" }, "name": "EVAP LDP very small leak fail value"}
-  ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "17FA"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_LDP_EVAPCP", "path": "Emissions", "fmt": { "len": 16, "max": 0.037, "mul": 0.000000561, "unit": "amps" }, "name": "EVAP LDP incorrect purge flow value"}
-  ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1E1C"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_TRANS_T_V3", "path": "Transmission", "fmt": { "len": 16, "max": 60.6875, "mul": 9, "div": 80, "add": 32, "unit": "fahrenheit" }, "name": "Transmission temperature v3"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "A211"}, "freq": 1,
   "signals": [
@@ -388,10 +364,6 @@
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "A216"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_SCCS_V", "path": "Cruise control", "fmt": { "len": 16, "max": 5, "mul": 5, "div": 65535, "unit": "volts" }, "name": "Cruise control voltage", "description": "0.0V = On/Off Switch depressed, 1.1V = Cancel depressed, 3.1V = Set/- switch depressed, 4.2V = Res/+ switch depressed, 5.0V = Normal"}
-  ]},
-{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "11BD"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_TRANS_T_V4", "path": "Transmission", "fmt": { "len": 16, "max": 7000, "mul": 9, "div": 80, "add": 32, "unit": "fahrenheit" }, "name": "Transmission temperature v4"}
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "17B3"}, "freq": 1,
   "signals": [
