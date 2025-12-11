@@ -90,6 +90,10 @@
   "signals": [
     {"id": "MAZDA_ODO_TRIP", "path": "Trips", "fmt": { "len": 24, "max": 1677721, "div": 10, "unit": "kilometers" }, "name": "Trip distance"}
   ]},
+{ "hdr": "723", "dbg": true, "cmd": {"22": "DD05"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_AAT", "path": "Engine", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Ambient air temperature"}
+  ]},
 { "hdr": "726", "dbg": true, "cmd": {"22": "407E"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_EXTERIOR_LIGHT_STATE", "path": "Lights", "name": "Focus Exterior Lighting State", "fmt": {"bix": 0, "len": 1, "map": {
@@ -395,7 +399,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0202"}, "freq": 3600,
   "signals": [
-    {"id": "MAZDA_DTC_CNTD", "path": "DTCs", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Number of DTCs (on demand)"}
+    {"id": "MAZDA_DTC_CNTD", "path": "DTCs", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Number of DTCs, on demand"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0316"}, "freq": 0.25,
   "signals": [
@@ -980,11 +984,13 @@
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "17B3"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_TRANS_T_V5", "path": "Transmission", "fmt": { "len": 8, "max": 371.4, "min": -57, "mul": 42, "div": 25, "add": -57, "unit": "fahrenheit" }, "name": "Transmission temperature v5"}
+    {"id": "MAZDA_TRANS_T_V5", "path": "Transmission", "fmt": { "len": 8, "max": 371.4, "min": -57, "mul": 42, "div": 25, "add": -57, "unit": "fahrenheit" }, "name": "Transmission temperature v5"},
+    {"id": "MAZDA_TRANS_T",    "path": "Transmission", "fmt": { "len": 8, "max": 371.4, "min": -57, "mul": 42, "div": 25, "add": -57, "unit": "fahrenheit" }, "name": "Transmission temperature",    "suggestedMetric": "transmissionFluidTemperature"}
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E1C"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_TRANS_T_V6", "path": "Transmission", "fmt": { "len": 16, "max": 7000, "mul": 9, "div": 80, "add": 32, "unit": "fahrenheit" }, "name": "Transmission temperature v6"}
+    {"id": "MAZDA_TRANS_T_V6", "path": "Transmission", "fmt": { "len": 16, "max": 7000, "mul": 9, "div": 80, "add": 32, "unit": "fahrenheit" }, "name": "Transmission temperature v6"},
+    {"id": "MAZDA_TRANS_T_V2", "path": "Transmission", "fmt": { "len": 16, "max": 7000, "mul": 9, "div": 80, "add": 32, "unit": "fahrenheit" }, "name": "Transmission temperature v2", "suggestedMetric": "transmissionFluidTemperature"}
   ]},
 { "hdr": "7E2", "rax": "7EA", "dbg": true, "cmd": {"22": "484A"}, "freq": 1,
   "signals": [
@@ -1122,7 +1128,7 @@
   ]},
 { "hdr": "7E2", "rax": "7EA", "fcm1": true, "dbg": true, "cmd": {"22": "DD05"}, "freq": 5,
   "signals": [
-    {"id": "MAZDA_AAT", "path": "Climate", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Exterior temperature"}
+    {"id": "MAZDA_AAT_V2", "path": "Climate", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Exterior temperature"}
   ]},
 { "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "05A1"}, "freq": 60,
   "signals": [
