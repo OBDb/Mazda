@@ -662,15 +662,13 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "091A"}, "freq": 0.25,
   "signals": [
-    {"id": "MAZDA_ETC_DSD_DEG",      "path": "Engine", "fmt": { "len": 16, "max": 127.9,              "div": 512,  "unit": "degrees" }, "name": "Throttle control desired (degrees)"},
-    {"id": "MAZDA_ETC_ANG_DES",      "path": "Engine", "fmt": { "len": 16, "max": 127.99,             "div": 512,  "unit": "degrees" }, "name": "Throttle angle, desired"},
-    {"id": "MAZDA_THROTTLE_POS_DES", "path": "Engine", "fmt": { "len": 16, "max": 100,    "mul": 100, "div": 8192, "unit": "percent" }, "name": "Throttle position desired"}
+    {"id": "MAZDA_ETC_DSD_DEG", "path": "Engine", "fmt": { "len": 16, "max": 127.9,  "div": 512, "unit": "degrees" }, "name": "Throttle control desired (degrees)"},
+    {"id": "MAZDA_ETC_ANG_DES", "path": "Engine", "fmt": { "len": 16, "max": 127.99, "div": 512, "unit": "degrees" }, "name": "Throttle angle, desired"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "093C"}, "freq": 0.25,
   "signals": [
-    {"id": "MAZDA_ETC_ACT_DEG",      "path": "Engine", "fmt": { "len": 16, "max": 127.9,              "div": 512,  "unit": "degrees" }, "name": "Throttle position actual (degrees)"},
-    {"id": "MAZDA_ETC_ANG_ACT",      "path": "Engine", "fmt": { "len": 16, "max": 127.99,             "div": 512,  "unit": "degrees" }, "name": "Throttle angle, actual"},
-    {"id": "MAZDA_THROTTLE_POS_ACT", "path": "Engine", "fmt": { "len": 16, "max": 100,    "mul": 100, "div": 8192, "unit": "percent" }, "name": "Throttle position actual"}
+    {"id": "MAZDA_ETC_ACT_DEG", "path": "Engine", "fmt": { "len": 16, "max": 127.9,  "div": 512, "unit": "degrees" }, "name": "Throttle position actual (degrees)"},
+    {"id": "MAZDA_ETC_ANG_ACT", "path": "Engine", "fmt": { "len": 16, "max": 127.99, "div": 512, "unit": "degrees" }, "name": "Throttle angle, actual"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0967"}, "freq": 0.25,
   "signals": [
@@ -909,10 +907,6 @@
 { "hdr": "7E0", "rax": "7E8", "fcm1": true, "dbg": true, "cmd": {"22": "DD01"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_ODO", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer", "suggestedMetric": "odometer"}
-  ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "DD02"}, "freq": 30,
-  "signals": [
-    {"id": "MAZDA_ECU_V", "path": "ECU", "fmt": { "len": 8, "max": 100, "div": 10, "unit": "volts" }, "name": "Main ECU voltage supply"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F404"}, "freq": 0.5,
   "signals": [
@@ -1171,7 +1165,7 @@
   ]},
 { "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "480B"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_HVBAT_A_ALT", "path": "Battery", "fmt": { "len": 16, "max": 300, "min": -300, "div": 50, "sign": true, "unit": "amps" }, "name": "HV battery current (alternate)"}
+    {"id": "MAZDA_HVBAT_A_ALT", "path": "Battery", "fmt": { "len": 16, "max": 300, "min": -300, "div": 50, "sign": true, "unit": "amps" }, "name": "HV battery current, alternate"}
   ]},
 { "hdr": "7E4", "rax": "7EC", "fcm1": true, "dbg": true, "cmd": {"22": "480D"}, "freq": 1,
   "signals": [
@@ -1250,7 +1244,7 @@
   ]},
 { "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "48F9"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_HVBAT_A", "path": "Battery", "fmt": { "len": 16, "max": 600, "min": -600, "div": 10, "sign": true, "unit": "amps" }, "name": "HV battery current"}
+    {"id": "MAZDA_HVBAT_A", "path": "Battery", "fmt": { "len": 16, "max": 600, "min": -600, "div": 10, "sign": true, "unit": "amps" }, "name": "HV battery current", "suggestedMetric": "tractionBatteryCurrent"}
   ]},
 { "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "48FB"}, "freq": 1,
   "signals": [
