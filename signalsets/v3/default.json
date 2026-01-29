@@ -566,7 +566,7 @@
   ]},
 { "hdr": "7C0", "rax": "7C8", "fcm1": true, "dbg": true, "cmd": {"22": "1022"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_FLV_V2", "path": "Fuel", "fmt": { "len": 16, "max": 655, "div": 100, "nullmax": 655, "unit": "liters" }, "name": "Fuel remaining", "suggestedMetric": "fuelTankLevel"}
+    {"id": "MAZDA_FLV_V2", "path": "Fuel", "fmt": { "len": 16, "max": 655, "div": 100, "nullmin": 0, "nullmax": 655, "unit": "liters" }, "name": "Fuel remaining", "suggestedMetric": "fuelTankLevel"}
   ]},
 { "hdr": "7C7", "dbg": true, "cmd": {"22": "99AB"}, "freq": 5,
   "signals": [
