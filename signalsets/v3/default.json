@@ -284,20 +284,20 @@
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "4027"}, "freq": 3600,
   "signals": [
     {"id": "MAZDA_BATT_AGE", "path": "Battery", "fmt": { "len": 16, "max": 1825,               "unit": "scalar" }, "name": "Battery age"},
-    {"id": "MAZDA_12V_AGE",  "path": "Battery", "fmt": { "len": 16, "max": 1572840, "mul": 24, "unit": "hours"  }, "name": "Aux 12V battery age"}
+    {"id": "MAZDA_12V_AGE",  "path": "Battery", "fmt": { "len": 16, "max": 1572840, "mul": 24, "unit": "hours"  }, "name": "12V battery age"}
   ]},
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "4028"}, "freq": 10,
   "signals": [
     {"id": "MAZDA_BATT_SOC",   "path": "Battery", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Battery charge"},
-    {"id": "MAZDA_12V_SOC_V2", "path": "Battery", "fmt": { "len": 8, "max": 100,                         "unit": "percent" }, "name": "Aux 12V battery state of charge"}
+    {"id": "MAZDA_12V_SOC_V2", "path": "Battery", "fmt": { "len": 8, "max": 100,                         "unit": "percent" }, "name": "12V battery state of charge"}
   ]},
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "4029"}, "freq": 10,
   "signals": [
     {"id": "MAZDA_BATT_TEMP", "path": "Battery", "fmt": { "len": 8, "max": 100, "min": -40, "add": -40, "unit": "celsius" }, "name": "Battery temperature"}
   ]},
-{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "402A"}, "freq": 1,
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "402A"}, "freq": 5,
   "signals": [
-    {"id": "MAZDA_12V_V_V2", "path": "Battery", "fmt": { "len": 8, "max": 18.75, "div": 20, "add": 6, "unit": "volts" }, "name": "Aux 12V battery voltage", "suggestedMetric": "starterBatteryVoltage"}
+    {"id": "MAZDA_12V_V_V2", "path": "Battery", "fmt": { "len": 8, "max": 18.75, "div": 20, "add": 6, "unit": "volts" }, "name": "12V battery voltage", "suggestedMetric": "starterBatteryVoltage"}
   ]},
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "402B"}, "freq": 5,
   "signals": [
@@ -1014,7 +1014,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0580"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_GRILL_SHUTTER_POSITION", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Grill shutter position"}
+    {"id": "MAZDA_GRILL_SHUTTER_POS", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Grill shutter position"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "05AC"}, "freq": 1,
   "signals": [
@@ -1172,9 +1172,9 @@
   "signals": [
     {"id": "MAZDA_FUEL_PW", "path": "Fuel", "fmt": { "len": 16, "max": 524.28, "div": 125, "unit": "scalar" }, "name": "Injector fuel pulse width"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1505"}, "freq": 0.1,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1505"}, "freq": 0.25,
   "signals": [
-    {"id": "MAZDA_VSS_HD", "path": "Movement", "fmt": { "len": 16, "max": 200, "div": 128, "unit": "kilometersPerHour" }, "name": "Vehicle speed, high resolution", "suggestedMetric": "speed"}
+    {"id": "MAZDA_VSS_HD", "path": "Movement", "fmt": { "len": 16, "max": 200, "div": 128, "unit": "kilometersPerHour" }, "name": "Vehicle speed, high resolution"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "160D"}, "freq": 1,
   "signals": [
@@ -1566,12 +1566,12 @@
   "signals": [
     {"id": "MAZDA_CONTACTOR_V_NEG", "path": "Battery", "fmt": { "len": 16, "max": 300, "div": 10, "unit": "volts" }, "name": "Contactor voltage negative"}
   ]},
-{ "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "4808"}, "freq": 15,
+{ "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "4808"}, "freq": 5,
   "signals": [
-    {"id": "MAZDA_T_RANGE_MAX", "path": "Battery", "fmt": {           "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "HV battery temperature range, maximum"},
-    {"id": "MAZDA_T_RANGE_MIN", "path": "Battery", "fmt": {"bix": 8,  "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "HV battery temperature range, minimum"},
+    {"id": "MAZDA_HVBAT_T_MAX", "path": "Battery", "fmt": {           "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "HV battery temperature, maximum"},
+    {"id": "MAZDA_HVBAT_T_MIN", "path": "Battery", "fmt": {"bix": 8,  "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "HV battery temperature, minimum"},
     {"id": "MAZDA_T_RANGE",     "path": "Battery", "fmt": {"bix": 16, "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "HV battery temperature range"},
-    {"id": "MAZDA_T_RANGE_AVG", "path": "Battery", "fmt": {"bix": 24, "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "HV battery temperature range, average"}
+    {"id": "MAZDA_HVBAT_T_AVG", "path": "Battery", "fmt": {"bix": 24, "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "HV battery temperature, average"}
   ]},
 { "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "4809"}, "freq": 1,
   "signals": [
@@ -1579,7 +1579,7 @@
   ]},
 { "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "480B"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_HVBAT_A_ALT", "path": "Battery", "fmt": { "len": 16, "max": 300, "min": -300, "div": 50, "sign": true, "unit": "amps" }, "name": "HV battery current, alternate"}
+    {"id": "MAZDA_HVBAT_A", "path": "Battery", "fmt": { "len": 16, "max": 300, "min": -300, "div": 50, "sign": true, "unit": "amps" }, "name": "HV battery current"}
   ]},
 { "hdr": "7E4", "rax": "7EC", "fcm1": true, "dbg": true, "cmd": {"22": "480D"}, "freq": 1,
   "signals": [
@@ -1658,7 +1658,7 @@
   ]},
 { "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "48F9"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_HVBAT_A", "path": "Battery", "fmt": { "len": 16, "max": 600, "min": -600, "div": 10, "sign": true, "unit": "amps" }, "name": "HV battery current", "suggestedMetric": "tractionBatteryCurrent"}
+    {"id": "MAZDA_HVBAT_A_V2", "path": "Battery", "fmt": { "len": 16, "max": 600, "min": -600, "div": 10, "sign": true, "unit": "amps" }, "name": "HV battery current", "suggestedMetric": "tractionBatteryCurrent"}
   ]},
 { "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "48FB"}, "freq": 1,
   "signals": [
