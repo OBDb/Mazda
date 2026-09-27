@@ -1,5 +1,9 @@
 { "ecu": [
-    { "hdr": "7E0", "type": "engine" }
+    { "hdr": "7E0", "type": "engine" },
+    { "hdr": "7E1", "type": "transmission" },
+    { "hdr": "7E2", "type": "charger" },
+    { "hdr": "7E4", "type": "battery" },
+    { "hdr": "7E6", "type": "hybridControl" }
   ],
   "commands": [
 { "hdr": "6F5", "rax": "6FD", "dbg": true, "cmd": {"22": "4899"}, "freq": 1,
@@ -10,9 +14,9 @@
   "signals": [
     {"id": "MAZDA_HVDC_CHG_MAX_V", "path": "Battery", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "volts" }, "name": "HV DC charger maximum voltage"}
   ]},
-{ "hdr": "700", "rax": "708", "dbg": true, "cmd": {"22": "1074"}, "freq": 0.25,
+{ "hdr": "700", "rax": "708", "dbg": true, "cmd": {"22": "1074"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_EOP_V2", "path": "Engine", "fmt": { "len": 16, "max": 1000, "mul": 10, "div": 128, "unit": "kilopascal" }, "name": "Engine oil pressure"}
+    {"id": "MAZDA_EOP_700", "path": "Engine", "fmt": { "len": 16, "max": 1000, "mul": 10, "div": 128, "unit": "kilopascal" }, "name": "Engine oil pressure"}
   ]},
 { "hdr": "700", "rax": "708", "dbg": true, "cmd": {"22": "10A5"}, "freq": 1,
   "signals": [
@@ -29,86 +33,63 @@
   "signals": [
     {"id": "MAZDA_LFPS", "path": "Fuel", "fmt": { "len": 16, "max": 3276, "min": -3276, "div": 10, "add": -3276.75, "unit": "kilopascal" }, "name": "Low fuel pressure sensor"}
   ]},
-{ "hdr": "700", "rax": "708", "dbg": true, "cmd": {"22": "1F5C"}, "freq": 1,
+{ "hdr": "700", "rax": "708", "dbg": true, "cmd": {"22": "1F5C"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_EOT_V2", "path": "Engine", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Engine oil temperature"}
   ]},
-{ "hdr": "720", "dbg": true, "cmd": {"22": "2A05"}, "freq": 1,
+{ "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "2A05"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_TP_1",  "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000,               "unit": "bars" }, "name": "Wheel 1 pressure"},
     {"id": "MAZDA_TP_FL", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "unit": "bars" }, "name": "Front left tire pressure", "suggestedMetric": "frontLeftTirePressure"},
     {"id": "MAZDA_TP_RL", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "unit": "bars" }, "name": "Rear left tire pressure",  "suggestedMetric": "rearLeftTirePressure"}
   ]},
-{ "hdr": "720", "dbg": true, "cmd": {"22": "2A06"}, "freq": 1,
+{ "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "2A06"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_TP_2",     "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000,               "unit": "bars" }, "name": "Wheel 2 pressure"},
     {"id": "MAZDA_TP_RL_V2", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "unit": "bars" }, "name": "Rear left tire pressure",  "suggestedMetric": "rearLeftTirePressure"},
     {"id": "MAZDA_TP_FL_V2", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "unit": "bars" }, "name": "Front left tire pressure", "suggestedMetric": "frontLeftTirePressure"}
   ]},
-{ "hdr": "720", "dbg": true, "cmd": {"22": "2A07"}, "freq": 1,
+{ "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "2A07"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_TP_3",  "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000,               "unit": "bars" }, "name": "Wheel 3 pressure"},
     {"id": "MAZDA_TP_FR", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "unit": "bars" }, "name": "Front right tire pressure", "suggestedMetric": "frontRightTirePressure"},
     {"id": "MAZDA_TP_RR", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "unit": "bars" }, "name": "Rear right tire pressure",  "suggestedMetric": "rearRightTirePressure"}
   ]},
-{ "hdr": "720", "dbg": true, "cmd": {"22": "2A08"}, "freq": 1,
+{ "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "2A08"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_TP_4",     "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000,               "unit": "bars" }, "name": "Wheel 4 pressure"},
     {"id": "MAZDA_TP_RR_V2", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "unit": "bars" }, "name": "Rear right tire pressure",  "suggestedMetric": "rearRightTirePressure"},
     {"id": "MAZDA_TP_FR_V2", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "unit": "bars" }, "name": "Front right tire pressure", "suggestedMetric": "frontRightTirePressure"}
   ]},
-{ "hdr": "720", "dbg": true, "cmd": {"22": "2A0A"}, "freq": 15,
+{ "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "2A0A"}, "freq": 15,
   "signals": [
     {"id": "MAZDA_TT_1",  "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50,                 "unit": "celsius" }, "name": "Wheel 1 temperature"},
     {"id": "MAZDA_TT_RL", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "nullmin": -50, "unit": "celsius" }, "name": "Rear left tire temperature", "suggestedMetric": "rearLeftTireTemperature"}
   ]},
-{ "hdr": "720", "dbg": true, "cmd": {"22": "2A0B"}, "freq": 15,
+{ "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "2A0B"}, "freq": 15,
   "signals": [
     {"id": "MAZDA_TT_2",  "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50,                 "unit": "celsius" }, "name": "Wheel 2 temperature"},
     {"id": "MAZDA_TT_FL", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "nullmin": -50, "unit": "celsius" }, "name": "Front left tire temperature", "suggestedMetric": "frontLeftTireTemperature"}
   ]},
-{ "hdr": "720", "dbg": true, "cmd": {"22": "2A0C"}, "freq": 15,
+{ "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "2A0C"}, "freq": 15,
   "signals": [
     {"id": "MAZDA_TT_3",  "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50,                 "unit": "celsius" }, "name": "Wheel 3 temperature"},
     {"id": "MAZDA_TT_FR", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "nullmin": -50, "unit": "celsius" }, "name": "Front right tire temperature", "suggestedMetric": "frontRightTireTemperature"},
     {"id": "MAZDA_TT_RR", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "nullmin": -50, "unit": "celsius" }, "name": "Rear right tire temperature",  "suggestedMetric": "rearRightTireTemperature"}
   ]},
-{ "hdr": "720", "dbg": true, "cmd": {"22": "2A0D"}, "freq": 15,
+{ "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "2A0D"}, "freq": 15,
   "signals": [
     {"id": "MAZDA_TT_4",     "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50,                 "unit": "celsius" }, "name": "Wheel 4 temperature"},
     {"id": "MAZDA_TT_RR_V2", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "nullmin": -50, "unit": "celsius" }, "name": "Rear right tire temperature",  "suggestedMetric": "rearRightTireTemperature"},
     {"id": "MAZDA_TT_FR_V2", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "nullmin": -50, "unit": "celsius" }, "name": "Front right tire temperature", "suggestedMetric": "frontRightTireTemperature"}
   ]},
-{ "hdr": "720", "dbg": true, "cmd": {"22": "61B1"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_FUEL_LEVEL", "path": "Fuel", "fmt": { "len": 8, "max": 55,  "unit": "liters" }, "name": "Fuel level"},
-    {"id": "MAZDA_FLV",        "path": "Fuel", "fmt": { "len": 8, "max": 255, "unit": "liters" }, "name": "Fuel level", "suggestedMetric": "fuelTankLevel"}
-  ]},
-{ "hdr": "720", "dbg": true, "cmd": {"22": "C901"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_TIRE_FL_PRESSURE", "path": "Tires", "fmt": {           "len": 8, "max": 50, "mul": 0.1991368143,                                        "unit": "psi" }, "name": "Front left tire pressure",  "suggestedMetric": "frontLeftTirePressure"},
-    {"id": "MAZDA_TP_FL_V3",         "path": "Tires", "fmt": {           "len": 8, "max": 51,                      "div": 5, "nullmin": 0, "nullmax": 51, "unit": "psi" }, "name": "Front left tire pressure",  "suggestedMetric": "frontLeftTirePressure"},
-    {"id": "MAZDA_TIRE_FR_PRESSURE", "path": "Tires", "fmt": {"bix": 8,  "len": 8, "max": 50, "mul": 0.1991368143,                                        "unit": "psi" }, "name": "Front right tire pressure", "suggestedMetric": "frontRightTirePressure"},
-    {"id": "MAZDA_TP_FR_V3",         "path": "Tires", "fmt": {"bix": 8,  "len": 8, "max": 51,                      "div": 5, "nullmin": 0, "nullmax": 51, "unit": "psi" }, "name": "Front right tire pressure", "suggestedMetric": "frontRightTirePressure"},
-    {"id": "MAZDA_TIRE_RL_PRESSURE", "path": "Tires", "fmt": {"bix": 16, "len": 8, "max": 50, "mul": 0.1991368143,                                        "unit": "psi" }, "name": "Rear left tire pressure",   "suggestedMetric": "rearLeftTirePressure"},
-    {"id": "MAZDA_TP_RL_V3",         "path": "Tires", "fmt": {"bix": 16, "len": 8, "max": 51,                      "div": 5, "nullmin": 0, "nullmax": 51, "unit": "psi" }, "name": "Rear left tire pressure",   "suggestedMetric": "rearLeftTirePressure"},
-    {"id": "MAZDA_TIRE_RR_PRESSURE", "path": "Tires", "fmt": {"bix": 24, "len": 8, "max": 50, "mul": 0.1991368143,                                        "unit": "psi" }, "name": "Rear right tire pressure",  "suggestedMetric": "rearRightTirePressure"},
-    {"id": "MAZDA_TP_RR_V3",         "path": "Tires", "fmt": {"bix": 24, "len": 8, "max": 51,                      "div": 5, "nullmin": 0, "nullmax": 51, "unit": "psi" }, "name": "Rear right tire pressure",  "suggestedMetric": "rearRightTirePressure"}
-  ]},
-{ "hdr": "720", "dbg": true, "cmd": {"22": "C902"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_TIRE_FL_TEMP", "path": "Tires", "fmt": {           "len": 8, "max": 200,             "mul": 1.8, "add": -58, "unit": "fahrenheit" }, "name": "Front left tire temperature"},
-    {"id": "MAZDA_TT_FL_V2",     "path": "Tires", "fmt": {           "len": 8, "max": 401, "min": -58, "mul": 1.8, "add": -58, "unit": "fahrenheit" }, "name": "Front left tire temperature"},
-    {"id": "MAZDA_TIRE_FR_TEMP", "path": "Tires", "fmt": {"bix": 8,  "len": 8, "max": 200,             "mul": 1.8, "add": -58, "unit": "fahrenheit" }, "name": "Front right tire temperature"},
-    {"id": "MAZDA_TT_FR_V3",     "path": "Tires", "fmt": {"bix": 8,  "len": 8, "max": 401, "min": -58, "mul": 1.8, "add": -58, "unit": "fahrenheit" }, "name": "Front right tire temperature"},
-    {"id": "MAZDA_TIRE_RL_TEMP", "path": "Tires", "fmt": {"bix": 16, "len": 8, "max": 200,             "mul": 1.8, "add": -58, "unit": "fahrenheit" }, "name": "Rear left tire temperature"},
-    {"id": "MAZDA_TT_RL_V2",     "path": "Tires", "fmt": {"bix": 16, "len": 8, "max": 401, "min": -58, "mul": 1.8, "add": -58, "unit": "fahrenheit" }, "name": "Rear left tire temperature"},
-    {"id": "MAZDA_TIRE_RR_TEMP", "path": "Tires", "fmt": {"bix": 24, "len": 8, "max": 200,             "mul": 1.8, "add": -58, "unit": "fahrenheit" }, "name": "Rear right tire temperature"},
-    {"id": "MAZDA_TT_RR_V3",     "path": "Tires", "fmt": {"bix": 24, "len": 8, "max": 401, "min": -58, "mul": 1.8, "add": -58, "unit": "fahrenheit" }, "name": "Rear right tire temperature"}
-  ]},
 { "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "404C"}, "freq": 30,
   "signals": [
     {"id": "MAZDA_ODO_V4", "path": "Trips", "fmt": { "len": 24, "max": 1677721, "div": 10, "unit": "kilometers" }, "name": "Odometer", "suggestedMetric": "odometer"}
+  ]},
+{ "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "6180"}, "freq": 30,
+  "signals": [
+    {"id": "MAZDA_ODO_720", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer"}
   ]},
 { "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "6185"}, "freq": 1,
   "signals": [
@@ -117,6 +98,25 @@
 { "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "61A5"}, "freq": 30,
   "signals": [
     {"id": "MAZDA_TPMS_WARN", "path": "Tires", "fmt": {"bix": 2, "len": 1, "max": 1, "unit": "offon" }, "name": "Tire pressure warning indicator"}
+  ]},
+{ "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "61B1"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_FUEL_LEVEL", "path": "Fuel", "fmt": { "len": 8, "max": 55,  "unit": "liters" }, "name": "Fuel level", "suggestedMetric": "fuelTankLevel"},
+    {"id": "MAZDA_FLV",        "path": "Fuel", "fmt": { "len": 8, "max": 255, "unit": "liters" }, "name": "Fuel level", "suggestedMetric": "fuelTankLevel"}
+  ]},
+{ "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "C901"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TP_FL_V4", "path": "Tires", "fmt": {           "len": 8, "max": 51, "div": 5, "nullmin": 0, "nullmax": 51, "unit": "psi" }, "name": "Front left tire pressure",  "suggestedMetric": "frontLeftTirePressure"},
+    {"id": "MAZDA_TP_FR_V4", "path": "Tires", "fmt": {"bix": 8,  "len": 8, "max": 51, "div": 5, "nullmin": 0, "nullmax": 51, "unit": "psi" }, "name": "Front right tire pressure", "suggestedMetric": "frontRightTirePressure"},
+    {"id": "MAZDA_TP_RL_V4", "path": "Tires", "fmt": {"bix": 16, "len": 8, "max": 51, "div": 5, "nullmin": 0, "nullmax": 51, "unit": "psi" }, "name": "Rear left tire pressure",   "suggestedMetric": "rearLeftTirePressure"},
+    {"id": "MAZDA_TP_RR_V4", "path": "Tires", "fmt": {"bix": 24, "len": 8, "max": 51, "div": 5, "nullmin": 0, "nullmax": 51, "unit": "psi" }, "name": "Rear right tire pressure",  "suggestedMetric": "rearRightTirePressure"}
+  ]},
+{ "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "C902"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TT_FL_V3", "path": "Tires", "fmt": {           "len": 8, "max": 401, "min": -58, "mul": 1.8, "add": -58, "unit": "fahrenheit" }, "name": "Front left tire temperature"},
+    {"id": "MAZDA_TT_FR_V4", "path": "Tires", "fmt": {"bix": 8,  "len": 8, "max": 401, "min": -58, "mul": 1.8, "add": -58, "unit": "fahrenheit" }, "name": "Front right tire temperature"},
+    {"id": "MAZDA_TT_RL_V3", "path": "Tires", "fmt": {"bix": 16, "len": 8, "max": 401, "min": -58, "mul": 1.8, "add": -58, "unit": "fahrenheit" }, "name": "Rear left tire temperature"},
+    {"id": "MAZDA_TT_RR_V4", "path": "Tires", "fmt": {"bix": 24, "len": 8, "max": 401, "min": -58, "mul": 1.8, "add": -58, "unit": "fahrenheit" }, "name": "Rear right tire temperature"}
   ]},
 { "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "DD01"}, "freq": 30,
   "signals": [
@@ -144,7 +144,7 @@
   ]},
 { "hdr": "723", "rax": "72B", "dbg": true, "cmd": {"22": "DD01"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_ODO", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Total distance", "suggestedMetric": "odometer"}
+    {"id": "MAZDA_ODO_V2", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Total distance", "suggestedMetric": "odometer"}
   ]},
 { "hdr": "723", "rax": "72B", "dbg": true, "cmd": {"22": "DD05"}, "freq": 1,
   "signals": [
@@ -226,38 +226,6 @@
         }}
     }
   ]},
-{ "hdr": "726", "dbg": true, "cmd": {"22": "D922"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_TP_FL_V4", "path": "Tires", "fmt": { "len": 8, "max": 51, "div": 5, "unit": "psi" }, "name": "Front left pressure", "suggestedMetric": "frontLeftTirePressure"}
-  ]},
-{ "hdr": "726", "dbg": true, "cmd": {"22": "D923"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_TP_FR_V4", "path": "Tires", "fmt": { "len": 8, "max": 51, "div": 5, "unit": "psi" }, "name": "Front right pressure", "suggestedMetric": "frontRightTirePressure"}
-  ]},
-{ "hdr": "726", "dbg": true, "cmd": {"22": "D924"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_TP_RL_V4", "path": "Tires", "fmt": { "len": 8, "max": 51, "div": 5, "unit": "psi" }, "name": "Rear left pressure", "suggestedMetric": "rearLeftTirePressure"}
-  ]},
-{ "hdr": "726", "dbg": true, "cmd": {"22": "D925"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_TP_RR_V4", "path": "Tires", "fmt": { "len": 8, "max": 51, "div": 5, "unit": "psi" }, "name": "Rear right pressure", "suggestedMetric": "rearRightTirePressure"}
-  ]},
-{ "hdr": "726", "dbg": true, "cmd": {"22": "D926"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_TT_FL_V3", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Front left temperature"}
-  ]},
-{ "hdr": "726", "dbg": true, "cmd": {"22": "D927"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_TT_FR_V4", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Front right temperature"}
-  ]},
-{ "hdr": "726", "dbg": true, "cmd": {"22": "D928"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_TT_RL_V3", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Rear left temperature"}
-  ]},
-{ "hdr": "726", "dbg": true, "cmd": {"22": "D929"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_TT_RR_V4", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Rear right temperature"}
-  ]},
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "2813"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_TP_FL_V5", "path": "Tires", "fmt": { "len": 16, "max": 3276, "div": 20, "unit": "psi" }, "name": "Front left tire pressure", "suggestedMetric": "frontLeftTirePressure"}
@@ -284,6 +252,22 @@
   "signals": [
     {"id": "MAZDA_TP_RLI", "path": "Tires", "fmt": { "len": 16, "max": 3276, "div": 20, "unit": "psi" }, "name": "Rear left inner tire pressure"}
   ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "401E"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_NORM_CUM_CHG_IGN_ON", "path": "Battery", "fmt": {"bix": 7, "len": 1, "max": 0.1, "div": 10, "unit": "offon" }, "name": "Normalized cumulative charge when ignition is on"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "4021"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_NORM_CUM_DCHG_BAT_ON", "path": "Battery", "fmt": {"bix": 7, "len": 1, "max": 0.1, "div": 10, "unit": "offon" }, "name": "Normalized cumulative discharge from battery with engine on"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "4025"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_BAT_QUIESCENT", "path": "Battery", "fmt": { "len": 16, "max": 31767.5, "min": -1000, "div": 2, "add": -1000, "unit": "milliamps" }, "name": "Battery quiescent current, low range"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "4026"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_NORM_CUM_DCHG_BAT_OFF", "path": "Battery", "fmt": {"bix": 7, "len": 1, "max": 0.1, "div": 10, "unit": "offon" }, "name": "Normalized cumulative discharge from battery with engine off"}
+  ]},
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "4027"}, "freq": 3600,
   "signals": [
     {"id": "MAZDA_BATT_AGE", "path": "Battery", "fmt": { "len": 16, "max": 1825,               "unit": "scalar" }, "name": "Battery age"},
@@ -300,15 +284,92 @@
   ]},
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "402A"}, "freq": 5,
   "signals": [
-    {"id": "MAZDA_12V_V_V2", "path": "Battery", "fmt": { "len": 8, "max": 18.75, "div": 20, "add": 6, "unit": "volts" }, "name": "12V battery voltage", "suggestedMetric": "starterBatteryVoltage"}
+    {"id": "MAZDA_12V_V_V2",  "path": "Battery", "fmt": {          "len": 8, "max": 18.75, "div": 20, "add": 6, "unit": "volts" }, "name": "12V battery voltage",     "suggestedMetric": "starterBatteryVoltage"},
+    {"id": "MAZDA_VEH_BAT_V", "path": "Battery", "fmt": {"bix": 7, "len": 1, "max": 6.05,  "div": 20, "add": 6, "unit": "offon" }, "name": "Vehicle battery voltage"}
   ]},
-{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "402B"}, "freq": 5,
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "402B"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_12V_A", "path": "Battery", "fmt": { "len": 8, "max": 128, "min": -127, "add": -127, "unit": "amps" }, "name": "Aux 12V battery current"}
+    {"id": "MAZDA_12V_A",           "path": "Battery", "fmt": {          "len": 8, "max": 128,  "min": -127, "add": -127, "unit": "amps"  }, "name": "Aux 12V battery current"},
+    {"id": "MAZDA_VEH_BAT_CURRENT", "path": "Battery", "fmt": {"bix": 7, "len": 1, "max": -126, "min": -127, "add": -127, "unit": "offon" }, "name": "Vehicle battery current"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "4090"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_BAT_CURRENT_726", "path": "Engine", "fmt": { "len": 16, "max": 3584.2375, "min": -511.7, "div": 16, "add": -511.7, "unit": "amps" }, "name": "Battery current"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "41A9"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_BAT_CURRENT_TOO_HIGH", "path": "Battery", "fmt": {"bix": 2,  "len": 1, "max": 1, "unit": "offon" }, "name": "Battery current too high for start/stop"},
+    {"id": "MAZDA_BAT_V_TOO_LOW_START",  "path": "Battery", "fmt": {"bix": 3,  "len": 1, "max": 1, "unit": "offon" }, "name": "Battery voltage too low for start/stop"},
+    {"id": "MAZDA_BAT_ST_CHG_TOO_LOW",   "path": "Battery", "fmt": {"bix": 4,  "len": 1, "max": 1, "unit": "offon" }, "name": "Battery state of charge too low for start/stop"},
+    {"id": "MAZDA_BAT_CAP_TOO_LOW",      "path": "Battery", "fmt": {"bix": 5,  "len": 1, "max": 1, "unit": "offon" }, "name": "Battery capacity too low for start/stop"},
+    {"id": "MAZDA_BAT_V_TOO_LOW_COLD",   "path": "Battery", "fmt": {"bix": 6,  "len": 1, "max": 1, "unit": "offon" }, "name": "Battery voltage too low for cold cranking capability"},
+    {"id": "MAZDA_BAT_V_TOO_LOW_AUTO",   "path": "Battery", "fmt": {"bix": 12, "len": 1, "max": 1, "unit": "offon" }, "name": "Battery voltage too low for auto restart"},
+    {"id": "MAZDA_BAT_T_TOO_LOW_AUTO",   "path": "Battery", "fmt": {"bix": 13, "len": 1, "max": 1, "unit": "offon" }, "name": "Battery temperature too low for auto stop"},
+    {"id": "MAZDA_BAT_REFRESH_CYCLE",    "path": "Battery", "fmt": {"bix": 14, "len": 1, "max": 1, "unit": "offon" }, "name": "Battery refresh cycle in progress for start/stop"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "41E8"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_VEH_BAT_B_V", "path": "Battery", "fmt": {"bix": 7, "len": 1, "max": 6.05, "div": 20, "add": 6, "unit": "offon" }, "name": "Vehicle battery B voltage"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "4209"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_BAT_CURRENT", "path": "Battery", "fmt": { "len": 24, "max": 4194303.75, "div": 4, "unit": "amps" }, "name": "Battery current, predicted"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "420A"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_BAT_ST_DETECTION", "path": "Battery", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Battery state detection status"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "423C"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_VEH_BAT_B_CURRENT", "path": "Battery", "fmt": {"bix": 7, "len": 1, "max": 0, "min": -0.0312, "div": 32, "sign": true, "unit": "offon" }, "name": "Vehicle battery B current"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "D922"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TP_FL_V3", "path": "Tires", "fmt": { "len": 8, "max": 51, "div": 5, "unit": "psi" }, "name": "Front left pressure", "suggestedMetric": "frontLeftTirePressure"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "D923"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TP_FR_V3", "path": "Tires", "fmt": { "len": 8, "max": 51, "div": 5, "unit": "psi" }, "name": "Front right pressure", "suggestedMetric": "frontRightTirePressure"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "D924"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TP_RL_V3", "path": "Tires", "fmt": { "len": 8, "max": 51, "div": 5, "unit": "psi" }, "name": "Rear left pressure", "suggestedMetric": "rearLeftTirePressure"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "D925"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TP_RR_V3", "path": "Tires", "fmt": { "len": 8, "max": 51, "div": 5, "unit": "psi" }, "name": "Rear right pressure", "suggestedMetric": "rearRightTirePressure"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "D926"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TT_FL_V2", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Front left temperature", "suggestedMetric": "frontLeftTireTemperature"},
+    {"id": "MAZDA_TT_FL_ND", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Front left temperature"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "D927"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TT_FR_V3", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Front right temperature", "suggestedMetric": "frontRightTireTemperature"},
+    {"id": "MAZDA_TT_FR_ND", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Front right temperature"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "D928"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TT_RL_V2", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Rear left temperature", "suggestedMetric": "rearLeftTireTemperature"},
+    {"id": "MAZDA_TT_RL_ND", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Rear left temperature"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "D929"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TT_RR_V3", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Rear right temperature", "suggestedMetric": "rearRightTireTemperature"},
+    {"id": "MAZDA_TT_RR_ND", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Rear right temperature"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "DA05"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_BRAKE_SWITCH", "path": "Control", "fmt": { "len": 1, "max": 1, "unit": "offon" }, "name": "Brake switch"}
   ]},
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "DD01"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_ODO_726", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer, instrument panel", "suggestedMetric": "odometer"}
+  ]},
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "DD04"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_CAR_T", "path": "Engine", "fmt": { "len": 8, "max": 31.875, "div": 8, "unit": "celsius" }, "name": "In car temperature"}
   ]},
 { "hdr": "746", "rax": "74E", "dbg": true, "cmd": {"22": "4836"}, "freq": 5,
   "signals": [
@@ -324,7 +385,7 @@
   ]},
 { "hdr": "747", "rax": "74F", "fcm1": true, "dbg": true, "cmd": {"22": "0103"}, "freq": 10,
   "signals": [
-    {"id": "MAZDA_ODO_V2", "path": "Trips", "fmt": {"bix": 8, "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer", "suggestedMetric": "odometer"}
+    {"id": "MAZDA_ODO_V3", "path": "Trips", "fmt": {"bix": 8, "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer", "suggestedMetric": "odometer"}
   ]},
 { "hdr": "747", "rax": "74F", "fcm1": true, "dbg": true, "cmd": {"22": "182E"}, "freq": 1,
   "signals": [
@@ -425,15 +486,15 @@
     {"id": "MAZDA_HVBAT_C95_V", "path": "Battery.Cells", "fmt": {"bix": 1504, "len": 16, "max": 5, "mul": 5, "div": 65535, "unit": "volts" }, "name": "HV battery cell #95 voltage"},
     {"id": "MAZDA_HVBAT_C96_V", "path": "Battery.Cells", "fmt": {"bix": 1520, "len": 16, "max": 5, "mul": 5, "div": 65535, "unit": "volts" }, "name": "HV battery cell #96 voltage"}
   ]},
-{ "hdr": "750", "rax": "758", "eax": "2A", "fcm1": true, "dbg": true, "cmd": {"21": "16"}, "freq": 1,
+{ "hdr": "750", "rax": "758", "eax": "2A", "fcm1": true, "dbg": true, "cmd": {"21": "16"}, "freq": 15,
   "signals": [
-    {"id": "MAZDA_TT_FL_V4", "path": "Tires", "fmt": {           "len": 8, "max": 215, "min": -40, "add": -40, "nullmin": -40, "unit": "celsius" }, "name": "Front left tire temperature"},
-    {"id": "MAZDA_TT_FR_V5", "path": "Tires", "fmt": {"bix": 8,  "len": 8, "max": 215, "min": -40, "add": -40, "nullmin": -40, "unit": "celsius" }, "name": "Front right tire temperature"},
-    {"id": "MAZDA_TT_RL_V4", "path": "Tires", "fmt": {"bix": 16, "len": 8, "max": 215, "min": -40, "add": -40, "nullmin": -40, "unit": "celsius" }, "name": "Rear left tire temperature"},
-    {"id": "MAZDA_TT_RR_V5", "path": "Tires", "fmt": {"bix": 24, "len": 8, "max": 215, "min": -40, "add": -40, "nullmin": -40, "unit": "celsius" }, "name": "Rear right tire temperature"},
-    {"id": "MAZDA_TT_SPARE", "path": "Tires", "fmt": {"bix": 32, "len": 8, "max": 215, "min": -40, "add": -40, "nullmin": -40, "unit": "celsius" }, "name": "Spare tire temperature"}
+    {"id": "MAZDA_TT_FL_750", "path": "Tires", "fmt": {           "len": 8, "max": 215, "min": -40, "add": -40, "nullmin": -40, "unit": "celsius" }, "name": "Front left tire temperature"},
+    {"id": "MAZDA_TT_FR_750", "path": "Tires", "fmt": {"bix": 8,  "len": 8, "max": 215, "min": -40, "add": -40, "nullmin": -40, "unit": "celsius" }, "name": "Front right tire temperature"},
+    {"id": "MAZDA_TT_RL_750", "path": "Tires", "fmt": {"bix": 16, "len": 8, "max": 215, "min": -40, "add": -40, "nullmin": -40, "unit": "celsius" }, "name": "Rear left tire temperature"},
+    {"id": "MAZDA_TT_RR_750", "path": "Tires", "fmt": {"bix": 24, "len": 8, "max": 215, "min": -40, "add": -40, "nullmin": -40, "unit": "celsius" }, "name": "Rear right tire temperature"},
+    {"id": "MAZDA_TT_SPARE",  "path": "Tires", "fmt": {"bix": 32, "len": 8, "max": 215, "min": -40, "add": -40, "nullmin": -40, "unit": "celsius" }, "name": "Spare tire temperature"}
   ]},
-{ "hdr": "750", "rax": "758", "eax": "2A", "tst": "2A", "fcm1": true, "dbg": true, "cmd": {"21": "30"}, "freq": 1,
+{ "hdr": "750", "rax": "758", "eax": "2A", "tst": "2A", "fcm1": true, "dbg": true, "cmd": {"21": "30"}, "freq": 15,
   "signals": [
     {"id": "MAZDA_TP_FL_V1",    "path": "Tires", "fmt": {           "len": 8, "max": 3.8, "div": 58, "add": -0.5, "nullmin": 0, "unit": "bars" }, "name": "Front left tire pressure",  "suggestedMetric": "frontLeftTirePressure"},
     {"id": "MAZDA_TP_FR_V1",    "path": "Tires", "fmt": {"bix": 8,  "len": 8, "max": 3.8, "div": 58, "add": -0.5, "nullmin": 0, "unit": "bars" }, "name": "Front right tire pressure", "suggestedMetric": "frontRightTirePressure"},
@@ -441,7 +502,7 @@
     {"id": "MAZDA_TP_RR_V1",    "path": "Tires", "fmt": {"bix": 24, "len": 8, "max": 3.8, "div": 58, "add": -0.5, "nullmin": 0, "unit": "bars" }, "name": "Rear right tire pressure",  "suggestedMetric": "rearRightTirePressure"},
     {"id": "MAZDA_TP_SPARE_V1", "path": "Tires", "fmt": {"bix": 32, "len": 8, "max": 3.8, "div": 58, "add": -0.5, "nullmin": 0, "unit": "bars" }, "name": "Spare tire pressure"}
   ]},
-{ "hdr": "750", "rax": "758", "eax": "2A", "tst": "2A", "fcm1": true, "dbg": true, "cmd": {"22": "1004"}, "freq": 5,
+{ "hdr": "750", "rax": "758", "eax": "2A", "tst": "2A", "fcm1": true, "dbg": true, "cmd": {"22": "1004"}, "freq": 15,
   "signals": [
     {"id": "MAZDA_TT_FL_V2",    "path": "Tires", "fmt": {           "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Front left tire temperature",  "suggestedMetric": "frontLeftTireTemperature"},
     {"id": "MAZDA_TT_FR_V2",    "path": "Tires", "fmt": {"bix": 8,  "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Front right tire temperature", "suggestedMetric": "frontRightTireTemperature"},
@@ -449,7 +510,7 @@
     {"id": "MAZDA_TT_RR_V2",    "path": "Tires", "fmt": {"bix": 24, "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Rear right tire temperature",  "suggestedMetric": "rearRightTireTemperature"},
     {"id": "MAZDA_TT_SPARE_V2", "path": "Tires", "fmt": {"bix": 32, "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Spare tire temperature"}
   ]},
-{ "hdr": "750", "rax": "758", "eax": "2A", "tst": "2A", "fcm1": true, "dbg": true, "cmd": {"22": "1005"}, "freq": 5,
+{ "hdr": "750", "rax": "758", "eax": "2A", "tst": "2A", "fcm1": true, "dbg": true, "cmd": {"22": "1005"}, "freq": 15,
   "signals": [
     {"id": "MAZDA_TP_FL_V2",    "path": "Tires", "fmt": {"bix": 8,  "len": 8, "max": 3.8, "div": 58, "add": -0.5, "nullmin": 0, "unit": "bars" }, "name": "Front left tire pressure",  "suggestedMetric": "frontLeftTirePressure"},
     {"id": "MAZDA_TP_FR_V2",    "path": "Tires", "fmt": {"bix": 24, "len": 8, "max": 3.8, "div": 58, "add": -0.5, "nullmin": 0, "unit": "bars" }, "name": "Front right tire pressure", "suggestedMetric": "frontRightTirePressure"},
@@ -457,7 +518,7 @@
     {"id": "MAZDA_TP_RR_V2",    "path": "Tires", "fmt": {"bix": 56, "len": 8, "max": 3.8, "div": 58, "add": -0.5, "nullmin": 0, "unit": "bars" }, "name": "Rear right tire pressure",  "suggestedMetric": "rearRightTirePressure"},
     {"id": "MAZDA_TP_SPARE_V2", "path": "Tires", "fmt": {"bix": 72, "len": 8, "max": 3.8, "div": 58, "add": -0.5, "nullmin": 0, "unit": "bars" }, "name": "Spare tire pressure"}
   ]},
-{ "hdr": "750", "rax": "758", "eax": "2A", "tst": "2A", "fcm1": true, "dbg": true, "cmd": {"22": "2021"}, "freq": 86400,
+{ "hdr": "750", "rax": "758", "eax": "2A", "tst": "2A", "fcm1": true, "dbg": true, "cmd": {"22": "2021"}, "freq": 3600,
   "signals": [
     {"id": "MAZDA_TID_1", "path": "Tires", "name": "Tire 1 position", "fmt": {"len": 8, "map": {
           "1": { "description": "Front left",  "value": "FL" },
@@ -525,19 +586,34 @@
     {"id": "MAZDA_STEER_ANGLE_V2", "path": "Control", "fmt": { "len": 8,  "max": 790,  "min": -790,  "mul": 6.25,                            "sign": true, "unit": "degrees" }, "name": "Steering wheel angle", "description": "Positive is rotated to the left, negative is rotated to the right."},
     {"id": "MAZDA_STEER_ANG",      "path": "Control", "fmt": { "len": 16, "max": 1638, "min": -1638,              "div": 20, "add": -1638.4,               "unit": "degrees" }, "name": "Steering angle",       "description": "Positive is rotated to the left, negative is rotated to the right."}
   ]},
+{ "hdr": "760", "rax": "768", "dbg": true, "cmd": {"22": "3987"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_ABS_WHL_SPD_1", "path": "Control", "fmt": {           "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Anti-lock brake wheel speed 1"},
+    {"id": "MAZDA_ABS_WHL_SPD_2", "path": "Control", "fmt": {"bix": 8,  "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Anti-lock brake wheel speed 2"},
+    {"id": "MAZDA_ABS_WHL_SPD_3", "path": "Control", "fmt": {"bix": 16, "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Anti-lock brake wheel speed 3"},
+    {"id": "MAZDA_ABS_WHL_SPD_4", "path": "Control", "fmt": {"bix": 24, "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Anti-lock brake wheel speed 4"}
+  ]},
+{ "hdr": "760", "rax": "768", "dbg": true, "cmd": {"22": "3A51"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_ABS_LATERAL_ACCEL", "path": "Control", "fmt": { "len": 16, "max": 1310.7, "div": 50, "unit": "gravity" }, "name": "Anti-lock brake lateral acceleration"}
+  ]},
 { "hdr": "760", "rax": "768", "dbg": true, "cmd": {"22": "DD01"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_ODO_BCM", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer, battery control module", "suggestedMetric": "odometer"}
+  ]},
+{ "hdr": "761", "rax": "769", "dbg": true, "cmd": {"22": "1E7A"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_COUPLING_SOLENOID", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 20, "div": 51, "unit": "percent" }, "name": "Coupling solenoid duty cycle"}
   ]},
 { "hdr": "764", "rax": "76C", "dbg": true, "cmd": {"22": "A224"}, "freq": 0.25,
   "signals": [
     {"id": "MAZDA_CC_TGT_VSS", "path": "Cruise control", "fmt": { "len": 16, "max": 736, "min": -736, "mul": 3.6, "div": 10, "sign": true, "unit": "kilometersPerHour" }, "name": "Target vehicle speed", "description": "The speed of the vehicle ahead of you."}
   ]},
-{ "hdr": "793", "dbg": true, "cmd": {"22": "D901"}, "freq": 0.25,
+{ "hdr": "793", "rax": "79B", "dbg": true, "cmd": {"22": "D901"}, "freq": 0.25,
   "signals": [
     {"id": "MAZDA_CC_TGT_DIST", "path": "Cruise control", "fmt": {"bix": 8, "len": 8, "max": 63.75, "div": 4, "unit": "meters" }, "name": "Distance from bumper to target"}
   ]},
-{ "hdr": "7B0", "dbg": true, "cmd": {"21": "03"}, "freq": 0.25,
+{ "hdr": "7B0", "rax": "7B8", "dbg": true, "cmd": {"21": "03"}, "freq": 0.25,
   "signals": [
     {"id": "MAZDA_TIRE_FR_SPD", "path": "Movement", "fmt": {           "len": 8, "max": 326.4, "mul": 256, "div": 200, "unit": "kilometersPerHour" }, "name": "Front right wheel speed"},
     {"id": "MAZDA_TIRE_FL_SPD", "path": "Movement", "fmt": {"bix": 8,  "len": 8, "max": 326.4, "mul": 256, "div": 200, "unit": "kilometersPerHour" }, "name": "Front left wheel speed"},
@@ -563,15 +639,15 @@
   "signals": [
     {"id": "MAZDA_STEERING_ANGLE", "path": "Control", "fmt": { "len": 16, "max": 410, "min": -410, "mul": 1.5, "sign": true, "unit": "degrees" }, "name": "Steering angle"}
   ]},
-{ "hdr": "7C0", "rax": "7C8", "dbg": true, "cmd": {"21": "29"}, "freq": 1,
+{ "hdr": "7C0", "rax": "7C8", "dbg": true, "cmd": {"21": "29"}, "freq": 30,
   "signals": [
     {"id": "MAZDA_FLI_VOL", "path": "Fuel", "fmt": { "len": 8, "max": 127.5, "div": 2, "unit": "liters" }, "name": "Fuel level, volume", "suggestedMetric": "fuelTankLevel"}
   ]},
-{ "hdr": "7C0", "rax": "7C8", "dbg": true, "cmd": {"22": "1021"}, "freq": 1,
+{ "hdr": "7C0", "rax": "7C8", "dbg": true, "cmd": {"22": "1021"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_BATTERY_VOLTAGE", "path": "Electrical", "fmt": { "len": 8, "max": 20, "div": 10, "unit": "volts" }, "name": "Battery voltage"}
   ]},
-{ "hdr": "7C0", "rax": "7C8", "fcm1": true, "dbg": true, "cmd": {"22": "1022"}, "freq": 1,
+{ "hdr": "7C0", "rax": "7C8", "fcm1": true, "dbg": true, "cmd": {"22": "1022"}, "freq": 30,
   "signals": [
     {"id": "MAZDA_FLV_V2", "path": "Fuel", "fmt": { "len": 16, "max": 655, "div": 100, "nullmin": 0, "nullmax": 655, "unit": "liters" }, "name": "Fuel remaining", "suggestedMetric": "fuelTankLevel"}
   ]},
@@ -609,8 +685,8 @@
   ]},
 { "hdr": "7D2", "rax": "7DA", "dbg": true, "cmd": {"22": "10A1"}, "freq": 0.25,
   "signals": [
-    {"id": "MAZDA_RPM", "path": "Engine", "fmt": {           "len": 16, "max": 32767, "min": -32768,           "add": -32768, "unit": "rpm"          }, "name": "Motor RPM"},
-    {"id": "MAZDA_TQ",  "path": "Engine", "fmt": {"bix": 48, "len": 16, "max": 4095,  "min": -4096,  "div": 8, "add": -4096,  "unit": "newtonMeters" }, "name": "Motor torque"}
+    {"id": "MAZDA_RPM_V2", "path": "Engine", "fmt": {           "len": 16, "max": 32767, "min": -32768,           "add": -32768, "unit": "rpm"          }, "name": "Motor RPM"},
+    {"id": "MAZDA_TQ",     "path": "Engine", "fmt": {"bix": 48, "len": 16, "max": 4095,  "min": -4096,  "div": 8, "add": -4096,  "unit": "newtonMeters" }, "name": "Motor torque"}
   ]},
 { "hdr": "7D2", "rax": "7DA", "dbg": true, "cmd": {"22": "10A2"}, "freq": 0.25,
   "signals": [
@@ -701,113 +777,19 @@
   ]},
 { "hdr": "7DF", "dbg": true, "cmd": {"22": "F45C"}, "freq": 30,
   "signals": [
-    {"id": "MAZDA_EOP_V3", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Engine oil pressure"}
+    {"id": "MAZDA_EOP_V2", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Engine oil pressure"}
   ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "0301"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_MAP",   "path": "Engine", "fmt": {          "len": 16, "max": 4,                      "div": 1000,                 "unit": "volts" },                                                   "name": "Map voltage",                                                                       "description": "A properly functioning sensor should read around 1 to 1.5 volts at idle."},
-    {"id": "MAZDA_MAP_V", "fmt":            {      "len": 16, "max": 5,            "mul": 0.0009765625,              "unit": "volts" },              "name": "Manifold absolute pressure sensor voltage", "description": "Typically varies from 1 volt at idle to 5 volts during wide open throttle."}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "0306"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_EGR_OPEN_MM", "path": "Engine", "fmt": { "len": 16, "max": 100, "div": 100, "unit": "millimeters" }, "name": "Exhaust gas recirculation open", "description": "Monitors the physical position of the EGR valve, which controls the amount of exhaust gas being recirculated back into the engine's intake system."}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "0307"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_FP_LD",     "path": "Fuel", "fmt": {          "len": 16,  "max": 100,                      "mul": 100, "div": 65535,                   "unit": "percent" },                                                     "name": "Fuel pump load"},
-    {"id": "MAZDA_LPFP_DUTY", "fmt":          {      "len": 16, "max": 100,             "mul": 0.0030517578,                           "unit": "percent" },                "name": "Low pressure fuel pump commanded duty cycle"}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "030F"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_CL", "fmt": { "len": 16, "max": 5, "mul": 0.0000305176, "unit": "scalar" }, "name": "Commanded lambda", "description": "The ratio of of oxygen in the combustion chamber compared to the amount that should have been present for ideal combustion."}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "0380"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_DPF_REGEN", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Diesel particulate filter regeneration status", "description": "The current phase of the regeneration cycle. Lower values typically indicate normal operation with no active regeneration. Mid-range values indicate the regeneration process is in progress. Higher values represent later stages of the regeneration cycle. A value returning to 0 or near-zero indicates a completed regeneration cycle."}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "0393"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_AC_P", "fmt": { "len": 16, "max": 1000, "min": -100, "mul": 0.2900754962, "unit": "psi" }, "name": "Air conditioning compressor pressure"}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "03DB"}, "freq": 0.251,
-  "signals": [
-    {"id": "MAZDA_EXH_DIFF_P", "path": "Engine", "fmt": { "len": 16, "max": 4.5, "div": 200, "unit": "volts" }, "name": "Exhaust differential pressure", "description": "This sensor is crucial for monitoring how clogged the DPF has become. It measures the pressure before and after the DPF in the exhaust system, with the difference between these two measurements indicating how restricted the filter has become. When the pressure difference becomes too high (indicating a clogged filter), the ECM will initiate a regeneration process to burn off the accumulated soot and clean the filter."}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "03DF"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_VGT_OPEN_PERC", "path": "Engine", "fmt": { "len": 16, "max": 100, "mul": 100, "div": 65535, "unit": "percent" }, "name": "Variable geometry turbocharger open", "description": "Measures the position of the vanes in the Variable Geometry Turbocharger (VGT) and reports this position as a percentage value."}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "03FB"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_EGR_OPEN_PERC", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Exhaust gas recirculation open"}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "0415"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_EOP", "path": "Engine", "fmt": { "len": 16, "max": 32767, "min": -32768, "sign": true, "unit": "kilopascal" }, "name": "Engine oil pressure"}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "042C"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_DPF_PM_ACC", "path": "Engine.DPF", "fmt": { "len": 16, "max": 100, "mul": 100, "div": 65535, "unit": "gramsPerLiter" }, "name": "Diesel particulate filter particulate matter accumulation"}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "042D"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_DPF_PM_GEN", "path": "Engine.DPF", "fmt": { "len": 16, "max": 100, "mul": 100, "div": 65535, "unit": "gramsPerLiter" }, "name": "Diesel particulate filter particulate matter generation"}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "0432"}, "freq": 60,
-  "signals": [
-    {"id": "MAZDA_DPF_REGEN_CNT", "path": "Engine.DPF", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Diesel particulate filter regeneration count"}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "0433"}, "freq": 60,
-  "signals": [
-    {"id": "MAZDA_DPF_LAMP_CNT", "path": "Engine.DPF", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Diesel particulate filter lamp count"}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "0434"}, "freq": 2,
-  "signals": [
-    {"id": "MAZDA_DPF_REGEN_DIST", "path": "Engine.DPF", "fmt": {"bix": 8, "len": 24, "max": 25600, "mul": 100, "div": 65535, "unit": "kilometers" }, "name": "Diesel particulate filter regeneration distance"}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "0435"}, "freq": 60,
-  "signals": [
-    {"id": "MAZDA_OIL_DIL_CNT", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Oil dilution events", "description": "Monitors fuel dilution in your engine oil, which is when fuel (gasoline) mixes with the engine oil in the crankcase."}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "044B"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_DPF_PM_ACC_DES", "path": "Engine.DPF", "fmt": { "len": 16, "max": 100, "mul": 100, "div": 65535, "unit": "gramsPerLiter" }, "name": "Diesel particulate filter particulate matter accumulation (desired)"}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "0451"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_OXY", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Oxygen concentration"}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "050F"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_VGT_OPEN", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "millimeters" }, "name": "Variable geometry turbocharger open"}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "0519"}, "freq": 5,
-  "signals": [
-    {"id": "MAZDA_OIL_CHANGE_DIST", "path": "Fluids", "fmt": { "len": 16, "max": 262140, "mul": 4, "unit": "kilometers" }, "name": "Distance since oil changed"}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "0522"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_FUEL_T", "path": "Fuel", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Fuel temp"}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "0542"}, "freq": 5,
-  "signals": [
-    {"id": "MAZDA_OIL_CHANGE_DIST_MAX", "path": "Fluids", "fmt": { "len": 16, "max": 65535, "unit": "kilometers" }, "name": "Max distance to oil change"}
-  ]},
-{ "hdr": "7E0", "dbg": true, "cmd": {"22": "1310"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_EOT", "path": "Engine", "fmt": { "len": 16, "max": 615.35, "min": -40, "div": 100, "add": -40, "unit": "celsius" }, "name": "Engine oil temperature"}
-  ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"21": "21"}, "freq": 5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"21": "21"}, "freq": 0.25,
   "signals": [
     {"id": "MAZDA_CC_S", "path": "Cruise control", "fmt": {"bix": 8, "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Cruise control speed"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"21": "51"}, "freq": 1,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"21": "51"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_PREV_TRIP_DST", "path": "Trips",  "fmt": {"bix": 40, "len": 16, "max": 655.35,             "div": 100,             "unit": "kilometers" }, "name": "Previous trip distance"},
     {"id": "MAZDA_VVTOT",         "path": "Engine", "fmt": {"bix": 56, "len": 8,  "max": 215,    "min": -40,             "add": -40, "unit": "celsius"    }, "name": "Variable valve timing oil temperature"},
     {"id": "MAZDA_EOT_V1",        "path": "Engine", "fmt": {"bix": 72, "len": 8,  "max": 215,    "min": -40,             "add": -40, "unit": "celsius"    }, "name": "Engine oil temperature"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"21": "82"}, "freq": 1,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"21": "82"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_ATF_PAN_T", "path": "Transmission", "fmt": {           "len": 16, "max": 215, "min": -40, "div": 256, "add": -40, "unit": "celsius" }, "name": "Transmission temperature, pan",              "suggestedMetric": "transmissionFluidTemperature"},
     {"id": "MAZDA_ATF_TQC_T", "path": "Transmission", "fmt": {"bix": 16, "len": 16, "max": 215, "min": -40, "div": 256, "add": -40, "unit": "celsius" }, "name": "Transmission temperature, torque converter", "suggestedMetric": "transmissionFluidTemperature"}
@@ -820,31 +802,58 @@
   "signals": [
     {"id": "MAZDA_DTC_CNTD", "path": "DTCs", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Number of DTCs"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0316"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0301"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_MAP",   "path": "Engine", "fmt": {          "len": 16, "max": 4,                      "div": 1000,                 "unit": "volts" },                                                   "name": "Map voltage",                                                                       "description": "A properly functioning sensor should read around 1 to 1.5 volts at idle."},
+    {"id": "MAZDA_MAP_V", "fmt":            {      "len": 16, "max": 5,            "mul": 0.0009765625,              "unit": "volts" },              "name": "Manifold absolute pressure sensor voltage", "description": "Typically varies from 1 volt at idle to 5 volts during wide open throttle."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0304"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_CMD_GEN_V", "path": "Battery", "fmt": { "len": 16, "max": 16, "mul": 0.000488, "unit": "volts" }, "name": "Commanded generator voltage"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0306"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_EGR_OPEN_MM", "path": "Engine", "fmt": { "len": 16, "max": 100, "div": 100, "unit": "millimeters" }, "name": "Exhaust gas recirculation open", "description": "Monitors the physical position of the EGR valve, which controls the amount of exhaust gas being recirculated back into the engine's intake system."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0307"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_FP_LD",     "path": "Fuel", "fmt": {          "len": 16,  "max": 100,                      "mul": 25, "div": 8192,                   "unit": "percent" },                                                     "name": "Fuel pump duty cycle"},
+    {"id": "MAZDA_LPFP_DUTY", "fmt":          {      "len": 16, "max": 100,             "mul": 0.0030517578,                         "unit": "percent" },                "name": "Low pressure fuel pump commanded duty cycle"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "030F"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_CL",                     "path": "Engine", "fmt": {          "len": 16, "max": 1.9999,                      "div": 32768,                  "unit": "scalar" },                          "name": "Lambda, commanded",                                                                                                                  "description": "The ratio of oxygen in the combustion chamber compared to the amount that should have been present for ideal combustion."},
+    {"id": "MAZDA_[ECU] Commanded lambda", "fmt":            {      "len": 16, "max": 5,                 "mul": 0.0000305176,               "unit": "scalar" },               "name": "Commanded lambda", "description": "The ratio of of oxygen in the combustion chamber compared to the amount that should have been present for ideal combustion."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0316"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_VCT_INT_DUTY", "fmt": { "len": 16, "max": 100, "mul": 0.0030517578, "unit": "percent" }, "name": "VCT intake camshaft solenoid duty cycle"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0317"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0317"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_VCT_EXH_DUTY", "fmt": { "len": 16, "max": 100, "mul": 0.0030517578, "unit": "percent" }, "name": "VCT exhaust camshaft solenoid duty cycle"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0318"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0318"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_VCT_INT_ACT", "fmt": { "len": 16, "max": 0, "min": -50, "mul": 0.0625, "unit": "degrees" }, "name": "VCT intake camshaft actual"}
+    {"id": "MAZDA_VCT_INT_ACT",             "fmt": { "len": 16, "max": 0,                            "div": 16, "unit": "degrees" }, "name": "VCT intake camshaft actual"},
+    {"id": "MAZDA_[ECU] VCT intake actual", "fmt": { "len": 16, "max": 0, "min": -50, "mul": 0.0625,            "unit": "degrees" }, "name": "VCT intake camshaft actual"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0319"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0319"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_VCT_EXH_ACT", "fmt": { "len": 16, "max": 50, "mul": 0.0625, "unit": "degrees" }, "name": "VCT exhaust camshaft actual"}
+    {"id": "MAZDA_VCT_EXH_ACT",              "fmt": { "len": 16, "max": 50,                "div": 16, "unit": "degrees" }, "name": "VCT exhaust camshaft actual"},
+    {"id": "MAZDA_[ECU] VCT exhaust actual", "fmt": { "len": 16, "max": 50, "mul": 0.0625,            "unit": "degrees" }, "name": "VCT exhaust camshaft actual"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "031A"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "031A"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_VCT_INT_ERR", "fmt": { "len": 16, "max": 50, "min": -50, "mul": 0.0625, "unit": "degrees" }, "name": "VCT intake camshaft error"}
+    {"id": "MAZDA_VCT_INT_ERR",            "fmt": { "len": 16, "max": 50, "min": -50,                "div": 16, "sign": true, "unit": "degrees" }, "name": "VCT intake camshaft error"},
+    {"id": "MAZDA_[ECU] VCT intake error", "fmt": { "len": 16, "max": 50, "min": -50, "mul": 0.0625,                          "unit": "degrees" }, "name": "VCT intake camshaft error"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "031B"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "031B"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_VCT_EXH_ERR", "fmt": { "len": 16, "max": 50, "min": -50, "mul": 0.0625, "unit": "degrees" }, "name": "VCT exhaust camshaft error"}
+    {"id": "MAZDA_VCT_EXH_ERR",             "fmt": { "len": 16, "max": 50,                            "div": 16, "unit": "degrees" }, "name": "VCT exhaust camshaft error"},
+    {"id": "MAZDA_[ECU] VCT exhaust error", "fmt": { "len": 16, "max": 50, "min": -50, "mul": 0.0625,            "unit": "degrees" }, "name": "VCT exhaust camshaft error"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0324"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0324"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_HPFP_V",                    "fmt": { "len": 16, "max": 5,                      "div": 204.6, "unit": "volts" }, "name": "High pressure fuel rail sensor voltage"},
     {"id": "MAZDA_[ECU] HPFP SENSOR VOLTAGE", "fmt": { "len": 16, "max": 5, "mul": 0.0048875855,               "unit": "volts" }, "name": "High pressure fuel rail sensor voltage"}
@@ -854,22 +863,21 @@
     {"id": "MAZDA_ACC_POS",                          "fmt": { "len": 8, "max": 100,             "div": 2, "unit": "percent" }, "name": "Accelerator pedal position"},
     {"id": "MAZDA_[ECU] ACCELERATOR PEDAL POSITION", "fmt": { "len": 8, "max": 100, "mul": 0.5,           "unit": "percent" }, "name": "Accelerator pedal position"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0334"}, "freq": 2,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0334"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_PCM_CYL_HEAD_T_CORR", "path": "Engine", "fmt": { "len": 16, "max": 511.984375, "min": -512, "div": 64, "sign": true, "unit": "celsius" }, "name": "Cylinder head temperature"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0338"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0338"}, "freq": 3600,
   "signals": [
-    {"id": "MAZDA_ETC_TRIM_LEARNED",       "fmt":            {      "len": 16, "max": 64, "min": -63.9,                     "div": 512,             "sign": true,               "unit": "degrees" },                "name": "Electronic throttle control learned trim angle"},
-    {"id": "MAZDA_ETC_TRIM_LRN",           "path": "Engine", "fmt": {          "len": 16, "max": 63.9,  "min": -64,                     "div": 512,               "sign": true,                   "unit": "degrees" },                                                        "name": "Throttle control trim angle, learned"},
-    {"id": "MAZDA_[ECU] ETC LEARNED TRIM", "fmt":            {      "len": 16, "max": 90, "min": -90,   "mul": 0.001953125,                                                     "unit": "degrees" },                "name": "Electronic throttle control learned trim angle"}
+    {"id": "MAZDA_ETC_TRIM_LEARNED",       "fmt": { "len": 16, "max": 63.9, "min": -64,                     "div": 512, "sign": true, "unit": "degrees" }, "name": "Electronic throttle control learned trim angle"},
+    {"id": "MAZDA_[ECU] ETC LEARNED TRIM", "fmt": { "len": 16, "max": 90,   "min": -90, "mul": 0.001953125,                           "unit": "degrees" }, "name": "Electronic throttle control learned trim angle"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "033C"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "033C"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_TIP_V",                    "fmt": { "len": 16, "max": 5,                      "div": 204.8, "unit": "volts" }, "name": "Throttle inlet pressure sensor voltage"},
     {"id": "MAZDA_[ECU] TIP SENSOR VOLTAGE", "fmt": { "len": 16, "max": 5, "mul": 0.0048828125,               "unit": "volts" }, "name": "Throttle inlet pressure sensor voltage"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "033E"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "033E"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_TIP_ABS",              "fmt": { "len": 16, "max": 60,                      "div": 903.8107848, "unit": "psi" }, "name": "Throttle inlet pressure absolute"},
     {"id": "MAZDA_[ECU] TIP ACTUAL ABS", "fmt": { "len": 16, "max": 60, "mul": 0.0011064263,                     "unit": "psi" }, "name": "Throttle inlet pressure absolute"}
@@ -878,18 +886,32 @@
   "signals": [
     {"id": "MAZDA_PCM_MISF_EVENTS_LATEST_CYC", "path": "Engine", "fmt": { "len": 32, "max": 4294967295, "unit": "scalar" }, "name": "Misfire events, latest cycle"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0353"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0353"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_BARO",       "fmt": { "len": 16, "max": 20, "min": 8,                      "div": 27.582114, "unit": "psi" }, "name": "Barometric pressure"},
     {"id": "MAZDA_[ECU] BARO", "fmt": { "len": 16, "max": 20, "min": 8, "mul": 0.0362553791,                   "unit": "psi" }, "name": "Barometric pressure"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "035A"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "035A"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_BARO_V_V2", "fmt": { "len": 16, "max": 5, "mul": 0.0048875855, "unit": "volts" }, "name": "Barometric pressure sensor voltage"}
+    {"id": "MAZDA_BARO_V_7E0", "fmt":            {      "len": 16, "max": 5,            "mul": 0.0048875855,                        "unit": "volts" },              "name": "Barometric pressure sensor voltage"},
+    {"id": "MAZDA_BARO_V",     "path": "Engine", "fmt": {          "len": 16, "max": 5,                      "mul": 5, "div": 1023,                 "unit": "volts" },                                            "name": "Barometric pressure sensor voltage"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "035F"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "035F"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_RO2_V", "fmt": { "len": 16, "max": 1, "mul": 0.0009765625, "unit": "volts" }, "name": "Rear O2 voltage"}
+    {"id": "MAZDA_RO2_V",           "fmt": { "len": 16, "max": 1,                      "div": 1024, "unit": "volts" }, "name": "Rear O2 voltage"},
+    {"id": "MAZDA_[ECU] Rear O2 V", "fmt": { "len": 16, "max": 1, "mul": 0.0009765625,              "unit": "volts" }, "name": "Rear O2 voltage"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0370"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_MAP_HIRES", "path": "Engine", "fmt": { "len": 16, "max": 16383.75, "div": 4, "unit": "kilopascal" }, "name": "Manifold absolute pressure, high resolution"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0378"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_GEN_CTRL", "path": "Engine", "fmt": { "len": 16, "max": 100, "mul": 0.003052, "unit": "percent" }, "name": "Generator control"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0380"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_DPF_REGEN", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Diesel particulate filter regeneration status", "description": "The current phase of the regeneration cycle. Lower values typically indicate normal operation with no active regeneration. Mid-range values indicate the regeneration process is in progress. Higher values represent later stages of the regeneration cycle. A value returning to 0 or near-zero indicates a completed regeneration cycle."}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0382"}, "freq": 1,
   "signals": [
@@ -911,15 +933,20 @@
   "signals": [
     {"id": "MAZDA_PCM_MISF_ACCEL_CYL5_NORM", "path": "Engine", "fmt": { "len": 8, "max": 1.984375, "min": -2, "div": 64, "sign": true, "unit": "scalar" }, "name": "Misfire acceleration, cylinder 5"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "038E"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "038E"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_EVAP_V",                   "fmt": { "len": 16, "max": 5,                      "div": 5.0048876, "sign": true, "unit": "volts" }, "name": "Evaporative vapor pressure sensor voltage"},
     {"id": "MAZDA_[ECU] EVAP PRES SENSOR V", "fmt": { "len": 16, "max": 5, "mul": 0.1998046869,                                 "unit": "volts" }, "name": "Evaporative vapor pressure sensor voltage"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "038F"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "038F"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_ECT",       "fmt": { "len": 16, "max": 148.889, "min": -40,                  "div": 64, "sign": true, "unit": "celsius" }, "name": "Engine coolant temperature"},
     {"id": "MAZDA_[ECU] ECT", "fmt": { "len": 16, "max": 148.889, "min": -40, "mul": 0.015625,                          "unit": "celsius" }, "name": "Engine coolant temperature"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0393"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_AC_P",              "path": "Climate", "fmt": {          "len": 16,   "max": 1000,                      "mul": 245251, "div": 845473,               "unit": "psi" },                                              "name": "A/C compressor pressure"},
+    {"id": "MAZDA_[ECU] AC Pressure", "fmt":             {      "len": 16, "max": 1000, "min": -100, "mul": 0.2900754962,                               "unit": "psi" },            "name": "Air conditioning compressor pressure"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0398"}, "freq": 1,
   "signals": [
@@ -929,81 +956,197 @@
   "signals": [
     {"id": "MAZDA_TRQ_CTRL_REQ", "path": "Engine", "fmt": { "len": 8, "max": 100, "unit": "percent" }, "name": "Torque request"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03BA"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03B9"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_COOLING_FAN_DUTY", "path": "Engine",   "fmt": { "len": 16, "max": 200, "mul": 40, "div": 13107, "unit": "percent" }, "name": "Cooling fan duty cycle"},
+    {"id": "MAZDA_FAN_SPD_DES",      "path": "Movement", "fmt": { "len": 16, "max": 100, "mul": 40, "div": 13107, "unit": "percent" }, "name": "Fan speed, desired"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03BA"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_AAT_V", "fmt": { "len": 16, "max": 5, "mul": 0.0048875855, "unit": "volts" }, "name": "Ambient air temperature sensor voltage"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03BB"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03BB"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_VCT_EXH_DES", "fmt": { "len": 16, "max": 50, "mul": 0.0625, "unit": "degrees" }, "name": "VCT exhaust cam, desired"}
+    {"id": "MAZDA_VCT_EXH_DES",       "fmt": { "len": 16, "max": 2047, "min": -2047,                "div": 16, "sign": true, "unit": "degrees" }, "name": "VCT exhaust cam, desired"},
+    {"id": "MAZDA_[ECU] VCT Exh Des", "fmt": { "len": 16, "max": 50,                 "mul": 0.0625,                          "unit": "degrees" }, "name": "VCT exhaust cam desired"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03BC"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03BC"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_VCT_INT_DES",       "fmt": { "len": 16, "max": 40, "min": -30,                "div": 16, "sign": true, "unit": "degrees" }, "name": "VCT intake cam, desired"},
-    {"id": "MAZDA_[ECU] VCT INT DES", "fmt": { "len": 16, "max": 0,  "min": -50, "mul": 0.0625,                          "unit": "degrees" }, "name": "Vct intake cam desired"}
+    {"id": "MAZDA_VCT_INT_DES",       "fmt": { "len": 16, "max": 2047, "min": -2047,                "div": 16, "sign": true, "unit": "degrees" }, "name": "VCT intake cam, desired"},
+    {"id": "MAZDA_[ECU] VCT INT DES", "fmt": { "len": 16, "max": 0,    "min": -50,   "mul": 0.0625,                          "unit": "degrees" }, "name": "Vct intake cam desired"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03BD"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03BD"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_CL_LC",                "fmt": { "len": 16, "max": 3.99, "min": -4,                      "div": 8192, "sign": true, "unit": "scalar" }, "name": "Closed loop lambda correction"},
-    {"id": "MAZDA_[ECU] CL LAMBDA CORR", "fmt": { "len": 16, "max": 5,    "min": -5, "mul": 0.0001220703,                            "unit": "scalar" }, "name": "Closed loop lambda correction"}
+    {"id": "MAZDA_CL_LC",                "fmt": { "len": 16, "max": 3.9, "min": -4,                      "div": 8192, "sign": true, "unit": "scalar" }, "name": "Closed loop lambda correction"},
+    {"id": "MAZDA_[ECU] CL LAMBDA CORR", "fmt": { "len": 16, "max": 5,   "min": -5, "mul": 0.0001220703,                            "unit": "scalar" }, "name": "Closed loop lambda correction"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03CA"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03CA"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_MCT", "fmt": { "len": 8, "max": 148.889, "unit": "celsius" }, "name": "Manifold charge temperature"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03DC"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03DB"}, "freq": 0.251,
+  "signals": [
+    {"id": "MAZDA_EXH_DIFF_P", "path": "Engine", "fmt": { "len": 16, "max": 4.5, "div": 200, "unit": "volts" }, "name": "Exhaust differential pressure", "description": "This sensor is crucial for monitoring how clogged the DPF has become. It measures the pressure before and after the DPF in the exhaust system, with the difference between these two measurements indicating how restricted the filter has become. When the pressure difference becomes too high (indicating a clogged filter), the ECM will initiate a regeneration process to burn off the accumulated soot and clean the filter."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03DC"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_HPFP_DES", "fmt": { "len": 16, "max": 3500, "mul": 1.4503773969, "unit": "psi" }, "name": "High pressure fuel pressure desired"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03E8"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03DF"}, "freq": 0.25,
   "signals": [
-    {"id": "MAZDA_OAR", "fmt": { "len": 16, "max": 1, "min": -1, "mul": 0.0000610352, "unit": "scalar" }, "name": "Octane adjust ratio"}
+    {"id": "MAZDA_VGT_OPEN_PERC", "path": "Engine", "fmt": { "len": 16, "max": 100, "mul": 100, "div": 65535, "unit": "percent" }, "name": "Variable geometry turbocharger open", "description": "Measures the position of the vanes in the Variable Geometry Turbocharger (VGT) and reports this position as a percentage value."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03E5"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_AC_LOAD_SIG_V", "path": "Battery", "fmt": { "len": 16, "max": 319.9942, "mul": 12207, "div": 2500000, "unit": "volts" }, "name": "Air conditioning load signal voltage"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03E8"}, "freq": 3600,
+  "signals": [
+    {"id": "MAZDA_OAR",       "fmt": { "len": 16, "max": 1,                                 "div": 16384, "sign": true, "unit": "scalar" }, "name": "Octane adjust ratio"},
+    {"id": "MAZDA_[ECU] OAR", "fmt": { "len": 16, "max": 1, "min": -1, "mul": 0.0000610352,                             "unit": "scalar" }, "name": "Octane adjust ratio"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03EC"}, "freq": 0.25,
   "signals": [
     {"id": "MAZDA_IGN_CORR_CYL1", "path": "Engine", "fmt": { "len": 16, "max": 63.9, "min": -64, "div": 512, "sign": true, "unit": "degrees" }, "name": "Ignition correction, cylinder 1"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0403"}, "freq": 2,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03F3"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_SUMP_OIL_T_MEAS", "path": "Engine", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Sump oil temperature measured"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03F4"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_EXH_GAS_T_1", "path": "Engine", "fmt": { "len": 8, "max": 1275, "mul": 5, "unit": "celsius" }, "name": "Exhaust gas temperature 1"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03F5"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_EXH_GAS_T_2", "path": "Engine", "fmt": { "len": 8, "max": 1275, "mul": 5, "unit": "celsius" }, "name": "Exhaust gas temperature 2"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "03FB"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_EGR_OPEN_PERC", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Exhaust gas recirculation open"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0403"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_KS1_RAW", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Knock sensor, 1"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0404"}, "freq": 2,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0404"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_KS2_RAW", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Knock sensor, 2"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0415"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_EOP", "path": "Engine", "fmt": { "len": 16, "max": 32767, "min": -32768, "sign": true, "unit": "kilopascal" }, "name": "Engine oil pressure"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "041F"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_LPFP_DES", "path": "Engine", "fmt": { "len": 8, "max": 110, "mul": 435, "div": 1000, "unit": "psi" }, "name": "Fuel pressure, low desired"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0427"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0427"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_BPV_OPEN", "path": "Engine", "fmt": { "len": 8, "max": 1, "div": 255, "unit": "scalar" }, "name": "Bypass valve"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0460"}, "freq": 5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "042C"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_DPF_PM_ACC", "path": "Engine.DPF", "fmt": { "len": 16, "max": 100, "mul": 100, "div": 65535, "unit": "gramsPerLiter" }, "name": "Diesel particulate filter particulate matter accumulation"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "042D"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_DPF_PM_GEN", "path": "Engine.DPF", "fmt": { "len": 16, "max": 100, "mul": 100, "div": 65535, "unit": "gramsPerLiter" }, "name": "Diesel particulate filter particulate matter generation"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0432"}, "freq": 60,
+  "signals": [
+    {"id": "MAZDA_DPF_REGEN_CNT", "path": "Engine.DPF", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Diesel particulate filter regeneration count"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0433"}, "freq": 60,
+  "signals": [
+    {"id": "MAZDA_DPF_LAMP_CNT", "path": "Engine.DPF", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Diesel particulate filter lamp count"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0434"}, "freq": 2,
+  "signals": [
+    {"id": "MAZDA_DPF_REGEN_DIST", "path": "Engine.DPF", "fmt": {"bix": 8, "len": 24, "max": 25600, "mul": 100, "div": 65535, "unit": "kilometers" }, "name": "Diesel particulate filter regeneration distance"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0435"}, "freq": 60,
+  "signals": [
+    {"id": "MAZDA_OIL_DIL_CNT", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Oil dilution events", "description": "Monitors fuel dilution in your engine oil, which is when fuel (gasoline) mixes with the engine oil in the crankcase."}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "044B"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_DPF_PM_ACC_DES", "path": "Engine.DPF", "fmt": { "len": 16, "max": 100, "mul": 100, "div": 65535, "unit": "gramsPerLiter" }, "name": "Diesel particulate filter particulate matter accumulation (desired)"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0451"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_OXY", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Oxygen concentration"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0460"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_CAT_SENS_V", "path": "Engine", "fmt": { "len": 16, "max": 5, "div": 1024, "sign": true, "unit": "volts" }, "name": "Charge air temperature sensor voltage"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0461"}, "freq": 2,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0461"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_CAT", "path": "Engine", "fmt": { "len": 16, "max": 189, "min": -40, "div": 64, "add": -40, "sign": true, "unit": "celsius" }, "name": "Charge air temperature"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0462"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0462"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_WGDC", "path": "Engine", "fmt": { "len": 16, "max": 100, "mul": 100, "div": 32768, "unit": "percent" }, "name": "Wastegate duty cycle"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0466"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0466"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_TIP_DES_ABS", "path": "Engine", "fmt": { "len": 16, "max": 72.5, "mul": 37, "div": 33441, "unit": "psi" }, "name": "Throttle inlet pressure, desired"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "046F"}, "freq": 2,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "046F"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_INJ_MODE", "path": "Engine", "fmt": { "len": 8, "max": 7, "unit": "scalar" }, "name": "Injection mode"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "04F7"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_GEN_CURRENT", "path": "Engine", "fmt": { "len": 16, "max": 511.8205, "min": -511.8361, "mul": 781, "div": 50000, "sign": true, "unit": "amps" }, "name": "Generator current"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "050F"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_VGT_OPEN", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "millimeters" }, "name": "Variable geometry turbocharger open"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0519"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_OIL_CHANGE_DIST", "path": "Fluids", "fmt": { "len": 16, "max": 262140, "mul": 4, "unit": "kilometers" }, "name": "Distance since oil changed"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "051C"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_CHG_AIR_T", "path": "Battery", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Charge air temperature"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "051D"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_CYL_HEAD_T", "path": "Engine", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Cylinder head temperature"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0522"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_FUEL_T", "path": "Fuel", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Fuel temp"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "053B"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_CATDMG_MIS_1",           "path": "Engine", "fmt": {            "len": 8,  "max": 255,   "unit": "scalar" }, "name": "Catalyst damaging misfires, cylinder 1"},
+    {"id": "MAZDA_CATDMG_MIS_2",           "path": "Engine", "fmt": {"bix": 8,   "len": 8,  "max": 255,   "unit": "scalar" }, "name": "Catalyst damaging misfires, cylinder 2"},
+    {"id": "MAZDA_CATDMG_MIS_3",           "path": "Engine", "fmt": {"bix": 16,  "len": 8,  "max": 255,   "unit": "scalar" }, "name": "Catalyst damaging misfires, cylinder 3"},
+    {"id": "MAZDA_CATDMG_MIS_4",           "path": "Engine", "fmt": {"bix": 24,  "len": 8,  "max": 255,   "unit": "scalar" }, "name": "Catalyst damaging misfires, cylinder 4"},
+    {"id": "MAZDA_EMISSION_FAILURE_MIS_1", "path": "Engine", "fmt": {"bix": 64,  "len": 8,  "max": 255,   "unit": "scalar" }, "name": "Emission failure misfires, cylinder 1"},
+    {"id": "MAZDA_EMISSION_FAILURE_MIS_2", "path": "Engine", "fmt": {"bix": 72,  "len": 8,  "max": 255,   "unit": "scalar" }, "name": "Emission failure misfires, cylinder 2"},
+    {"id": "MAZDA_EMISSION_FAILURE_MIS_3", "path": "Engine", "fmt": {"bix": 80,  "len": 8,  "max": 255,   "unit": "scalar" }, "name": "Emission failure misfires, cylinder 3"},
+    {"id": "MAZDA_EMISSION_FAILURE_MIS_4", "path": "Engine", "fmt": {"bix": 88,  "len": 8,  "max": 255,   "unit": "scalar" }, "name": "Emission failure misfires, cylinder 4"},
+    {"id": "MAZDA_CATDMG_MIS_TOT",         "path": "Engine", "fmt": {"bix": 160, "len": 16, "max": 65535, "unit": "scalar" }, "name": "Catalyst damaging misfires total during this trip"},
+    {"id": "MAZDA_EMISSION_FAILURE_MIS",   "path": "Engine", "fmt": {"bix": 176, "len": 8,  "max": 255,   "unit": "scalar" }, "name": "Emission failure misfires total during this trip"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "053F"}, "freq": 30,
+  "signals": [
+    {"id": "MAZDA_TIME_SINCE_OIL", "path": "Engine", "fmt": { "len": 16, "max": 1000, "mul": 200, "div": 13107, "unit": "unknown" }, "name": "Time since last oil change"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0542"}, "freq": 3600,
+  "signals": [
+    {"id": "MAZDA_OIL_CHANGE_DIST_MAX", "path": "Fluids", "fmt": { "len": 16, "max": 65535, "unit": "kilometers" }, "name": "Max distance to oil change"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0548"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_LPFP_ACT", "path": "Engine", "fmt": { "len": 16, "max": 200, "mul": 10000, "div": 137892, "sign": true, "unit": "psi" }, "name": "Fuel pressure, low actual"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "054B"}, "freq": 5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "054B"}, "freq": 30,
   "signals": [
     {"id": "MAZDA_PCM_ENG_OIL_LIFE_REM", "path": "Engine", "fmt": { "len": 8, "max": 100, "unit": "percent" }, "name": "Oil life remaining"}
   ]},
@@ -1011,7 +1154,7 @@
   "signals": [
     {"id": "MAZDA_LPFP_SENS_V", "path": "Engine", "fmt": { "len": 16, "max": 5, "div": 1024, "sign": true, "unit": "volts" }, "name": "Fuel pressure sensor voltage, low"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "057D"}, "freq": 2,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "057D"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_AAT_ALT", "path": "Climate", "fmt": { "len": 8, "max": 87.5, "min": -40, "div": 2, "add": -40, "unit": "celsius" }, "name": "Ambient temperature, alternate"}
   ]},
@@ -1043,7 +1186,11 @@
   "signals": [
     {"id": "MAZDA_PCM_CYL_6_KNK_COMB_PERF_CNT", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Knock counter, cylinder 6"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "05FC"}, "freq": 2,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "05BE"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TURBO_INLET_P", "path": "Engine", "fmt": { "len": 16, "max": 4095.9375, "div": 16, "unit": "kilopascal" }, "name": "Turbo inlet pressure"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "05FC"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_PCM_CYL_HEAD_T_SENS_2_RAW", "path": "Engine", "fmt": { "len": 16, "max": 511.984375, "min": -512, "div": 64, "sign": true, "unit": "celsius" }, "name": "Cylinder head temperature, sensor 2"}
   ]},
@@ -1055,27 +1202,31 @@
   "signals": [
     {"id": "MAZDA_IAT_FAULT", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Intake temperature fault"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0707"}, "freq": 5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0707"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_GRILL_SHUT_DC", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Grill shutter duty cycle"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "070D"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_TRANSFER_CASE_FLUID_T", "path": "Engine", "fmt": { "len": 16, "max": 2047.9375, "min": -2048, "div": 16, "sign": true, "unit": "celsius" }, "name": "Transfer case fluid temperature"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0900"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_MAP_V_V2", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "Manifold absolute pressure voltage"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0914"}, "freq": 0.5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0914"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_APP1_V", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "APP sensor 1 voltage"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0915"}, "freq": 0.5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0915"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_APP2_V", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "APP sensor 2 voltage"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0917"}, "freq": 0.5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0917"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_TP1_V", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "Throttle position 1 voltage"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0918"}, "freq": 0.5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0918"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_TP2_V", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "Throttle position 2 voltage"}
   ]},
@@ -1084,12 +1235,16 @@
     {"id": "MAZDA_ETC_DSD_DEG", "path": "Engine", "fmt": { "len": 16, "max": 127.9,  "div": 512, "unit": "degrees" }, "name": "Throttle control desired"},
     {"id": "MAZDA_ETC_ANG_DES", "path": "Engine", "fmt": { "len": 16, "max": 127.99, "div": 512, "unit": "degrees" }, "name": "Throttle angle, desired"}
   ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "092C"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_ATF_T_VAR_6", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "fahrenheit" }, "name": "Transmission fluid temperature, variant 6"}
+  ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "093C"}, "freq": 0.25,
   "signals": [
     {"id": "MAZDA_ETC_ACT_DEG", "path": "Engine", "fmt": { "len": 16, "max": 127.9,  "div": 512, "unit": "degrees" }, "name": "Throttle position actual"},
     {"id": "MAZDA_ETC_ANG_ACT", "path": "Engine", "fmt": { "len": 16, "max": 127.99, "div": 512, "unit": "degrees" }, "name": "Throttle angle, actual"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0967"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0967"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_FAN3_SW", "path": "Engine", "fmt": {"bix": 5, "len": 1, "max": 1, "unit": "offon" }, "name": "Cooling fan relay control"}
   ]},
@@ -1101,7 +1256,7 @@
   "signals": [
     {"id": "MAZDA_IDLE", "path": "Engine", "fmt": { "len": 16, "max": 16383.75, "div": 4, "unit": "rpm" }, "name": "Idle speed"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "097C"}, "freq": 1,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "097C"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_GEN_DSD_V", "path": "Engine", "fmt": { "len": 16, "max": 31.99, "div": 2048, "unit": "volts" }, "name": "Generator voltage desired"}
   ]},
@@ -1109,11 +1264,27 @@
   "signals": [
     {"id": "MAZDA_EGRP_STEPS", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Exhaust gas recirculation purge steps"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "099B"}, "freq": 5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "099B"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_AC_STATE", "path": "Climate", "fmt": { "len": 8, "max": 1, "unit": "offon" }, "name": "A/C compressor, state"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1101"}, "freq": 1,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "099F"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_FAN_SPD_SENS", "path": "Movement", "fmt": { "len": 16, "max": 16383.75, "div": 4, "unit": "rpm" }, "name": "Fan speed sensor"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "09CB"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_TQ_INTO_TQ_CONV", "path": "Engine", "fmt": { "len": 16, "max": 48336.1353, "div": 1.35581795, "unit": "newtonMeters" }, "name": "Torque into torque converter"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "09D4"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_ACCEL_PEDAL_POS", "path": "Movement", "fmt": { "len": 8, "max": 127.5, "div": 2, "unit": "percent" }, "name": "Accelerator pedal position"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "09DB"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TURBO_BOOST", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "kilopascal" }, "name": "Turbo boost"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1101"}, "freq": 0.25,
   "signals": [
     {"id": "MAZDA_PSP_SW",    "path": "Engine",       "fmt": {          "len": 1, "max": 1, "unit": "offon" }, "name": "Power steering position switch"},
     {"id": "MAZDA_INGEAR_SW", "path": "Transmission", "fmt": {"bix": 4, "len": 1, "max": 1, "unit": "offon" }, "name": "In gear switch"},
@@ -1135,6 +1306,23 @@
   "signals": [
     {"id": "MAZDA_ERT", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "seconds" }, "name": "Engine run time"}
   ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1127"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_BAROMETRIC_P_V2", "path": "Engine", "fmt": { "len": 8, "max": 1079.4118, "mul": 338639, "div": 80000, "unit": "kilopascal" }, "name": "Barometric pressure"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "113C"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_EGR_DUTY", "path": "Engine", "fmt": { "len": 8, "max": 100, "unit": "percent" }, "name": "Exhaust gas recirculation duty cycle"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1141"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_INJ_IMPULSE_WIDTH",     "path": "Engine", "fmt": { "len": 16, "max": 0.05,  "mul": 0.000022,           "unit": "seconds" }, "name": "Injector impulse width"},
+    {"id": "MAZDA_FUEL_PMP_WIDTH_BANK_1", "path": "Engine", "fmt": { "len": 16, "max": 13107,                  "div": 5, "unit": "scalar"  }, "name": "Fuel pump pulse width, bank 1"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1142"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_FUEL_PMP_WIDTH_BANK_2", "path": "Engine", "fmt": { "len": 16, "max": 13107, "div": 5, "unit": "scalar" }, "name": "Fuel pump pulse width, bank 2"}
+  ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "114A"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_IAT_V", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "Intake air temp voltage"}
@@ -1143,7 +1331,7 @@
   "signals": [
     {"id": "MAZDA_ECT_V", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "Engine coolant temp voltage"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1166"}, "freq": 0.5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1166"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_EVAP_PURGE_CMD", "path": "Engine", "fmt": { "len": 16, "max": 100, "mul": 100, "div": 32768, "unit": "percent" }, "name": "Evaporative purge"}
   ]},
@@ -1155,6 +1343,10 @@
   "signals": [
     {"id": "MAZDA_IGN_TIM_CYL1", "path": "Engine", "fmt": { "len": 16, "max": 80, "min": -80, "div": 4, "sign": true, "unit": "degrees" }, "name": "Ignition timing, cylinder 1"}
   ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1172"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_BAT_V", "path": "Battery", "fmt": { "len": 8, "max": 15.9375, "div": 16, "unit": "volts" }, "name": "Battery voltage"}
+  ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1174"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_O2S12_A_V", "path": "Engine", "fmt": { "len": 16, "max": 63.99, "div": 1024, "unit": "volts" }, "name": "O2 sensor 1-2 voltage"}
@@ -1163,17 +1355,53 @@
   "signals": [
     {"id": "MAZDA_MAF_V", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "Mass air-flow voltage"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1279"}, "freq": 5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "11B3"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_TRANS_GEAR", "path": "Transmission", "fmt": { "len": 8, "max": 127.5, "div": 2, "unit": "scalar" }, "name": "Transmission gear"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "11B5"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_TRANS_OUTPUT_SHFT", "path": "Transmission", "fmt": { "len": 16, "max": 1638.375, "div": 40, "unit": "rpm" }, "name": "Transmission output shaft speed"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "11B8"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_TQ_CONV_SLIP", "path": "Engine", "fmt": { "len": 16, "max": 39996.0104, "div": 1.6385384237, "unit": "rpm" }, "name": "Torque converter slip"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "11BA"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_CONV_SPD_RAT", "path": "Transmission", "fmt": { "len": 16, "max": 3996.0365, "mul": 5, "div": 82, "unit": "scalar" }, "name": "Converter speed ratio"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "11BD"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_TRANS_T_VAR_5", "path": "Transmission", "fmt": { "len": 16, "max": 7404.6875, "mul": 9, "div": 80, "add": 32, "unit": "fahrenheit" }, "name": "Transmission temperature, variant 5"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "11C0"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_TQ_CONV_LINE_P", "path": "Transmission", "fmt": { "len": 8, "max": 8790.819, "mul": 172369, "div": 5000, "unit": "kilopascal" }, "name": "Torque converter line pressure"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1279"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_IAT_SENS_V", "path": "Engine", "fmt": { "len": 16, "max": 5, "mul": 5, "div": 1023, "unit": "volts" }, "name": "Intake temperature sensor voltage"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1340"}, "freq": 1,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1305"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_BOOST_DES", "path": "Engine", "fmt": { "len": 16, "max": 1.8, "unit": "bars" }, "name": "Boost, desired"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1310"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_EOT", "path": "Engine", "fmt": { "len": 16, "max": 615.35, "min": -40, "div": 100, "add": -40, "unit": "celsius" }, "name": "Engine oil temperature"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1340"}, "freq": 0.25,
   "signals": [
     {"id": "MAZDA_APP", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Accelerator pedal position, full range"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1410"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_FUEL_PW", "path": "Fuel", "fmt": { "len": 16, "max": 524.28, "div": 125, "unit": "scalar" }, "name": "Injector fuel pulse width"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1440"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_BOOST", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "psi" }, "name": "Boost"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1505"}, "freq": 0.25,
   "signals": [
@@ -1183,18 +1411,94 @@
   "signals": [
     {"id": "MAZDA_IMTV_SW", "path": "Engine", "fmt": {"bix": 6, "len": 1, "max": 1, "unit": "offon" }, "name": "Variable intake air control"}
   ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "160E"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_MIS_CNT_1", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Cylinder 1 misfire count"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "160F"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_MIS_CNT_2", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Cylinder 2 misfire count"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1610"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_MIS_CNT_3", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Cylinder 3 misfire count"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1611"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_MIS_CNT_4", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Cylinder 4 misfire count"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1612"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_MIS_CNT_5", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Cylinder 5 misfire count"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1613"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_MIS_CNT_6", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Cylinder 6 misfire count"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1614"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_MIS_CNT_7", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Cylinder 7 misfire count"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1615"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_MIS_CNT_8", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Cylinder 8 misfire count"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1616"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TOT_MIS_CNT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Total misfire count"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1624"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_CYL_HEAD_T_7E0", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "fahrenheit" }, "name": "Cylinder head temperature"}
+  ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1631"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_O2S_HTR12_SW", "path": "Engine", "fmt": {"bix": 6, "len": 1, "max": 1, "unit": "offon" }, "name": "O2 sensor 2 heater control, rear"},
     {"id": "MAZDA_O2S_HTR11_SW", "path": "Engine", "fmt": {"bix": 7, "len": 1, "max": 1, "unit": "offon" }, "name": "O2 sensor 1 heater control, front"}
   ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1639"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_FUEL_TANK_P", "path": "Fuel", "fmt": { "len": 16, "max": 9496.0214, "div": 6.9013112491, "unit": "psi" }, "name": "Fuel tank pressure"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "163A"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_TQ_INTO_TQ_CONV_7E0", "path": "Engine", "fmt": { "len": 8, "max": 69.1467, "mul": 0.2711635897, "unit": "newtonMeters" }, "name": "Torque into torque converter"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "163B"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_TRANS_GEAR_RAT", "path": "Transmission", "fmt": { "len": 8, "max": 4015.748, "mul": 15.7480315, "unit": "scalar" }, "name": "Transmission gear ratio"}
+  ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "163E"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_O2S12_FT", "path": "Engine", "fmt": { "len": 16, "max": 799.98, "mul": 100, "div": 8192, "unit": "percent" }, "name": "Rear O2 sensor fuel trim"}
   ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1672"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_FUEL_PMP_DUTY", "path": "Fuel", "fmt": { "len": 8, "max": 199.2187, "mul": 25, "div": 32, "unit": "percent" }, "name": "Fuel pump duty cycle"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1674"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_ATF_T_VAR_1", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "fahrenheit" }, "name": "Transmission fluid temperature, variant 1"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1685"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_CYL_HEAD_T_ALT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "fahrenheit" }, "name": "Cylinder head temperature, alternate"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "168B"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_FUEL_INJ_IMPULSE", "path": "Fuel", "fmt": { "len": 16, "max": 0.1, "div": 125000, "unit": "seconds" }, "name": "Fuel injection impulse width"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "16A8"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_IAT_2", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "fahrenheit" }, "name": "Intake air temperature 2"}
+  ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "16B3"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_BARO_V", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "BARO sensor voltage"}
+    {"id": "MAZDA_BARO_V_V2", "path": "Engine", "fmt": { "len": 16, "max": 65.535, "div": 1000, "unit": "volts" }, "name": "BARO sensor voltage"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "16C1"}, "freq": 30,
+  "signals": [
+    {"id": "MAZDA_FLI_7E0", "path": "Fuel", "fmt": { "len": 16, "max": 65535, "unit": "percent" }, "name": "Fuel level", "suggestedMetric": "fuelTankLevel"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "16CD"}, "freq": 1,
   "signals": [
@@ -1208,15 +1512,21 @@
   "signals": [
     {"id": "MAZDA_VT_DUTY", "path": "Engine", "fmt": { "len": 16, "max": 200, "mul": 200, "div": 65535, "unit": "percent" }, "name": "Valve timing OCV control duty"}
   ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "16E1"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_WASTEGATE_DUTY", "path": "Engine", "fmt": { "len": 8,  "max": 255,                           "unit": "percent" }, "name": "Wastegate duty cycle"},
+    {"id": "MAZDA_WASTEGATE_CTRL", "path": "Engine", "fmt": { "len": 16, "max": 100, "mul": 763, "div": 50000, "unit": "percent" }, "name": "Wastegate control"}
+  ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "16E8"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_GEN_FC", "path": "Engine", "fmt": { "len": 16, "max": 200, "mul": 200, "div": 65535, "unit": "percent" }, "name": "Generator field coil control duty"}
+    {"id": "MAZDA_GEN_FC",       "path": "Engine", "fmt": { "len": 16, "max": 200, "mul": 200,      "div": 65535, "unit": "percent" }, "name": "Generator field coil control duty"},
+    {"id": "MAZDA_CMD_GEN_DUTY", "path": "Engine", "fmt": { "len": 16, "max": 100, "mul": 0.003052,               "unit": "percent" }, "name": "Commanded generator duty"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "16E9"}, "freq": 1,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "16E9"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_GEN_V", "path": "Engine", "fmt": { "len": 16, "max": 8191.875, "div": 8, "unit": "volts" }, "name": "Generator output voltage"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "16F0"}, "freq": 86400,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "16F0"}, "freq": 3600,
   "signals": [
     {"id": "MAZDA_TIRESIZE", "path": "Tires", "fmt": { "len": 16, "max": 65535, "unit": "scalar" }, "name": "Tire revolutions per mile"}
   ]},
@@ -1229,33 +1539,45 @@
   "signals": [
     {"id": "MAZDA_FP_RELAY_SW", "path": "Fuel", "fmt": {"bix": 7, "len": 1, "max": 1, "unit": "offon" }, "name": "Fuel pump relay switch"}
   ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1723"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_BOOSTED_AIR_T", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "celsius" }, "name": "Boosted air temperature"}
+  ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1746"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_KNOCKR", "path": "Engine", "fmt": { "len": 8, "max": 89.78, "mul": 100, "div": 284, "unit": "degrees" }, "name": "Knock retard"}
   ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "174F"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_AIR_FUEL_RAT_ACT", "path": "Engine", "fmt": { "len": 8, "max": 29.274, "mul": 287, "div": 2500, "unit": "scalar" }, "name": "Air/fuel ratio, actual"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "17B3"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_TRANS_T_VAR_1", "path": "Transmission", "fmt": { "len": 8, "max": 371.4, "min": -57, "mul": 42, "div": 25, "add": -57, "unit": "fahrenheit" }, "name": "Transmission temperature, variant 1"}
+  ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "17F4"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_LDP_MON_CURRENT", "path": "Emissions", "fmt": { "len": 16, "max": 0.037, "mul": 0.000000561, "unit": "amps" }, "name": "EVAP LDP monitoring current"}
+    {"id": "MAZDA_LDP_MON_CURRENT", "path": "Emissions", "fmt": { "len": 16, "max": 0.036, "mul": 0.000000561, "unit": "amps" }, "name": "EVAP LDP monitoring current"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "17F5"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_LDP_REF_CURRENT", "path": "Emissions", "fmt": { "len": 16, "max": 0.037, "mul": 0.000000561, "unit": "amps" }, "name": "EVAP LDP reference current"}
+    {"id": "MAZDA_LDP_REF_CURRENT", "path": "Emissions", "fmt": { "len": 16, "max": 0.036, "mul": 0.000000561, "unit": "amps" }, "name": "EVAP LDP reference current"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "17F7"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_LDP_IDL_CURRENT", "path": "Emissions", "fmt": { "len": 16, "max": 0.037, "mul": 0.000000561, "unit": "amps" }, "name": "EVAP LDP idle current"}
+    {"id": "MAZDA_LDP_IDL_CURRENT", "path": "Emissions", "fmt": { "len": 16, "max": 0.036, "mul": 0.000000561, "unit": "amps" }, "name": "EVAP LDP idle current"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "17F8"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_LDP_SL_DV", "path": "Emissions", "fmt": { "len": 16, "max": 0.037, "mul": 0.000000561, "unit": "amps" }, "name": "EVAP LDP small leak detect value"}
+    {"id": "MAZDA_LDP_SL_DV", "path": "Emissions", "fmt": { "len": 16, "max": 0.036, "mul": 0.000000561, "unit": "amps" }, "name": "EVAP LDP small leak detect value"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "17FA"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_LDP_EVAPCP", "path": "Emissions", "fmt": { "len": 16, "max": 0.037, "mul": 0.000000561, "unit": "amps" }, "name": "EVAP LDP incorrect purge flow value"}
+    {"id": "MAZDA_LDP_EVAPCP", "path": "Emissions", "fmt": { "len": 16, "max": 0.036, "mul": 0.000000561, "unit": "amps" }, "name": "EVAP LDP incorrect purge flow value"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1E12"}, "freq": 2,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1E12"}, "freq": 0.25,
   "signals": [
-    {"id": "MAZDA_GEAR", "path": "Engine", "name": "Current gear", "description": "The automatic transmission gear.", "fmt": {"len": 8, "map": {
+    {"id": "MAZDA_GEAR", "path": "Transmission", "name": "Current gear", "description": "The automatic transmission gear.", "fmt": {"len": 8, "map": {
           "1":  { "description": "First gear",   "value": "1" },
           "2":  { "description": "Second gear",  "value": "2" },
           "3":  { "description": "Third gear",   "value": "3" },
@@ -1269,7 +1591,7 @@
         }}
     }
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1E16"}, "freq": 5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1E16"}, "freq": 3600,
   "signals": [
     {"id": "MAZDA_AXLE_GEAR_RATIO_MEAS", "path": "Transmission", "fmt": { "len": 16, "max": 10, "div": 4096, "unit": "scalar" }, "name": "Axle gear ratio, measured"}
   ]},
@@ -1281,17 +1603,18 @@
   "signals": [
     {"id": "MAZDA_PCM_CMD_TRANS_MAIN_LINE_P", "path": "Transmission", "fmt": { "len": 16, "max": 65534, "min": -65536, "mul": 2, "sign": true, "unit": "kilopascal" }, "name": "Transmission pressure, commanded"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1E1C"}, "freq": 1,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1E1C"}, "freq": 5,
   "signals": [
-    {"id": "MAZDA_TOT", "path": "Engine", "fmt": { "len": 16, "max": 500, "min": -500, "div": 16, "sign": true, "unit": "celsius" }, "name": "Transmission oil temperature"}
+    {"id": "MAZDA_TOT_7E0", "path": "Engine",       "fmt": { "len": 16, "max": 500, "min": -500, "div": 16, "sign": true, "unit": "celsius" }, "name": "Transmission oil temperature"},
+    {"id": "MAZDA_TOT",     "path": "Transmission", "fmt": { "len": 16, "max": 255,              "div": 16,               "unit": "celsius" }, "name": "Transmission oil temperature"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1E1F"}, "freq": 1,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1E1F"}, "freq": 0.25,
   "signals": [
     {"id": "MAZDA_GEAR_ENG", "path": "Transmission", "fmt": { "len": 8, "max": 6, "unit": "scalar" }, "name": "Gear, engaged"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1E23"}, "freq": 2,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1E23"}, "freq": 0.25,
   "signals": [
-    {"id": "MAZDA_GEAR_SHFT", "path": "Engine", "name": "Shift gear", "fmt": {"len": 8, "map": {
+    {"id": "MAZDA_GEAR_SHFT", "path": "Transmission", "name": "Shift gear", "fmt": {"len": 8, "map": {
           "10": { "description": "Manual",  "value": "MANUAL" },
           "46": { "description": "Drive",   "value": "DRIVE" },
           "50": { "description": "Neutral", "value": "NEUTRAL" },
@@ -1300,19 +1623,31 @@
         }}
     }
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "4194"}, "freq": 5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "280A"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_BRAKE_FLUID_P", "path": "Control", "fmt": { "len": 16, "max": 51199.2187, "mul": 25, "div": 32, "unit": "kilopascal" }, "name": "Brake fluid pressure"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "4028"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_BAT_ESTIMATED_ST_CHG", "path": "Battery", "fmt": { "len": 8, "max": 255, "unit": "percent" }, "name": "Battery estimated state of charge"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "4029"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_BAT_FLUID_T", "path": "Battery", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Battery fluid temperature"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "4194"}, "freq": 30,
   "signals": [
     {"id": "MAZDA_DTE", "path": "Trips", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometers" }, "name": "Distance to empty, calculated", "suggestedMetric": "fuelRange"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "4195"}, "freq": 5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "4195"}, "freq": 30,
   "signals": [
     {"id": "MAZDA_DTE_DISP", "path": "Trips", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "kilometers" }, "name": "Distance to empty, displayed", "suggestedMetric": "fuelRange"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "9800"}, "freq": 2,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "9800"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_AC_P_SENS_V", "path": "Climate", "fmt": { "len": 16, "max": 5, "div": 1024, "sign": true, "unit": "volts" }, "name": "A/C compressor pressure sensor voltage"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "A211"}, "freq": 1,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "A211"}, "freq": 0.25,
   "signals": [
     {"id": "MAZDA_IVS_SW", "path": "Engine",       "fmt": {"bix": 3, "len": 1, "max": 1, "unit": "offon" }, "name": "Idle validation switch"},
     {"id": "MAZDA_PNP_SW", "path": "Transmission", "fmt": {"bix": 5, "len": 1, "max": 1, "unit": "offon" }, "name": "Park neutral position switch"},
@@ -1323,85 +1658,198 @@
   "signals": [
     {"id": "MAZDA_SCCS_V", "path": "Cruise control", "fmt": { "len": 16, "max": 5, "mul": 5, "div": 65535, "unit": "volts" }, "name": "Cruise control voltage", "description": "0.0V = On/Off Switch depressed, 1.1V = Cancel depressed, 3.1V = Set/- switch depressed, 4.2V = Res/+ switch depressed, 5.0V = Normal"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "fcm1": true, "dbg": true, "cmd": {"22": "DD01"}, "freq": 5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "D988"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_ODO_V3", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer", "suggestedMetric": "odometer"}
+    {"id": "MAZDA_BAT_ACCUMULATED_AMP", "path": "Battery", "fmt": { "len": 16, "max": 227.675, "min": -100, "div": 200, "add": -100, "unit": "ampereHours" }, "name": "Battery accumulated amp hours"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F404"}, "freq": 0.5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "DA01"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_OIL_P_SOLENOID_VLV", "path": "Engine", "fmt": {"bix": 6, "len": 1, "max": 1, "unit": "offon" }, "name": "Oil pressure solenoid valve, open"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "DA9D"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_BAT_INTERNAL_RES", "path": "Battery", "fmt": { "len": 16, "max": 0.6553, "div": 100000, "unit": "ohms" }, "name": "Battery internal resistance"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "DAA1"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TIM_CHAIN_ELONGATION",   "path": "Engine", "fmt": {           "len": 16, "max": 15, "unit": "scalar" }, "name": "Timing chain elongation angle"},
+    {"id": "MAZDA_TIM_CHAIN_ELONGATION_2", "path": "Engine", "fmt": {"bix": 16, "len": 16, "max": 15, "unit": "scalar" }, "name": "Timing chain elongation angle 2"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "fcm1": true, "dbg": true, "cmd": {"22": "DD01"}, "freq": 30,
+  "signals": [
+    {"id": "MAZDA_ODO",     "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer", "suggestedMetric": "odometer"},
+    {"id": "MAZDA_ODO_7E0", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F404"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_ENG_LOAD_PCT", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Engine load", "suggestedMetric": "engineLoad"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F406"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F406"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_STFT", "path": "Engine", "fmt": { "len": 8, "max": 99.2, "min": -100, "mul": 100, "div": 128, "add": -100, "unit": "percent" }, "name": "Fuel trim, short term", "suggestedMetric": "shortTermFuelTrim"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F407"}, "freq": 0.5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F407"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_LTFT", "path": "Engine", "fmt": { "len": 8, "max": 99.2, "min": -100, "mul": 100, "div": 128, "add": -100, "unit": "percent" }, "name": "Fuel trim, long term"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F40B"}, "freq": 0.25,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F40B"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_MAP_V2", "path": "Engine", "fmt": { "len": 8, "max": 36, "mul": 10000, "div": 68947, "unit": "psi" }, "name": "Manifold pressure"}
+    {"id": "MAZDA_MAP_7E0", "path": "Engine", "fmt": { "len": 8, "max": 36, "mul": 10000, "div": 68947, "unit": "psi" }, "name": "Manifold pressure"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F40C"}, "freq": 0.1,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F40C"}, "freq": 0.25,
   "signals": [
-    {"id": "MAZDA_RPM_V2", "path": "Engine", "fmt": { "len": 16, "max": 16383.75, "div": 4, "unit": "rpm" }, "name": "Engine speed"}
+    {"id": "MAZDA_RPM", "path": "Engine", "fmt": { "len": 16, "max": 16383.75, "div": 4, "unit": "rpm" }, "name": "Engine speed"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F40D"}, "freq": 0.25,
   "signals": [
     {"id": "MAZDA_VSS", "path": "Movement", "fmt": { "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Vehicle speed", "suggestedMetric": "speed"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F40F"}, "freq": 2,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F40F"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_IAT_ALT2", "path": "Engine", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Intake temperature, alternate"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F411"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_INT_SHUTTER_VLV_POS", "path": "Engine", "fmt": { "len": 8, "max": 100, "mul": 20, "div": 51, "unit": "percent" }, "name": "Intake shutter valve position"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F41F"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_RUN_TIME", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "seconds" }, "name": "Engine run time"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F421"}, "freq": 60,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F421"}, "freq": 3600,
   "signals": [
     {"id": "MAZDA_MIL_DIST", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "kilometers" }, "name": "Distance with MIL"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F42F"}, "freq": 1,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F42C"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_FLI", "path": "Fuel", "fmt": { "len": 8, "max": 255, "mul": 100, "div": 255, "unit": "percent" }, "name": "Fuel level", "suggestedMetric": "fuelTankLevel"}
+    {"id": "MAZDA_EGR", "path": "Engine", "fmt": { "len": 8, "max": 100, "unit": "percent" }, "name": "Exhaust gas recirculation"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F430"}, "freq": 60,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F42F"}, "freq": 30,
+  "signals": [
+    {"id": "MAZDA_FLI", "path": "Fuel", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Fuel level", "suggestedMetric": "fuelTankLevel"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F430"}, "freq": 3600,
   "signals": [
     {"id": "MAZDA_WARMUP_CLR", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Warm-ups since DTC clear"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F431"}, "freq": 60,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F431"}, "freq": 3600,
   "signals": [
     {"id": "MAZDA_DIST_DTC_CLR", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "kilometers" }, "name": "Distance since DTC clear"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F433"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_BAROMETRIC_P", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "kilopascal" }, "name": "Barometric pressure"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F434"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_AIR_FUEL_RAT", "path": "Fuel", "fmt": { "len": 16, "max": 29.2801, "mul": 0.000446787, "unit": "scalar" }, "name": "Air/fuel ratio"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F43C"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_CAT_TEMP", "path": "Engine", "fmt": { "len": 16, "max": 6513.5, "min": -40, "div": 10, "add": -40, "unit": "celsius" }, "name": "Catalyst temperature"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F443"}, "freq": 0.5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F443"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_ENG_LOAD_ACT", "path": "Engine", "fmt": { "len": 16, "max": 25700, "mul": 100, "div": 255, "unit": "percent" }, "name": "Engine load, actual", "suggestedMetric": "engineLoad"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F462"}, "freq": 1,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F45C"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_EOP_ALT", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Engine oil pressure"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F45E"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_ENG_FUEL_RATE", "path": "Fuel", "fmt": { "len": 16, "max": 3276.75, "div": 20, "unit": "liters" }, "name": "Engine fuel rate"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F462"}, "freq": 0.25,
   "signals": [
     {"id": "MAZDA_PCM_ACT_ENG_PCT_TRQ", "path": "Engine", "fmt": { "len": 8, "max": 100, "add": -125, "unit": "percent" }, "name": "Actual engine percent torque"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F463"}, "freq": 1,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F463"}, "freq": 3600,
   "signals": [
     {"id": "MAZDA_PCM_ENG_REFERENCE_TRQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "newtonMeters" }, "name": "Engine reference torque"}
   ]},
-{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F4A6"}, "freq": 5,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F469"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_EGR_VLV_POS_DES",   "path": "Engine", "fmt": {"bix": 8,  "len": 8, "max": 100,                  "mul": 20, "div": 51,              "unit": "percent" }, "name": "Exhaust gas recirculation A valve position, desired"},
+    {"id": "MAZDA_EGR_VLV_POS",       "path": "Engine", "fmt": {"bix": 16, "len": 8, "max": 100,                  "mul": 20, "div": 51,              "unit": "percent" }, "name": "Exhaust gas recirculation A valve position"},
+    {"id": "MAZDA_EGR_ERROR",         "path": "Engine", "fmt": {"bix": 24, "len": 8, "max": 99.2187, "min": -100, "mul": 25, "div": 32, "add": -100, "unit": "percent" }, "name": "Exhaust gas recirculation A error"},
+    {"id": "MAZDA_EGR_B_VLV_POS_DES", "path": "Engine", "fmt": {"bix": 32, "len": 8, "max": 100,                  "mul": 20, "div": 51,              "unit": "percent" }, "name": "Exhaust gas recirculation B valve position, desired"},
+    {"id": "MAZDA_EGR_B_VLV_POS",     "path": "Engine", "fmt": {"bix": 40, "len": 8, "max": 100,                  "mul": 20, "div": 51,              "unit": "percent" }, "name": "Exhaust gas recirculation B valve position"},
+    {"id": "MAZDA_EGR_B_ERROR",       "path": "Engine", "fmt": {"bix": 48, "len": 8, "max": 99.2187, "min": -100, "mul": 25, "div": 32, "add": -100, "unit": "percent" }, "name": "Exhaust gas recirculation B error"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F46F"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TURBOCHARGER_COMP_P",   "path": "Battery", "fmt": {"bix": 8,  "len": 8, "max": 2040, "mul": 8, "unit": "kilopascal" }, "name": "Turbocharger A compressor inlet pressure"},
+    {"id": "MAZDA_TURBOCHARGER_B_COMP_P", "path": "Battery", "fmt": {"bix": 16, "len": 8, "max": 2040, "mul": 8, "unit": "kilopascal" }, "name": "Turbocharger B compressor inlet pressure"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F470"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_INT_MAP_DES", "path": "Engine", "fmt": {"bix": 8,  "len": 16, "max": 65535, "unit": "kilopascal" }, "name": "Intake manifold absolute pressure, desired"},
+    {"id": "MAZDA_INT_MAP",     "path": "Engine", "fmt": {"bix": 24, "len": 16, "max": 65535, "unit": "kilopascal" }, "name": "Intake manifold absolute pressure"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F477"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_CHG_AIR_COOLER_T", "path": "Battery", "fmt": {"bix": 16, "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Charge air cooler temperature"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F47A"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_DPF_DIFF_P", "path": "Engine", "fmt": {"bix": 8, "len": 16, "max": 65535, "unit": "kilopascal" }, "name": "Diesel particulate filter differential pressure"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F4A6"}, "freq": 30,
   "signals": [
     {"id": "MAZDA_PCM_VEH_ODO", "path": "Trips", "fmt": { "len": 32, "max": 429496729.5, "div": 10, "unit": "kilometers" }, "name": "Vehicle odometer", "suggestedMetric": "odometer"}
   ]},
-{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "17B3"}, "freq": 1,
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "FD18"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_AC_P_7E0", "path": "Engine", "fmt": { "len": 8, "max": 3100, "mul": 12.156863, "unit": "kilopascal" }, "name": "Air conditioning pressure"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "11B3"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_TRANS_GEAR_7E1", "path": "Transmission", "fmt": { "len": 8, "max": 127.5, "div": 2, "unit": "scalar" }, "name": "Transmission gear"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "11BD"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_TRANS_T_VAR_6", "path": "Transmission", "fmt": { "len": 16, "max": 7404.6875, "mul": 9, "div": 80, "add": 32, "unit": "fahrenheit" }, "name": "Transmission temperature, variant 6"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "163A"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_TQ_INTO_TQ_CONV_VAR_2", "path": "Transmission", "fmt": { "len": 8, "max": 69.1467, "mul": 0.2711635897, "unit": "newtonMeters" }, "name": "Torque into torque converter, variant 2"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1674"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_ATF_T_VAR_2", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "fahrenheit" }, "name": "Transmission fluid temperature, variant 2"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "17B3"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_TRANS_T_V5", "path": "Transmission", "fmt": { "len": 8, "max": 371.4, "min": -57, "mul": 42, "div": 25, "add": -57, "unit": "fahrenheit" }, "name": "Transmission temperature v5"}
   ]},
-{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E1C"}, "freq": 1,
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E12"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_GEAR_7E1", "path": "Transmission", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Gear"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E1C"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_TRANS_T_V6", "path": "Transmission", "fmt": { "len": 16, "max": 7000, "mul": 9, "div": 80, "add": 32, "unit": "fahrenheit" }, "name": "Transmission temperature", "suggestedMetric": "transmissionFluidTemperature"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E24"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_TQ_CONV_LOCK_UP", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Torque converter lock-up"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E3F"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_ATF_T_VAR_5", "path": "Engine", "fmt": { "len": 16, "max": 32767, "min": -32768, "sign": true, "unit": "celsius" }, "name": "Transmission fluid temperature, variant 5"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1EC7"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_TQ_DES", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "newtonMeters" }, "name": "Torque, desired"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1EE4"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_TQ_ACT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "newtonMeters" }, "name": "Torque, actual"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DD01"}, "freq": 30,
+  "signals": [
+    {"id": "MAZDA_TRANS_ODO", "path": "Transmission", "fmt": { "len": 24, "max": 16777215, "unit": "celsius" }, "name": "Transmission odometer"}
   ]},
 { "hdr": "7E2", "rax": "7EA", "dbg": true, "cmd": {"22": "484A"}, "freq": 1,
   "signals": [
