@@ -2,6 +2,7 @@
     { "hdr": "7E0",  "type": "engine" },
     { "hdr": "7E1",  "type": "transmission" },
     { "hdr": "7E2",  "type": "charger" },
+    { "hdr": "7E3",  "type": "motor" },
     { "hdr": "7E4",  "type": "battery" },
     { "hdr": "7E6",  "type": "hybridControl" },
     { "hdr": "DA10", "type": "engine" },
