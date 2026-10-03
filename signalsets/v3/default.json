@@ -98,31 +98,31 @@
   ]},
 { "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "2A05"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_TP_1",    "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000,                               "unit": "bars" }, "name": "Wheel 1 pressure"},
+    {"id": "MAZDA_TP_1",    "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "nullmax": 3.5, "unit": "bars" }, "name": "Wheel 1 pressure"},
     {"id": "MAZDA_TP_1_ND", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000,               "nullmax": 3.5, "unit": "bars" }, "name": "Wheel 1 pressure"},
-    {"id": "MAZDA_TP_FL",   "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0,                 "unit": "bars" }, "name": "Front left tire pressure", "suggestedMetric": "frontLeftTirePressure"},
-    {"id": "MAZDA_TP_RL",   "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0,                 "unit": "bars" }, "name": "Rear left tire pressure",  "suggestedMetric": "rearLeftTirePressure"}
+    {"id": "MAZDA_TP_FL",   "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "nullmax": 3.5, "unit": "bars" }, "name": "Front left tire pressure", "suggestedMetric": "frontLeftTirePressure"},
+    {"id": "MAZDA_TP_RL",   "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "nullmax": 3.5, "unit": "bars" }, "name": "Rear left tire pressure",  "suggestedMetric": "rearLeftTirePressure"}
   ]},
 { "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "2A06"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_TP_2",     "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000,                               "unit": "bars" }, "name": "Wheel 2 pressure"},
+    {"id": "MAZDA_TP_2",     "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "nullmax": 3.5, "unit": "bars" }, "name": "Wheel 2 pressure"},
     {"id": "MAZDA_TP_2_ND",  "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000,               "nullmax": 3.5, "unit": "bars" }, "name": "Wheel 2 pressure"},
-    {"id": "MAZDA_TP_RL_V2", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0,                 "unit": "bars" }, "name": "Rear left tire pressure",  "suggestedMetric": "rearLeftTirePressure"},
-    {"id": "MAZDA_TP_FL_V2", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0,                 "unit": "bars" }, "name": "Front left tire pressure", "suggestedMetric": "frontLeftTirePressure"}
+    {"id": "MAZDA_TP_RL_V2", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "nullmax": 3.5, "unit": "bars" }, "name": "Rear left tire pressure",  "suggestedMetric": "rearLeftTirePressure"},
+    {"id": "MAZDA_TP_FL_V2", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "nullmax": 3.5, "unit": "bars" }, "name": "Front left tire pressure", "suggestedMetric": "frontLeftTirePressure"}
   ]},
 { "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "2A07"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_TP_3",    "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000,                               "unit": "bars" }, "name": "Wheel 3 pressure"},
+    {"id": "MAZDA_TP_3",    "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "nullmax": 3.5, "unit": "bars" }, "name": "Wheel 3 pressure"},
     {"id": "MAZDA_TP_3_ND", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000,               "nullmax": 3.5, "unit": "bars" }, "name": "Wheel 3 pressure"},
-    {"id": "MAZDA_TP_FR",   "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0,                 "unit": "bars" }, "name": "Front right tire pressure", "suggestedMetric": "frontRightTirePressure"},
-    {"id": "MAZDA_TP_RR",   "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0,                 "unit": "bars" }, "name": "Rear right tire pressure",  "suggestedMetric": "rearRightTirePressure"}
+    {"id": "MAZDA_TP_FR",   "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "nullmax": 3.5, "unit": "bars" }, "name": "Front right tire pressure", "suggestedMetric": "frontRightTirePressure"},
+    {"id": "MAZDA_TP_RR",   "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "nullmax": 3.5, "unit": "bars" }, "name": "Rear right tire pressure",  "suggestedMetric": "rearRightTirePressure"}
   ]},
 { "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "2A08"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_TP_4",     "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000,                               "unit": "bars" }, "name": "Wheel 4 pressure"},
+    {"id": "MAZDA_TP_4",     "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "nullmax": 3.5, "unit": "bars" }, "name": "Wheel 4 pressure"},
     {"id": "MAZDA_TP_4_ND",  "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000,               "nullmax": 3.5, "unit": "bars" }, "name": "Wheel 4 pressure"},
-    {"id": "MAZDA_TP_RR_V2", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0,                 "unit": "bars" }, "name": "Rear right tire pressure",  "suggestedMetric": "rearRightTirePressure"},
-    {"id": "MAZDA_TP_FR_V2", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0,                 "unit": "bars" }, "name": "Front right tire pressure", "suggestedMetric": "frontRightTirePressure"}
+    {"id": "MAZDA_TP_RR_V2", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "nullmax": 3.5, "unit": "bars" }, "name": "Rear right tire pressure",  "suggestedMetric": "rearRightTirePressure"},
+    {"id": "MAZDA_TP_FR_V2", "path": "Tires", "fmt": { "len": 8, "max": 3.5, "mul": 1373, "div": 100000, "nullmin": 0, "nullmax": 3.5, "unit": "bars" }, "name": "Front right tire pressure", "suggestedMetric": "frontRightTirePressure"}
   ]},
 { "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "2A0A"}, "freq": 15,
   "signals": [
@@ -435,7 +435,7 @@
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "4028"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_12V_SOC_726",    "path": "Battery", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "12V battery state of charge"},
-    {"id": "MAZDA_12V_SOC",        "path": "Battery", "fmt": { "len": 8, "max": 100,                         "unit": "percent" }, "name": "12V battery state of charge"},
+    {"id": "MAZDA_BATT_SOC",       "path": "Battery", "fmt": { "len": 8, "max": 100,                         "unit": "percent" }, "name": "Battery charge"},
     {"id": "MAZDA_BAT_ST_CHG_726", "path": "Battery", "fmt": { "len": 8, "max": 255,                         "unit": "percent" }, "name": "Battery state of charge"}
   ]},
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "4029"}, "freq": 5,
@@ -1524,9 +1524,8 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0301"}, "freq": 0.25,
   "signals": [
-    {"id": "MAZDA_MAP",               "path": "Engine", "fmt": {          "len": 16, "max": 4,                                   "div": 1000,                 "unit": "volts" },                                                   "name": "Map voltage",                                                                       "description": "A properly functioning sensor should read around 1 to 1.5 volts at idle."},
-    {"id": "MAZDA_MAP_V",             "fmt":            {      "len": 16, "max": 5,                                 "div": 1024,              "unit": "volts" },              "name": "Manifold absolute pressure sensor voltage", "description": "Typically varies from 1 volt at idle to 5 volts during wide open throttle."},
-    {"id": "MAZDA_[ECU] MAP voltage", "fmt":            {      "len": 16, "max": 5,            "mul": 0.0009765625,                           "unit": "volts" },              "name": "Manifold absolute pressure sensor voltage", "description": "Typically varies from 1 volt at idle to 5 volts during wide open throttle."}
+    {"id": "MAZDA_MAP",   "path": "Engine", "fmt": {          "len": 16, "max": 5,                      "div": 1024,                 "unit": "volts" },                                                   "name": "Map voltage",                                                                       "description": "A properly functioning sensor should read around 1 to 1.5 volts at idle."},
+    {"id": "MAZDA_MAP_V", "fmt":            {      "len": 16, "max": 5,            "mul": 0.0009765625,              "unit": "volts" },              "name": "Manifold absolute pressure sensor voltage", "description": "Typically varies from 1 volt at idle to 5 volts during wide open throttle."}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0304"}, "freq": 1,
   "signals": [
@@ -1556,8 +1555,8 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0318"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_VCT_INT_ACT",             "fmt": { "len": 16, "max": 0,                            "div": 16, "unit": "degrees" }, "name": "VCT intake camshaft actual"},
-    {"id": "MAZDA_[ECU] VCT intake actual", "fmt": { "len": 16, "max": 0, "min": -50, "mul": 0.0625,            "unit": "degrees" }, "name": "VCT intake camshaft actual"}
+    {"id": "MAZDA_VCT_INT_ACT",             "fmt": { "len": 16, "max": 2047.9375, "min": -2048,                "div": 16, "sign": true, "unit": "degrees" }, "name": "VCT intake camshaft actual"},
+    {"id": "MAZDA_[ECU] VCT intake actual", "fmt": { "len": 16, "max": 0,         "min": -50,   "mul": 0.0625,                          "unit": "degrees" }, "name": "VCT intake camshaft actual"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0319"}, "freq": 1,
   "signals": [
@@ -1663,9 +1662,9 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "038E"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_EVAP_V",                   "fmt": { "len": 16, "max": 5,                          "div": 5.0048876, "sign": true, "unit": "volts"  }, "name": "Evaporative vapor pressure sensor voltage"},
-    {"id": "MAZDA_EVAP_RAW",                 "fmt": { "len": 16, "max": 65535,                                                      "unit": "scalar" }, "name": "Evaporative pressure sensor, raw count"},
-    {"id": "MAZDA_[ECU] Evap Pres Sensor V", "fmt": { "len": 16, "max": 5,     "mul": 0.1998046869,                                 "unit": "volts"  }, "name": "Evaporative vapor pressure sensor voltage"}
+    {"id": "MAZDA_EVAP_V",                   "fmt": { "len": 16, "max": 5,      "div": 5.0048876, "sign": true, "unit": "volts"  }, "name": "Evaporative vapor pressure sensor voltage"},
+    {"id": "MAZDA_EVAP_RAW",                 "fmt": { "len": 16, "max": 65535,                                  "unit": "scalar" }, "name": "Evaporative pressure sensor, raw count"},
+    {"id": "MAZDA_[ECU] Evap Pres Sensor V", "fmt": { "len": 16, "max": 65.535, "div": 1000,                    "unit": "volts"  }, "name": "Evaporative vapor pressure sensor voltage"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "038F"}, "freq": 5,
   "signals": [
