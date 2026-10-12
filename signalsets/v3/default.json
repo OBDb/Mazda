@@ -11,13 +11,13 @@
   "commands": [
 { "hdr": "6F5", "dbg": true, "cmd": {"22": "4899"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_HIGH_V_DC_CHARGER_MAX", "path": "Battery", "fmt": { "len": 16, "max": 65535,              "unit": "amps" }, "name": "High voltage DC charger, maximum, current"},
-    {"id": "MAZDA_HVDC_CHG_MAX_C",        "path": "Battery", "fmt": { "len": 16, "max": 655.35, "div": 100, "unit": "amps" }, "name": "HV DC charger maximum current"}
+    {"id": "MAZDA_HIGH_V_DC_CHARGER_MAX", "path": "Battery", "fmt": { "len": 16, "max": 65535,                                 "unit": "amps" }, "name": "High voltage DC charger, maximum, current"},
+    {"id": "MAZDA_HVDC_CHG_MAX_C",        "path": "Battery", "fmt": { "len": 16, "max": 655.35, "div": 100, "nullmax": 655.35, "unit": "amps" }, "name": "HV DC charger maximum current"}
   ]},
 { "hdr": "6F5", "dbg": true, "cmd": {"22": "489D"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_HIGH_V_DC_CHARGER_MAX_V", "path": "Battery", "fmt": { "len": 16, "max": 65535,             "unit": "volts" }, "name": "High voltage DC charger, maximum voltage"},
-    {"id": "MAZDA_HVDC_CHG_MAX_V",          "path": "Battery", "fmt": { "len": 16, "max": 6553.5, "div": 10, "unit": "volts" }, "name": "HV DC charger maximum voltage"}
+    {"id": "MAZDA_HIGH_V_DC_CHARGER_MAX_V", "path": "Battery", "fmt": { "len": 16, "max": 65535,                                "unit": "volts" }, "name": "High voltage DC charger, maximum voltage"},
+    {"id": "MAZDA_HVDC_CHG_MAX_V",          "path": "Battery", "fmt": { "len": 16, "max": 6553.5, "div": 10, "nullmax": 6553.5, "unit": "volts" }, "name": "HV DC charger maximum voltage"}
   ]},
 { "hdr": "700", "rax": "708", "dbg": true, "cmd": {"22": "1074"}, "freq": 1,
   "signals": [
@@ -77,14 +77,6 @@
 { "hdr": "703", "rax": "70B", "dbg": true, "cmd": {"22": "D00F"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_HYDRAULIC_PMP_MOTOR", "path": "Engine", "fmt": { "len": 16, "max": 655, "div": 100, "unit": "amps" }, "name": "Hydraulic pump motor current"}
-  ]},
-{ "hdr": "720", "dbg": true, "cmd": {"22": "6185"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_FLI_V2", "path": "Fuel", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Fuel tank level", "suggestedMetric": "fuelTankLevel"}
-  ]},
-{ "hdr": "720", "dbg": true, "cmd": {"22": "61A5"}, "freq": 30,
-  "signals": [
-    {"id": "MAZDA_TPMS_WARN", "path": "Tires", "fmt": {"bix": 2, "len": 1, "max": 1, "unit": "offon" }, "name": "Tire pressure warning indicator"}
   ]},
 { "hdr": "720", "dbg": true, "cmd": {"22": "61D0"}, "freq": 30,
   "signals": [
@@ -160,14 +152,22 @@
     {"id": "MAZDA_TT_RR_V2", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "nullmin": -50, "unit": "celsius" }, "name": "Rear right tire temperature",  "suggestedMetric": "rearRightTireTemperature"},
     {"id": "MAZDA_TT_FR_V2", "path": "Tires", "fmt": { "len": 8, "max": 205, "min": -50, "add": -50, "nullmin": -50, "unit": "celsius" }, "name": "Front right tire temperature", "suggestedMetric": "frontRightTireTemperature"}
   ]},
-{ "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "404C"}, "freq": 5,
+{ "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "404C"}, "freq": 30,
   "signals": [
-    {"id": "MAZDA_ODO_V3", "path": "Trips", "fmt": { "len": 24, "max": 1677721, "div": 10, "unit": "kilometers" }, "name": "Odometer, instrument panel", "suggestedMetric": "odometer"},
-    {"id": "MAZDA_ODO_V3", "path": "Trips", "fmt": { "len": 24, "max": 1677721, "div": 10, "unit": "kilometers" }, "name": "Odometer"}
+    {"id": "MAZDA_ODO_V3", "path": "Trips", "fmt": { "len": 24, "max": 1677721, "div": 10, "unit": "kilometers" }, "name": "Odometer"},
+    {"id": "MAZDA_ODO_V3", "path": "Trips", "fmt": { "len": 24, "max": 1677721, "div": 10, "unit": "kilometers" }, "name": "Odometer, instrument panel", "suggestedMetric": "odometer"}
   ]},
 { "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "6180"}, "freq": 30,
   "signals": [
     {"id": "MAZDA_ODO_720_V2", "path": "Trips", "fmt": { "len": 24, "max": 1677721, "div": 10, "unit": "kilometers" }, "name": "Odometer"}
+  ]},
+{ "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "6185"}, "freq": 30,
+  "signals": [
+    {"id": "MAZDA_FLI_V2", "path": "Fuel", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "Fuel tank level", "suggestedMetric": "fuelTankLevel"}
+  ]},
+{ "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "61A5"}, "freq": 10,
+  "signals": [
+    {"id": "MAZDA_TPMS_WARN", "path": "Tires", "fmt": {"bix": 2, "len": 1, "max": 1, "unit": "offon" }, "name": "Tire pressure warning"}
   ]},
 { "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "61B1"}, "freq": 1,
   "signals": [
@@ -392,35 +392,33 @@
   ]},
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "2813"}, "freq": 5,
   "signals": [
-    {"id": "MAZDA_TP_FL_V4",  "path": "Tires", "fmt": { "len": 16, "max": 3276, "div": 20,                               "unit": "psi" }, "name": "Front left tire pressure", "suggestedMetric": "frontLeftTirePressure"},
-    {"id": "MAZDA_MAX_TP_FL", "path": "Tires", "fmt": { "len": 16, "max": 150,  "div": 20, "nullmin": 0, "nullmax": 150, "unit": "psi" }, "name": "Front left tire pressure", "suggestedMetric": "frontLeftTirePressure"}
+    {"id": "MAZDA_TP_FL_V4",  "path": "Tires", "fmt": { "len": 16, "max": 150, "div": 20,               "nullmax": 150, "unit": "psi" }, "name": "Front left tire pressure", "suggestedMetric": "frontLeftTirePressure"},
+    {"id": "MAZDA_MAX_TP_FL", "path": "Tires", "fmt": { "len": 16, "max": 150, "div": 20, "nullmin": 0, "nullmax": 150, "unit": "psi" }, "name": "Front left tire pressure", "suggestedMetric": "frontLeftTirePressure"}
   ]},
-{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "2814"}, "freq": 5,
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "2814"}, "freq": 30,
   "signals": [
-    {"id": "MAZDA_TP_FR_V4",  "path": "Tires", "fmt": { "len": 16, "max": 3276, "div": 20,                               "unit": "psi" }, "name": "Front right tire pressure", "suggestedMetric": "frontRightTirePressure"},
-    {"id": "MAZDA_MAX_TP_FR", "path": "Tires", "fmt": { "len": 16, "max": 150,  "div": 20, "nullmin": 0, "nullmax": 150, "unit": "psi" }, "name": "Front right tire pressure", "suggestedMetric": "frontRightTirePressure"}
+    {"id": "MAZDA_TP_FR_V4",  "path": "Tires", "fmt": { "len": 16, "max": 150, "div": 20,               "nullmax": 150, "unit": "psi" }, "name": "Front right tire pressure", "suggestedMetric": "frontRightTirePressure"},
+    {"id": "MAZDA_MAX_TP_FR", "path": "Tires", "fmt": { "len": 16, "max": 150, "div": 20, "nullmin": 0, "nullmax": 150, "unit": "psi" }, "name": "Front right tire pressure", "suggestedMetric": "frontRightTirePressure"}
   ]},
-{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "2815"}, "freq": 5,
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "2815"}, "freq": 30,
   "signals": [
-    {"id": "MAZDA_TP_RRO",     "path": "Tires", "fmt": { "len": 16, "max": 3276, "div": 20,                               "unit": "psi" }, "name": "Rear right outer tire pressure", "suggestedMetric": "rearRightTirePressure"},
     {"id": "MAZDA_TP_RR_V4",   "path": "Tires", "fmt": { "len": 16, "max": 150,  "div": 20,               "nullmax": 150, "unit": "psi" }, "name": "Rear right outer tire pressure", "suggestedMetric": "rearRightTirePressure"},
+    {"id": "MAZDA_TP_RRO",     "path": "Tires", "fmt": { "len": 16, "max": 3276, "div": 20,                               "unit": "psi" }, "name": "Rear right outer tire pressure", "suggestedMetric": "rearRightTirePressure"},
     {"id": "MAZDA_MAX_TP_RRO", "path": "Tires", "fmt": { "len": 16, "max": 150,  "div": 20, "nullmin": 0, "nullmax": 150, "unit": "psi" }, "name": "Rear right outer tire pressure", "suggestedMetric": "rearRightTirePressure"}
   ]},
-{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "2816"}, "freq": 5,
+{ "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "2816"}, "freq": 30,
   "signals": [
-    {"id": "MAZDA_TP_RLO",     "path": "Tires", "fmt": { "len": 16, "max": 3276, "div": 20,                               "unit": "psi" }, "name": "Rear left outer tire pressure", "suggestedMetric": "rearLeftTirePressure"},
     {"id": "MAZDA_TP_RL_V4",   "path": "Tires", "fmt": { "len": 16, "max": 150,  "div": 20,               "nullmax": 150, "unit": "psi" }, "name": "Rear left outer tire pressure", "suggestedMetric": "rearLeftTirePressure"},
+    {"id": "MAZDA_TP_RLO",     "path": "Tires", "fmt": { "len": 16, "max": 3276, "div": 20,                               "unit": "psi" }, "name": "Rear left outer tire pressure", "suggestedMetric": "rearLeftTirePressure"},
     {"id": "MAZDA_MAX_TP_RLO", "path": "Tires", "fmt": { "len": 16, "max": 150,  "div": 20, "nullmin": 0, "nullmax": 150, "unit": "psi" }, "name": "Rear left outer tire pressure", "suggestedMetric": "rearLeftTirePressure"}
   ]},
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "2817"}, "freq": 5,
   "signals": [
-    {"id": "MAZDA_TP_RRI",     "path": "Tires", "fmt": { "len": 16, "max": 3276, "div": 20,                               "unit": "psi" }, "name": "Rear right inner tire pressure"},
-    {"id": "MAZDA_MAX_TP_RRI", "path": "Tires", "fmt": { "len": 16, "max": 150,  "div": 20, "nullmin": 0, "nullmax": 150, "unit": "psi" }, "name": "Tire pressure, rear right inner"}
+    {"id": "MAZDA_TP_RRI", "path": "Tires", "fmt": { "len": 16, "max": 150, "div": 20, "nullmin": 0, "nullmax": 150, "unit": "psi" }, "name": "Rear right inner tire pressure"}
   ]},
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "2818"}, "freq": 5,
   "signals": [
-    {"id": "MAZDA_TP_RLI",     "path": "Tires", "fmt": { "len": 16, "max": 3276, "div": 20,                               "unit": "psi" }, "name": "Rear left inner tire pressure"},
-    {"id": "MAZDA_MAX_TP_RLI", "path": "Tires", "fmt": { "len": 16, "max": 150,  "div": 20, "nullmin": 0, "nullmax": 150, "unit": "psi" }, "name": "Tire pressure, rear left inner"}
+    {"id": "MAZDA_TP_RLI", "path": "Tires", "fmt": { "len": 16, "max": 150, "div": 20, "nullmin": 0, "nullmax": 150, "unit": "psi" }, "name": "Rear left inner tire pressure"}
   ]},
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "401E"}, "freq": 1,
   "signals": [
@@ -448,7 +446,7 @@
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "4028"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_12V_SOC_726",    "path": "Battery", "fmt": { "len": 8, "max": 100, "mul": 100, "div": 255, "unit": "percent" }, "name": "12V battery state of charge"},
-    {"id": "MAZDA_BATT_SOC",       "path": "Battery", "fmt": { "len": 8, "max": 100,                         "unit": "percent" }, "name": "Battery charge"},
+    {"id": "MAZDA_12V_SOC",        "path": "Battery", "fmt": { "len": 8, "max": 100,                         "unit": "percent" }, "name": "12V battery state of charge"},
     {"id": "MAZDA_BAT_ST_CHG_726", "path": "Battery", "fmt": { "len": 8, "max": 255,                         "unit": "percent" }, "name": "Battery state of charge"}
   ]},
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "4029"}, "freq": 5,
@@ -458,8 +456,9 @@
   ]},
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "402A"}, "freq": 5,
   "signals": [
-    {"id": "MAZDA_12V_V_726", "path": "Battery", "fmt": { "len": 16, "max": 65.535, "div": 1000,           "nullmin": 0, "unit": "volts" }, "name": "12V battery voltage", "suggestedMetric": "starterBatteryVoltage"},
-    {"id": "MAZDA_VEH_BAT_V", "path": "Battery", "fmt": { "len": 8,  "max": 18.75,  "div": 20,   "add": 6,               "unit": "volts" }, "name": "12V battery voltage", "suggestedMetric": "starterBatteryVoltage"}
+    {"id": "MAZDA_12V_V_726", "path": "Battery", "fmt": { "len": 16, "max": 65.535,           "div": 1000,           "nullmin": 0, "unit": "volts" }, "name": "12V battery voltage",     "suggestedMetric": "starterBatteryVoltage"},
+    {"id": "MAZDA_12V_V",     "path": "Battery", "fmt": { "len": 8,  "max": 18.75,            "div": 20,   "add": 6,               "unit": "volts" }, "name": "12V battery voltage",     "suggestedMetric": "starterBatteryVoltage"},
+    {"id": "MAZDA_VEH_BAT_V", "path": "Battery", "fmt": { "len": 8,  "max": 18.75,  "min": 6, "div": 20,   "add": 6,               "unit": "volts" }, "name": "Vehicle battery voltage", "suggestedMetric": "starterBatteryVoltage"}
   ]},
 { "hdr": "726", "rax": "72E", "dbg": true, "cmd": {"22": "402B"}, "freq": 1,
   "signals": [
@@ -593,14 +592,6 @@
   "signals": [
     {"id": "MAZDA_POWER_MODE", "path": "Engine", "fmt": { "len": 8, "max": 63, "min": -192, "add": -192, "unit": "scalar" }, "name": "Power mode"}
   ]},
-{ "hdr": "730", "dbg": true, "cmd": {"22": "3301"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_STEER_WHL_ANG", "path": "Tires", "fmt": { "len": 8, "max": 1020, "mul": 4, "unit": "unknown" }, "name": "Steering wheel angle velocity"}
-  ]},
-{ "hdr": "730", "dbg": true, "cmd": {"22": "330C"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_STEER_SHFT_TQ", "path": "Engine", "fmt": { "len": 8, "max": 12.8, "min": -12.7, "div": 10, "add": -12.7, "unit": "newtonMeters" }, "name": "Steering shaft torque"}
-  ]},
 { "hdr": "730", "dbg": true, "cmd": {"22": "4139"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_SERVO_PMP_ENG_POWER", "path": "Engine", "fmt": { "len": 8, "max": 127, "div": 2, "unit": "amps" }, "name": "Servo pump engine power consumption"}
@@ -620,6 +611,14 @@
 { "hdr": "730", "dbg": true, "cmd": {"22": "D11C"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_SERVO_CTRL_MODULE_T", "path": "Engine", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Servo control module temperature"}
+  ]},
+{ "hdr": "730", "rax": "738", "dbg": true, "cmd": {"22": "3301"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_STEER_WHL_ANG", "path": "Tires", "fmt": { "len": 8, "max": 1020, "mul": 4, "unit": "unknown" }, "name": "Steering wheel angle velocity"}
+  ]},
+{ "hdr": "730", "rax": "738", "dbg": true, "cmd": {"22": "330C"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_STEER_SHFT_TQ", "path": "Engine", "fmt": { "len": 8, "max": 12.8, "min": -12.7, "div": 10, "add": -12.7, "unit": "newtonMeters" }, "name": "Steering shaft torque"}
   ]},
 { "hdr": "730", "rax": "738", "dbg": true, "cmd": {"22": "DD01"}, "freq": 30,
   "signals": [
@@ -644,10 +643,6 @@
 { "hdr": "733", "dbg": true, "cmd": {"22": "9A24"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_RR_SEAT_HEATER_MS", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "celsius" }, "name": "Rear right seat heater"}
-  ]},
-{ "hdr": "733", "dbg": true, "cmd": {"22": "D111"}, "freq": 5,
-  "signals": [
-    {"id": "MAZDA_CTRL_MODULE_POWER", "path": "Engine", "fmt": { "len": 8, "max": 25.5, "div": 10, "unit": "volts" }, "name": "Control module power supply"}
   ]},
 { "hdr": "733", "dbg": true, "cmd": {"22": "D900"}, "freq": 1,
   "signals": [
@@ -717,6 +712,10 @@
   "signals": [
     {"id": "MAZDA_AIR_QUALITY_SENS", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Air quality sensor status"}
   ]},
+{ "hdr": "733", "rax": "73B", "dbg": true, "cmd": {"22": "D111"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_CTRL_MODULE_POWER", "path": "Engine", "fmt": { "len": 8, "max": 25.5, "div": 10, "unit": "volts" }, "name": "Control module power supply"}
+  ]},
 { "hdr": "736", "dbg": true, "cmd": {"22": "B112"}, "freq": 30,
   "signals": [
     {"id": "MAZDA_RL_DIST", "path": "Trips", "fmt": { "len": 8, "max": 255, "unit": "unknown" }, "name": "Rear left distance"}
@@ -753,14 +752,6 @@
   "signals": [
     {"id": "MAZDA_ODO_PAM", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer", "suggestedMetric": "odometer"}
   ]},
-{ "hdr": "737", "dbg": true, "cmd": {"22": "5B19"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_SEAT_BUCKLE_DRIVER", "path": "Engine", "fmt": { "len": 8, "max": 127, "div": 2, "unit": "scalar" }, "name": "Seat buckle driver locked"}
-  ]},
-{ "hdr": "737", "dbg": true, "cmd": {"22": "5B1A"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_SEAT_BUCKLE", "path": "Engine", "fmt": { "len": 8, "max": 127, "div": 2, "unit": "scalar" }, "name": "Seat buckle passenger locked"}
-  ]},
 { "hdr": "737", "dbg": true, "cmd": {"22": "5B28"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_PASSENGER_AIRBAG", "path": "Engine", "fmt": { "len": 8, "max": 127, "div": 2, "unit": "scalar" }, "name": "Passenger airbag cutoff switch"}
@@ -792,6 +783,14 @@
 { "hdr": "737", "dbg": true, "cmd": {"22": "DD01"}, "freq": 30,
   "signals": [
     {"id": "MAZDA_ODO_SRS", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer", "suggestedMetric": "odometer"}
+  ]},
+{ "hdr": "737", "rax": "73F", "dbg": true, "cmd": {"22": "5B19"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_SEAT_BUCKLE_DRIVER", "path": "Engine", "fmt": { "len": 8, "max": 127, "div": 2, "unit": "scalar" }, "name": "Seat buckle driver locked"}
+  ]},
+{ "hdr": "737", "rax": "73F", "dbg": true, "cmd": {"22": "5B1A"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_SEAT_BUCKLE", "path": "Engine", "fmt": { "len": 8, "max": 127, "div": 2, "unit": "scalar" }, "name": "Seat buckle passenger locked"}
   ]},
 { "hdr": "740", "dbg": true, "cmd": {"22": "A4A7"}, "freq": 1,
   "signals": [
@@ -1148,9 +1147,9 @@
     {"id": "MAZDA_FSM_AUTOMATIC",       "path": "Engine", "fmt": { "len": 16, "max": 3276,  "min": -3276, "div": 10, "sign": true, "unit": "degrees" }, "name": "Forward sensing module automatic alignment offset"},
     {"id": "MAZDA_AUTOMATIC_ALIGNMENT", "path": "Engine", "fmt": { "len": 16, "max": 65535,                                        "unit": "degrees" }, "name": "Automatic alignment offset"}
   ]},
-{ "hdr": "764", "rax": "76C", "dbg": true, "cmd": {"22": "A224"}, "freq": 0.25,
+{ "hdr": "764", "rax": "76C", "dbg": true, "cmd": {"22": "A224"}, "freq": 0.5,
   "signals": [
-    {"id": "MAZDA_CC_TGT_VSS", "path": "Cruise control", "fmt": { "len": 16, "max": 736, "min": -736, "mul": 3.6, "div": 10, "sign": true, "unit": "kilometersPerHour" }, "name": "Target vehicle speed", "description": "The speed of the vehicle ahead of you."}
+    {"id": "MAZDA_CC_TGT_VSS", "path": "Cruise control", "fmt": { "len": 16, "max": 736, "min": -736, "mul": 3.6, "div": 10, "sign": true, "unit": "kilometersPerHour" }, "name": "Target speed", "description": "The speed of the vehicle ahead of you."}
   ]},
 { "hdr": "764", "rax": "76C", "dbg": true, "cmd": {"22": "DD01"}, "freq": 30,
   "signals": [
@@ -1415,7 +1414,7 @@
   ]},
 { "hdr": "7D2", "rax": "7DA", "dbg": true, "cmd": {"22": "15EE"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_12V_V", "path": "Battery", "fmt": { "len": 8, "max": 80.2, "mul": 0.31448, "add": 0.0125, "unit": "volts" }, "name": "12V battery voltage", "suggestedMetric": "starterBatteryVoltage"}
+    {"id": "MAZDA_12V_V_V2", "path": "Battery", "fmt": { "len": 8, "max": 80.2, "mul": 0.31448, "add": 0.0125, "unit": "volts" }, "name": "12V battery voltage", "suggestedMetric": "starterBatteryVoltage"}
   ]},
 { "hdr": "7D2", "rax": "7DA", "dbg": true, "cmd": {"22": "15F7"}, "freq": 0.5,
   "signals": [
@@ -1497,7 +1496,14 @@
   ]},
 { "hdr": "7DF", "dbg": true, "cmd": {"22": "1E23"}, "freq": 30,
   "signals": [
-    {"id": "MAZDA_GEAR_SHFT_V2", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Shift gear"},
+    {"id": "MAZDA_GEAR_SHFT_7DF", "path": "Transmission", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Transmission range code", "description": "Selected range. Neutral, reverse and park are mapped; the code driving reports (43) is not yet."},
+    {"id": "MAZDA_GEAR_SHFT_V2", "path": "Transmission", "name": "Shift gear", "fmt": {"len": 8, "map": {
+          "46": { "description": "Drive",   "value": "DRIVE" },
+          "50": { "description": "Neutral", "value": "NEUTRAL" },
+          "60": { "description": "Reverse", "value": "REVERSE" },
+          "70": { "description": "Park",    "value": "PARK" }
+        }}
+    },
     {"id": "MAZDA_GEAR_SHFT_V2_7DF", "path": "Transmission", "name": "Shift gear", "description": "Selected range. Neutral, reverse and park are mapped; the code driving reports (43) is not yet.", "fmt": {"len": 8, "map": {
           "50": { "description": "Neutral", "value": "NEUTRAL" },
           "60": { "description": "Reverse", "value": "REVERSE" },
@@ -1507,12 +1513,12 @@
   ]},
 { "hdr": "7DF", "dbg": true, "cmd": {"22": "F42F"}, "freq": 30,
   "signals": [
-    {"id": "MAZDA_FLI_V2_V2", "path": "Fuel", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Fuel level (alternative)"}
+    {"id": "MAZDA_FLI_V2", "path": "Fuel", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Fuel level (alternative)"}
   ]},
 { "hdr": "7DF", "dbg": true, "cmd": {"22": "F45C"}, "freq": 30,
   "signals": [
-    {"id": "MAZDA_EOP_V2",  "path": "Engine", "fmt": { "len": 8, "max": 255,                         "unit": "scalar"  }, "name": "Engine oil pressure"},
-    {"id": "MAZDA_EOT_7DF", "path": "Engine", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Engine oil temperature", "suggestedMetric": "engineOilTemperature"}
+    {"id": "MAZDA_EOT_7DF", "path": "Engine", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Engine oil temperature", "suggestedMetric": "engineOilTemperature"},
+    {"id": "MAZDA_EOP_V2",  "path": "Engine", "fmt": { "len": 8, "max": 255,                         "unit": "scalar"  }, "name": "Engine oil pressure"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"21": "21"}, "freq": 0.25,
   "signals": [
@@ -1978,7 +1984,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0543"}, "freq": 5,
   "signals": [
-    {"id": "MAZDA_EGR_T_7E0", "path": "Engine", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Exhaust gas recirculation temperature"}
+    {"id": "MAZDA_EGR_T", "path": "Engine", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Exhaust gas recirculation temperature"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0548"}, "freq": 1,
   "signals": [
@@ -2264,7 +2270,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "115F"}, "freq": 5,
   "signals": [
-    {"id": "MAZDA_EGR_T", "path": "Engine", "fmt": { "len": 16, "max": 11756, "min": -40, "mul": 9, "div": 50, "add": -40, "unit": "fahrenheit" }, "name": "Exhaust gas recirculation temperature a"}
+    {"id": "MAZDA_EGR_T_V2", "path": "Engine", "fmt": { "len": 16, "max": 11756, "min": -40, "mul": 9, "div": 50, "add": -40, "unit": "fahrenheit" }, "name": "Exhaust gas recirculation temperature a"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1161"}, "freq": 5,
   "signals": [
@@ -3125,190 +3131,6 @@
   "signals": [
     {"id": "MAZDA_DIST_SINCE_COMPLETE_FD8A", "path": "Engine", "fmt": { "len": 16, "max": 653, "mul": 0.009977908, "unit": "kilometers" }, "name": "Distance since last complete DPF regeneration"}
   ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "1E14"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_T_CONV", "path": "Transmission", "fmt": { "len": 16, "max": 65535, "unit": "percent" }, "name": "A/T converter"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "1E16"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_ACT_GEAR_RAT", "path": "Transmission", "fmt": { "len": 16, "max": 15.99, "div": 4096, "unit": "scalar" }, "name": "AT, actual gear ratio"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "1E19"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_EXPECTED_GEAR_RAT", "path": "Transmission", "fmt": { "len": 16, "max": 65.53, "div": 1000, "unit": "scalar" }, "name": "Transmission expected gear ratio"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "1E1B"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_SLAVE_T", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "rpm" }, "name": "Slave A/T"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "1E1E"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LINEAR_P_SOLENOID", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission line pressure solenoid current, requested"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "1E2F"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LEADING_T", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "rpm" }, "name": "Leading A/T"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "1E40"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LINEAR_P_SOLENOID_SLT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission line pressure solenoid current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "1E41"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LOCK_UP_SOLENOID_SLU", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Torque converter lock-up solenoid current, requested"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "1E42"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LINEAR_P_SOLENOID_SLC1_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SLC1, requested, current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "1E43"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LINEAR_P_SOLENOID_SLC2_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SLC2, requested, current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "1E44"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LINEAR_P_SOLENOID_SLC3_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SLC3, requested, current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "1E45"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LINEAR_P_SOLENOID_SLB1_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SLB1, requested, current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "1E47"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LOCK_UP_SOLENOID_SLU_CURRENT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Torque converter lock-up solenoid current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "1E48"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LINEAR_P_SOLENOID_SLC1", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SLC1 current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "1E49"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LINEAR_P_SOLENOID_SLC2", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SLC2 current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "1E4A"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LINEAR_P_SOLENOID_SLC3", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SLC3 current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "6310"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_GEAR_SELECTOR_P_0_R_1_N_2_D_3", "path": "Transmission", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Transmission gear selector p, 0 r, 1 n, 2 d, 3"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "D904"}, "freq": 5,
-  "signals": [
-    {"id": "MAZDA_ATF_T_VAR_2_V2", "path": "Transmission", "fmt": { "len": 16, "max": 32767, "min": -32768, "sign": true, "unit": "celsius" }, "name": "Transmission fluid temperature, variant 2"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "D90C"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_SLC1_CURRENT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "SLC1 current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "D90F"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_SLC2_CURRENT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "SLC2 current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "D910"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_SLC3_CURRENT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "SLC3 current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DA34"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_GEAR_RAT_ACT_7E1", "path": "Transmission", "fmt": { "len": 16, "max": 15.99, "div": 4096, "unit": "scalar" }, "name": "Gear ratio, actual"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DA3B"}, "freq": 5,
-  "signals": [
-    {"id": "MAZDA_ATF_T_VAR_2_7E1", "path": "Transmission", "fmt": { "len": 16, "max": 32767, "min": -32768, "sign": true, "unit": "celsius" }, "name": "Transmission fluid temperature, variant 2"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DA3C"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LOCK_UP_FUNCTION", "path": "Engine", "fmt": { "len": 8, "max": 84.66, "min": -0.333, "div": 3, "add": -0.333333, "unit": "scalar" }, "name": "Transmission lock-up function"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DA47"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_GEAR_RAT_EXPECTED", "path": "Transmission", "fmt": { "len": 16, "max": 65.53, "div": 1000, "unit": "scalar" }, "name": "Gear ratio expected"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DA49"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LINEAR_P_SOLENOID_SLT_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission line pressure solenoid current, requested"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DA4A"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LINEAR_P_SOLENOID_SLT_CURRENT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission line pressure solenoid current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DA4B"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LOCK_UP_SOLENOID_SLU_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Torque converter lock-up solenoid, requested"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DA4C"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LOCK_UP_SOLENOID_SLU_7E1", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Torque converter lock-up solenoid"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DA4D"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LINEAR_P_SOLENOID_SL1_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SL1, requested, current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DA4E"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LINEAR_P_SOLENOID_SL1", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SL1 current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DA4F"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LINEAR_P_SOLENOID_SL2_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SL2, requested, current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DA50"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LINEAR_P_SOLENOID_SL2", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SL2 current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DA51"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LINEAR_P_SOLENOID_SL3_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SL3, requested, current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DA52"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_LINEAR_P_SOLENOID_SL3", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SL3 current"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DCE4"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_KICKDOWN", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Transmission kickdown"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DCEA"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_SELECTOR", "path": "Engine", "fmt": { "len": 8, "max": 127, "div": 2, "unit": "scalar" }, "name": "Transmission selector"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DCF0"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_TQ_LIMITING", "path": "Engine", "fmt": { "len": 16, "max": 6553, "div": 10, "unit": "newtonMeters" }, "name": "Transmission torque limiting"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DD02"}, "freq": 5,
-  "signals": [
-    {"id": "MAZDA_MECU_SUP_V", "path": "Battery", "fmt": { "len": 8, "max": 63.75, "div": 4, "unit": "volts" }, "name": "Transmission control module supply voltage"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DD81"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_GEAR_7E1_V3", "path": "Transmission", "fmt": {"bix": 8, "len": 8, "max": 255, "unit": "scalar" }, "name": "Transmission gear"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DD89"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_SOLENOID_S1_STAT", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Transmission solenoid S1 status"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DD8A"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_SOLENOID_S2_STAT", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Transmission solenoid S2 status"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DD8D"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_TQ_V2", "path": "Engine", "fmt": { "len": 16, "max": 3276, "min": -3276, "div": 10, "sign": true, "unit": "newtonMeters" }, "name": "Transmission torque"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DD8E"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_ACCEL_PEDAL_POS_V2", "path": "Movement", "fmt": { "len": 16, "max": 6553, "div": 10, "unit": "percent" }, "name": "Accelerator pedal position"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "DF08"}, "freq": 1,
-  "signals": [
-    {"id": "MAZDA_START_LOCK_START", "path": "Engine", "fmt": { "len": 8, "max": 1, "div": 255, "unit": "scalar" }, "name": "Transmission start lock - start approved"}
-  ]},
-{ "hdr": "7E1", "rax": "1EC", "dbg": true, "cmd": {"22": "E504"}, "freq": 0.25,
-  "signals": [
-    {"id": "MAZDA_BRAKE_PEDAL_POS", "path": "Control", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Brake pedal position"}
-  ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "11B3"}, "freq": 0.25,
   "signals": [
     {"id": "MAZDA_TRANS_GEAR_7E1", "path": "Transmission", "fmt": { "len": 8, "max": 127.5, "div": 2, "unit": "scalar" }, "name": "Transmission gear"}
@@ -3337,11 +3159,31 @@
   "signals": [
     {"id": "MAZDA_GEAR_7E1", "path": "Transmission", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Gear"}
   ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E14"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_T_CONV", "path": "Transmission", "fmt": { "len": 16, "max": 65535, "unit": "percent" }, "name": "A/T converter"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E16"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_ACT_GEAR_RAT", "path": "Transmission", "fmt": { "len": 16, "max": 15.99, "div": 4096, "unit": "scalar" }, "name": "AT, actual gear ratio"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E19"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_EXPECTED_GEAR_RAT", "path": "Transmission", "fmt": { "len": 16, "max": 65.53, "div": 1000, "unit": "scalar" }, "name": "Transmission expected gear ratio"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E1B"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_SLAVE_T", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "rpm" }, "name": "Slave A/T"}
+  ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E1C"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_TRANS_T_V6",      "path": "Transmission", "fmt": { "len": 16, "max": 500, "min": -500, "div": 16, "sign": true, "unit": "celsius" }, "name": "Transmission temperature",       "suggestedMetric": "transmissionFluidTemperature"},
     {"id": "MAZDA_TRANS_T",         "path": "Transmission", "fmt": { "len": 16, "max": 300, "min": -40,  "div": 16, "sign": true, "unit": "celsius" }, "name": "Transmission fluid temperature", "suggestedMetric": "transmissionFluidTemperature"},
     {"id": "MAZDA_MX_5_TRANS_T_V6", "path": "Transmission", "fmt": { "len": 16, "max": 500, "min": -500, "div": 16, "sign": true, "unit": "celsius" }, "name": "Transmission temperature v6"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E1E"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LINEAR_P_SOLENOID", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission line pressure solenoid current, requested"}
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E1F"}, "freq": 0.25,
   "signals": [
@@ -3351,10 +3193,54 @@
   "signals": [
     {"id": "MAZDA_TQ_CONV_LOCK_UP", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Torque converter lock-up"}
   ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E2F"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LEADING_T", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "rpm" }, "name": "Leading A/T"}
+  ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E3F"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_ATF_T_VAR_5", "path": "Engine",       "fmt": { "len": 16, "max": 32767, "min": -32768,           "sign": true, "unit": "celsius" }, "name": "Transmission fluid temperature, variant 5"},
     {"id": "MAZDA_ATF_T_7E1",   "path": "Transmission", "fmt": { "len": 16, "max": 8191,  "min": -8192,  "div": 4, "sign": true, "unit": "celsius" }, "name": "Transmission fluid temperature",            "suggestedMetric": "transmissionFluidTemperature"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E40"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LINEAR_P_SOLENOID_SLT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission line pressure solenoid current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E41"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LOCK_UP_SOLENOID_SLU", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Torque converter lock-up solenoid current, requested"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E42"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LINEAR_P_SOLENOID_SLC1_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SLC1, requested, current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E43"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LINEAR_P_SOLENOID_SLC2_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SLC2, requested, current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E44"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LINEAR_P_SOLENOID_SLC3_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SLC3, requested, current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E45"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LINEAR_P_SOLENOID_SLB1_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SLB1, requested, current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E47"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LOCK_UP_SOLENOID_SLU_CURRENT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Torque converter lock-up solenoid current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E48"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LINEAR_P_SOLENOID_SLC1", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SLC1 current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E49"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LINEAR_P_SOLENOID_SLC2", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SLC2 current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E4A"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LINEAR_P_SOLENOID_SLC3", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SLC3 current"}
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1EC7"}, "freq": 0.25,
   "signals": [
@@ -3368,9 +3254,129 @@
   "signals": [
     {"id": "MAZDA_GEN_COIL_T", "path": "Engine", "fmt": { "len": 16, "max": 11796620, "mul": 180, "add": 320, "unit": "fahrenheit" }, "name": "Generator coil temperature"}
   ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "6310"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_GEAR_SELECTOR_P_0_R_1_N_2_D_3", "path": "Transmission", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Transmission gear selector p, 0 r, 1 n, 2 d, 3"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "D904"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_ATF_T_VAR_2_V2", "path": "Transmission", "fmt": { "len": 16, "max": 32767, "min": -32768, "sign": true, "unit": "celsius" }, "name": "Transmission fluid temperature, variant 2"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "D90C"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_SLC1_CURRENT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "SLC1 current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "D90F"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_SLC2_CURRENT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "SLC2 current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "D910"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_SLC3_CURRENT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "SLC3 current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DA34"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_GEAR_RAT_ACT_7E1", "path": "Transmission", "fmt": { "len": 16, "max": 15.99, "div": 4096, "unit": "scalar" }, "name": "Gear ratio, actual"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DA3B"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_ATF_T_VAR_2_7E1", "path": "Transmission", "fmt": { "len": 16, "max": 32767, "min": -32768, "sign": true, "unit": "celsius" }, "name": "Transmission fluid temperature, variant 2"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DA3C"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LOCK_UP_FUNCTION", "path": "Engine", "fmt": { "len": 8, "max": 84.66, "min": -0.333, "div": 3, "add": -0.333333, "unit": "scalar" }, "name": "Transmission lock-up function"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DA47"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_GEAR_RAT_EXPECTED", "path": "Transmission", "fmt": { "len": 16, "max": 65.53, "div": 1000, "unit": "scalar" }, "name": "Gear ratio expected"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DA49"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LINEAR_P_SOLENOID_SLT_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission line pressure solenoid current, requested"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DA4A"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LINEAR_P_SOLENOID_SLT_CURRENT", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission line pressure solenoid current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DA4B"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LOCK_UP_SOLENOID_SLU_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Torque converter lock-up solenoid, requested"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DA4C"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LOCK_UP_SOLENOID_SLU_7E1", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Torque converter lock-up solenoid"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DA4D"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LINEAR_P_SOLENOID_SL1_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SL1, requested, current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DA4E"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LINEAR_P_SOLENOID_SL1", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SL1 current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DA4F"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LINEAR_P_SOLENOID_SL2_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SL2, requested, current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DA50"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LINEAR_P_SOLENOID_SL2", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SL2 current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DA51"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LINEAR_P_SOLENOID_SL3_REQ", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SL3, requested, current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DA52"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_LINEAR_P_SOLENOID_SL3", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "milliamps" }, "name": "Transmission linear pressure solenoid SL3 current"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DCE4"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_KICKDOWN", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Transmission kickdown"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DCEA"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_SELECTOR", "path": "Engine", "fmt": { "len": 8, "max": 127, "div": 2, "unit": "scalar" }, "name": "Transmission selector"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DCF0"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_TQ_LIMITING", "path": "Engine", "fmt": { "len": 16, "max": 6553, "div": 10, "unit": "newtonMeters" }, "name": "Transmission torque limiting"}
+  ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DD01"}, "freq": 30,
   "signals": [
     {"id": "MAZDA_TRANS_ODO", "path": "Transmission", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Transmission odometer", "suggestedMetric": "odometer"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DD02"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_MECU_SUP_V", "path": "Battery", "fmt": { "len": 8, "max": 63.75, "div": 4, "unit": "volts" }, "name": "Transmission control module supply voltage"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DD81"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_GEAR_7E1_V3", "path": "Transmission", "fmt": {"bix": 8, "len": 8, "max": 255, "unit": "scalar" }, "name": "Transmission gear"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DD89"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_SOLENOID_S1_STAT", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Transmission solenoid S1 status"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DD8A"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_SOLENOID_S2_STAT", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Transmission solenoid S2 status"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DD8D"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_TQ_V2", "path": "Engine", "fmt": { "len": 16, "max": 3276, "min": -3276, "div": 10, "sign": true, "unit": "newtonMeters" }, "name": "Transmission torque"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DD8E"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_ACCEL_PEDAL_POS_V2", "path": "Movement", "fmt": { "len": 16, "max": 6553, "div": 10, "unit": "percent" }, "name": "Accelerator pedal position"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "DF08"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_START_LOCK_START", "path": "Engine", "fmt": { "len": 8, "max": 1, "div": 255, "unit": "scalar" }, "name": "Transmission start lock - start approved"}
+  ]},
+{ "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "E504"}, "freq": 0.25,
+  "signals": [
+    {"id": "MAZDA_BRAKE_PEDAL_POS", "path": "Control", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Brake pedal position"}
   ]},
 { "hdr": "7E2", "rax": "7EA", "dbg": true, "cmd": {"22": "480B"}, "freq": 1,
   "signals": [
@@ -3435,7 +3441,7 @@
   ]},
 { "hdr": "7E2", "rax": "7EA", "dbg": true, "cmd": {"22": "4860"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_AC_CHG_IN_FREQ", "path": "Battery", "fmt": { "len": 8, "max": 90, "min": 30, "div": 2, "unit": "hertz" }, "name": "HV AC charger input frequency"}
+    {"id": "MAZDA_AC_CHG_IN_FREQ", "path": "Battery", "fmt": { "len": 8, "max": 90, "div": 2, "nullmin": 0, "unit": "hertz" }, "name": "HV AC charger input frequency"}
   ]},
 { "hdr": "7E2", "rax": "7EA", "dbg": true, "cmd": {"22": "4861"}, "freq": 1,
   "signals": [
@@ -3529,13 +3535,13 @@
   ]},
 { "hdr": "7E2", "rax": "7EA", "dbg": true, "cmd": {"22": "48BC"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_HVBAT_MAX_CHG_A",            "path": "Battery", "fmt": { "len": 16, "max": 15,    "div": 20, "unit": "amps"   }, "name": "HV battery maximum charge current"},
-    {"id": "MAZDA_HIGH_V_CHARGER_PILOT_V_RAW", "path": "Battery", "fmt": { "len": 16, "max": 65535,            "unit": "scalar" }, "name": "High voltage charger pilot voltage, raw count"}
+    {"id": "MAZDA_HVBAT_MAX_CHG_A",            "path": "Battery", "fmt": { "len": 16, "max": 3276.75, "div": 20, "unit": "amps"   }, "name": "HV battery maximum charge current"},
+    {"id": "MAZDA_HIGH_V_CHARGER_PILOT_V_RAW", "path": "Battery", "fmt": { "len": 16, "max": 65535,              "unit": "scalar" }, "name": "High voltage charger pilot voltage, raw count"}
   ]},
 { "hdr": "7E2", "rax": "7EA", "dbg": true, "cmd": {"22": "48C4"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_CHG_MAX_PWR",        "path": "Battery", "fmt": { "len": 16, "max": 500,   "div": 20, "unit": "kilowatts" }, "name": "HV charger maximum power"},
-    {"id": "MAZDA_HIGH_V_CHARGER_MAX", "path": "Battery", "fmt": { "len": 16, "max": 65535,            "unit": "kilowatts" }, "name": "High voltage charger, maximum power"}
+    {"id": "MAZDA_CHG_MAX_PWR",        "path": "Battery", "fmt": { "len": 16, "max": 3276.75, "div": 20, "nullmax": 3276.75, "unit": "kilowatts" }, "name": "HV charger maximum power"},
+    {"id": "MAZDA_HIGH_V_CHARGER_MAX", "path": "Battery", "fmt": { "len": 16, "max": 65535,                                  "unit": "kilowatts" }, "name": "High voltage charger, maximum power"}
   ]},
 { "hdr": "7E2", "rax": "7EA", "dbg": true, "cmd": {"22": "D00C"}, "freq": 1,
   "signals": [
