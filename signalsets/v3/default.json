@@ -3293,9 +3293,10 @@
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E1C"}, "freq": 5,
   "signals": [
-    {"id": "MAZDA_TRANS_T_V6",      "path": "Transmission", "fmt": { "len": 16, "max": 500, "min": -500, "div": 16, "sign": true, "unit": "celsius" }, "name": "Transmission temperature",       "suggestedMetric": "transmissionFluidTemperature"},
-    {"id": "MAZDA_TRANS_T",         "path": "Transmission", "fmt": { "len": 16, "max": 300, "min": -40,  "div": 16, "sign": true, "unit": "celsius" }, "name": "Transmission fluid temperature", "suggestedMetric": "transmissionFluidTemperature"},
-    {"id": "MAZDA_MX_5_TRANS_T_V6", "path": "Transmission", "fmt": { "len": 16, "max": 500, "min": -500, "div": 16, "sign": true, "unit": "celsius" }, "name": "Transmission temperature v6"}
+    {"id": "MAZDA_TRANS_T_V6",      "path": "Transmission", "fmt": { "len": 16, "max": 500,  "min": -500, "div": 16, "sign": true, "unit": "celsius" }, "name": "Transmission temperature",                  "suggestedMetric": "transmissionFluidTemperature"},
+    {"id": "MAZDA_TRANS_T",         "path": "Transmission", "fmt": { "len": 16, "max": 300,  "min": -40,  "div": 16, "sign": true, "unit": "celsius" }, "name": "Transmission fluid temperature",            "suggestedMetric": "transmissionFluidTemperature"},
+    {"id": "MAZDA_MX_5_TRANS_T_V6", "path": "Transmission", "fmt": { "len": 16, "max": 500,  "min": -500, "div": 16, "sign": true, "unit": "celsius" }, "name": "Transmission temperature v6"},
+    {"id": "MAZDA_ATF_T_VAR_4",     "path": "Transmission", "fmt": { "len": 16, "max": 4095,              "div": 16,               "unit": "celsius" }, "name": "Transmission fluid temperature, variant 4"}
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E1E"}, "freq": 1,
   "signals": [
