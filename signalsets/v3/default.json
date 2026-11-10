@@ -1582,6 +1582,22 @@
           "60": { "description": "Reverse",      "value": "REVERSE" },
           "70": { "description": "Park",         "value": "PARK" }
         }}
+    },
+    {"id": "MAZDA_GEAR_V2", "path": "Transmission", "name": "Current gear, transmission module", "description": "The automatic transmission gear. Numbers aren't yet mapped to named gears.", "suggestedMetric": "gear", "fmt": {"len": 8, "map": {
+          "1":  { "description": "First gear",   "value": "1" },
+          "2":  { "description": "Second gear",  "value": "2" },
+          "3":  { "description": "Third gear",   "value": "3" },
+          "4":  { "description": "Fourth gear",  "value": "4" },
+          "5":  { "description": "Fifth gear",   "value": "5" },
+          "6":  { "description": "Sixth gear",   "value": "6" },
+          "7":  { "description": "Seventh gear", "value": "7" },
+          "8":  { "description": "Eighth gear",  "value": "8" },
+          "9":  { "description": "Ninth gear",   "value": "9" },
+          "10": { "description": "Tenth gear",   "value": "10" },
+          "50": { "description": "Neutral",      "value": "NEUTRAL" },
+          "60": { "description": "Reverse",      "value": "REVERSE" },
+          "70": { "description": "Park",         "value": "PARK" }
+        }}
     }
   ]},
 { "hdr": "7DF", "dbg": true, "cmd": {"22": "1E1C"}, "freq": 1,
@@ -1593,11 +1609,26 @@
 { "hdr": "7DF", "dbg": true, "cmd": {"22": "1E23"}, "freq": 30,
   "signals": [
     {"id": "MAZDA_GEAR_SHFT_7DF", "path": "Transmission", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Transmission range code", "description": "Selected range. Neutral, reverse and park are mapped; the code driving reports (43) is not yet."},
-    {"id": "MAZDA_GEAR_SHFT_V2", "path": "Transmission", "name": "Shift gear", "fmt": {"len": 8, "map": {
-          "46": { "description": "Drive",   "value": "DRIVE" },
+    {"id": "MAZDA_GEAR_SHFT_V2", "path": "Transmission", "name": "Shift gear", "suggestedMetric": "gearSelector", "fmt": {"len": 8, "map": {
+          "20": { "description": "Low",     "value": "LOW" },
+          "43": { "description": "Drive",   "value": "DRIVE" },
           "50": { "description": "Neutral", "value": "NEUTRAL" },
           "60": { "description": "Reverse", "value": "REVERSE" },
           "70": { "description": "Park",    "value": "PARK" }
+        }}
+    },
+    {"id": "MAZDA_GEAR_SHFT_V2", "path": "Transmission", "name": "Shift gear", "suggestedMetric": "gearSelector", "fmt": {"len": 8, "map": {
+          "10":  { "description": "Manual",  "value": "MANUAL" },
+          "20":  { "description": "Low",     "value": "LOW" },
+          "40":  { "description": "Drive",   "value": "DRIVE" },
+          "46":  { "description": "Drive",   "value": "DRIVE" },
+          "50":  { "description": "Neutral", "value": "NEUTRAL" },
+          "60":  { "description": "Reverse", "value": "REVERSE" },
+          "70":  { "description": "Park",    "value": "PARK" },
+          "100": { "description": "Park",    "value": "PARK" },
+          "101": { "description": "Reverse", "value": "REVERSE" },
+          "102": { "description": "Neutral", "value": "NEUTRAL" },
+          "103": { "description": "Drive",   "value": "DRIVE" }
         }}
     },
     {"id": "MAZDA_GEAR_SHFT_V2_7DF", "path": "Transmission", "name": "Shift gear", "description": "Selected range. Neutral, reverse and park are mapped; the code driving reports (43) is not yet.", "fmt": {"len": 8, "map": {
@@ -2679,7 +2710,20 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1E12"}, "freq": 0.25,
   "signals": [
-    {"id": "MAZDA_GEAR", "path": "Transmission", "name": "Current gear", "description": "The automatic transmission gear.", "fmt": {"len": 8, "map": {
+    {"id": "MAZDA_GEAR", "path": "Transmission", "name": "Current gear", "description": "The automatic transmission gear.", "suggestedMetric": "gear", "fmt": {"len": 8, "map": {
+          "1":  { "description": "First gear",   "value": "1" },
+          "2":  { "description": "Second gear",  "value": "2" },
+          "3":  { "description": "Third gear",   "value": "3" },
+          "4":  { "description": "Fourth gear",  "value": "4" },
+          "5":  { "description": "Fifth gear",   "value": "5" },
+          "6":  { "description": "Sixth gear",   "value": "6" },
+          "7":  { "description": "Seventh gear", "value": "7" },
+          "8":  { "description": "Eighth gear",  "value": "8" },
+          "9":  { "description": "Ninth gear",   "value": "9" },
+          "10": { "description": "Tenth gear",   "value": "10" }
+        }}
+    },
+    {"id": "MAZDA_MAX_GEAR", "path": "Transmission", "name": "Current gear", "description": "The automatic transmission gear.", "fmt": {"len": 8, "map": {
           "1":  { "description": "First gear",   "value": "1" },
           "2":  { "description": "Second gear",  "value": "2" },
           "3":  { "description": "Third gear",   "value": "3" },
@@ -2728,12 +2772,18 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1E23"}, "freq": 0.25,
   "signals": [
-    {"id": "MAZDA_GEAR_SHFT", "path": "Transmission", "name": "Shift gear", "fmt": {"len": 8, "map": {
-          "10": { "description": "Manual",  "value": "MANUAL" },
-          "46": { "description": "Drive",   "value": "DRIVE" },
-          "50": { "description": "Neutral", "value": "NEUTRAL" },
-          "60": { "description": "Reverse", "value": "REVERSE" },
-          "70": { "description": "Park",    "value": "PARK" }
+    {"id": "MAZDA_GEAR_SHFT", "path": "Transmission", "name": "Shift gear", "suggestedMetric": "gearSelector", "fmt": {"len": 8, "map": {
+          "10":  { "description": "Manual",  "value": "MANUAL" },
+          "20":  { "description": "Low",     "value": "LOW" },
+          "40":  { "description": "Drive",   "value": "DRIVE" },
+          "46":  { "description": "Drive",   "value": "DRIVE" },
+          "50":  { "description": "Neutral", "value": "NEUTRAL" },
+          "60":  { "description": "Reverse", "value": "REVERSE" },
+          "70":  { "description": "Park",    "value": "PARK" },
+          "100": { "description": "Park",    "value": "PARK" },
+          "101": { "description": "Reverse", "value": "REVERSE" },
+          "102": { "description": "Neutral", "value": "NEUTRAL" },
+          "103": { "description": "Drive",   "value": "DRIVE" }
         }}
     }
   ]},
@@ -3277,7 +3327,22 @@
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E12"}, "freq": 0.25,
   "signals": [
-    {"id": "MAZDA_GEAR_7E1", "path": "Transmission", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Gear"}
+    {"id": "MAZDA_GEAR_7E1", "path": "Transmission", "name": "Gear", "suggestedMetric": "gear", "fmt": {"len": 8, "map": {
+          "1":  { "description": "First gear",   "value": "1" },
+          "2":  { "description": "Second gear",  "value": "2" },
+          "3":  { "description": "Third gear",   "value": "3" },
+          "4":  { "description": "Fourth gear",  "value": "4" },
+          "5":  { "description": "Fifth gear",   "value": "5" },
+          "6":  { "description": "Sixth gear",   "value": "6" },
+          "7":  { "description": "Seventh gear", "value": "7" },
+          "8":  { "description": "Eighth gear",  "value": "8" },
+          "9":  { "description": "Ninth gear",   "value": "9" },
+          "10": { "description": "Tenth gear",   "value": "10" },
+          "50": { "description": "Neutral",      "value": "NEUTRAL" },
+          "60": { "description": "Reverse",      "value": "REVERSE" },
+          "70": { "description": "Park",         "value": "PARK" }
+        }}
+    }
   ]},
 { "hdr": "7E1", "rax": "7E9", "dbg": true, "cmd": {"22": "1E14"}, "freq": 1,
   "signals": [
@@ -3979,15 +4044,15 @@
   "signals": [
     {"id": "MAZDA_HYBRID_BAT_PACK", "path": "Battery", "fmt": { "len": 8, "max": 100, "mul": 20, "div": 51, "unit": "percent" }, "name": "Hybrid battery pack remaining charge"}
   ]},
-{ "hdr": "7E6", "rax": "7EE", "dbg": true, "cmd": {"22": "1E12"}, "freq": 1,
+{ "hdr": "7E6", "rax": "7EE", "dbg": true, "cmd": {"22": "1E12"}, "freq": 0.25,
   "signals": [
-    {"id": "MAZDA_GEAR_CMD", "path": "Transmission", "name": "Gear commanded", "fmt": {"len": 8, "map": {
+    {"id": "MAZDA_GEAR_CMD", "path": "Transmission", "name": "Gear commanded", "suggestedMetric": "gearSelector", "fmt": {"len": 8, "map": {
           "0":   { "description": "Unknown", "value": "UNKNOWN" },
-          "20":  { "description": "L",       "value": "L" },
-          "40":  { "description": "D",       "value": "D" },
-          "50":  { "description": "N",       "value": "N" },
-          "60":  { "description": "R",       "value": "R" },
-          "70":  { "description": "P",       "value": "P" },
+          "20":  { "description": "Low",     "value": "LOW" },
+          "40":  { "description": "Drive",   "value": "DRIVE" },
+          "50":  { "description": "Neutral", "value": "NEUTRAL" },
+          "60":  { "description": "Reverse", "value": "REVERSE" },
+          "70":  { "description": "Park",    "value": "PARK" },
           "255": { "description": "Fault",   "value": "FAULT" }
         }}
     }
