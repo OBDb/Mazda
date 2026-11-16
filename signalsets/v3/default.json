@@ -1670,11 +1670,12 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0200"}, "freq": 3600,
   "signals": [
-    {"id": "MAZDA_DTC_CNT", "path": "DTCs", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Number of DTCs"}
+    {"id": "MAZDA_DTC_CNT", "path": "DTCs", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Number of DTCs", "suggestedMetric": "storedDTCCount"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0202"}, "freq": 3600,
   "signals": [
-    {"id": "MAZDA_DTC_CNTD", "path": "DTCs", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Number of DTCs"}
+    {"id": "MAZDA_DTC_CNTD",      "path": "DTCs", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Number of DTCs",            "suggestedMetric": "storedDTCCount"},
+    {"id": "MAZDA_MX_5_DTC_CNTD", "path": "DTCs", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Number of DTCs, on demand"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0301"}, "freq": 0.25,
   "signals": [
@@ -1773,8 +1774,8 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0353"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_BARO",       "fmt": { "len": 16, "max": 20, "min": 8,                      "div": 27.582114, "unit": "psi" }, "name": "Barometric pressure"},
-    {"id": "MAZDA_[ECU] Baro", "fmt": { "len": 16, "max": 20, "min": 8, "mul": 0.0362553791,                   "unit": "psi" }, "name": "Barometric pressure"}
+    {"id": "MAZDA_BARO",       "fmt": { "len": 16, "max": 20, "min": 8,                      "div": 27.582114, "unit": "psi" }, "name": "Barometric pressure", "suggestedMetric": "barometricPressure"},
+    {"id": "MAZDA_[ECU] Baro", "fmt": { "len": 16, "max": 20, "min": 8, "mul": 0.0362553791,                   "unit": "psi" }, "name": "Barometric pressure", "suggestedMetric": "barometricPressure"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "035A"}, "freq": 1,
   "signals": [
@@ -2342,7 +2343,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "09DB"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_TURBO_BOOST", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "kilopascal" }, "name": "Turbo boost"}
+    {"id": "MAZDA_TURBO_BOOST", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "kilopascal" }, "name": "Turbo boost", "suggestedMetric": "absoluteBoostPressure"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "09FE"}, "freq": 1,
   "signals": [
@@ -2357,7 +2358,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1103"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_MIL_SW",  "path": "DTCs",   "fmt": {"bix": 2, "len": 1, "max": 1, "unit": "offon" }, "name": "Malfunction indicator lamp"},
+    {"id": "MAZDA_MIL_SW",  "path": "DTCs",   "fmt": {"bix": 2, "len": 1, "max": 1, "unit": "offon" }, "name": "Malfunction indicator lamp",     "suggestedMetric": "checkEngineLightOn"},
     {"id": "MAZDA_IMRC_SW", "path": "Engine", "fmt": {"bix": 3, "len": 1, "max": 1, "unit": "offon" }, "name": "Intake manifold runner control"},
     {"id": "MAZDA_FAN2_SW", "path": "Engine", "fmt": {"bix": 4, "len": 1, "max": 1, "unit": "offon" }, "name": "Cooling fan relay control"},
     {"id": "MAZDA_FAN1_SW", "path": "Engine", "fmt": {"bix": 5, "len": 1, "max": 1, "unit": "offon" }, "name": "Cooling fan relay control"}
@@ -2380,7 +2381,8 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1127"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_BAROMETRIC_P_7E0", "path": "Engine", "fmt": { "len": 8, "max": 1079.4118, "mul": 338639, "div": 80000, "unit": "kilopascal" }, "name": "Barometric pressure"}
+    {"id": "MAZDA_BAROMETRIC_P_7E0", "path": "Engine", "fmt": { "len": 8, "max": 107.94,    "mul": 338639, "div": 800000, "unit": "kilopascal" }, "name": "Barometric pressure", "suggestedMetric": "barometricPressure"},
+    {"id": "MAZDA_BAROMETRIC_P_V2",  "path": "Engine", "fmt": { "len": 8, "max": 1079.4118, "mul": 338639, "div": 80000,  "unit": "kilopascal" }, "name": "Barometric pressure"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "113C"}, "freq": 1,
   "signals": [
@@ -2877,7 +2879,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "D941"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_BOOST_P_V2", "path": "Engine", "fmt": { "len": 16, "max": 6553, "div": 10, "unit": "kilopascal" }, "name": "Boost pressure"}
+    {"id": "MAZDA_BOOST_P_V2", "path": "Engine", "fmt": { "len": 16, "max": 6553, "div": 10, "unit": "kilopascal" }, "name": "Boost pressure", "suggestedMetric": "absoluteBoostPressure"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "D943"}, "freq": 0.25,
   "signals": [
@@ -3112,8 +3114,8 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F40B"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_MAP_7E0", "path": "Engine", "fmt": { "len": 8, "max": 36, "mul": 10000, "div": 68947, "unit": "psi" }, "name": "Manifold pressure"},
-    {"id": "MAZDA_MAP_V2",  "path": "Engine", "fmt": { "len": 8, "max": 36, "mul": 10000, "div": 68947, "unit": "psi" }, "name": "Manifold pressure", "suggestedMetric": "absoluteBoostPressure"}
+    {"id": "MAZDA_MAP_7E0", "path": "Engine", "fmt": { "len": 8, "max": 36, "mul": 10000, "div": 68947, "unit": "psi" }, "name": "Manifold pressure", "suggestedMetric": "absoluteBoostPressure"},
+    {"id": "MAZDA_MAP_V2",  "path": "Engine", "fmt": { "len": 8, "max": 36, "mul": 10000, "div": 68947, "unit": "psi" }, "name": "Manifold pressure"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F40C"}, "freq": 0.25,
   "signals": [
@@ -3169,7 +3171,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F433"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_BAROMETRIC_P", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "kilopascal" }, "name": "Barometric pressure"}
+    {"id": "MAZDA_BAROMETRIC_P", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "kilopascal" }, "name": "Barometric pressure", "suggestedMetric": "barometricPressure"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F434"}, "freq": 1,
   "signals": [
@@ -4220,7 +4222,7 @@
   ]},
 { "hdr": "D016", "rax": "1EC60E80", "pri": "1D", "tst": "30", "fcm1": true, "dbg": true, "cmd": {"22": "EE3E"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_CHG_AIR_P", "path": "Battery", "fmt": { "len": 16, "max": 511, "mul": 0.007812, "unit": "kilopascal" }, "name": "Charge air pressure"}
+    {"id": "MAZDA_CHG_AIR_P", "path": "Battery", "fmt": { "len": 16, "max": 511, "mul": 0.007812, "unit": "kilopascal" }, "name": "Charge air pressure", "suggestedMetric": "absoluteBoostPressure"}
   ]},
 { "hdr": "D016", "rax": "1EC60E80", "pri": "1D", "tst": "30", "fcm1": true, "dbg": true, "cmd": {"22": "EE40"}, "freq": 5,
   "signals": [
