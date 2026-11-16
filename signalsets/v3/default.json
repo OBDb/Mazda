@@ -3112,8 +3112,8 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F40B"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_MAP_7E0", "path": "Engine", "fmt": { "len": 8, "max": 36,       "mul": 10000, "div": 68947, "unit": "psi" }, "name": "Manifold pressure"},
-    {"id": "MAZDA_MAP_V2",  "path": "Engine", "fmt": { "len": 8, "max": 36.98493, "mul": 10000, "div": 68947, "unit": "psi" }, "name": "Manifold pressure"}
+    {"id": "MAZDA_MAP_7E0", "path": "Engine", "fmt": { "len": 8, "max": 36, "mul": 10000, "div": 68947, "unit": "psi" }, "name": "Manifold pressure"},
+    {"id": "MAZDA_MAP_V2",  "path": "Engine", "fmt": { "len": 8, "max": 36, "mul": 10000, "div": 68947, "unit": "psi" }, "name": "Manifold pressure", "suggestedMetric": "absoluteBoostPressure"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F40C"}, "freq": 0.25,
   "signals": [
