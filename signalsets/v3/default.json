@@ -415,7 +415,8 @@
   ]},
 { "hdr": "726", "dbg": true, "cmd": {"22": "412A"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_TWILIGHT_SENS", "path": "Engine", "fmt": { "len": 16, "max": 65535, "unit": "volts" }, "name": "Twilight sensor"}
+    {"id": "MAZDA_DRIVER_WINDOW", "path": "Windows", "fmt": { "len": 16, "max": 65535, "unit": "percent" }, "name": "Driver window"},
+    {"id": "MAZDA_TWILIGHT_SENS", "path": "Engine",  "fmt": { "len": 16, "max": 65535, "unit": "volts"   }, "name": "Twilight sensor"}
   ]},
 { "hdr": "726", "dbg": true, "cmd": {"22": "412D"}, "freq": 1,
   "signals": [
@@ -1100,6 +1101,14 @@
   "signals": [
     {"id": "MAZDA_ODO_PBM", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer", "suggestedMetric": "odometer"}
   ]},
+{ "hdr": "760", "rax": "768", "dbg": true, "cmd": {"22": "2034"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_BRK_HYD_KPA", "path": "Brakes", "fmt": { "len": 16, "max": 30000, "mul": 333, "div": 10, "unit": "kilopascal" }, "name": "Brake fluid line hydraulic pressure"}
+  ]},
+{ "hdr": "760", "rax": "768", "dbg": true, "cmd": {"22": "2823"}, "freq": 1,
+  "signals": [
+    {"id": "MAZDA_BRK_PDL_PCT", "path": "Brakes", "fmt": { "len": 16, "max": 100, "min": -10, "div": 100, "sign": true, "unit": "percent" }, "name": "Brake pedal position"}
+  ]},
 { "hdr": "760", "rax": "768", "dbg": true, "cmd": {"22": "2B00"}, "freq": 3,
   "signals": [
     {"id": "MAZDA_PARKING_BRAKE_760", "path": "Control", "fmt": { "len": 1, "max": 1, "unit": "offon" }, "name": "Focus parking brake state"}
@@ -1203,6 +1212,10 @@
     {"id": "MAZDA_FR_BRAKE_DISC_T_CALC", "path": "Control", "fmt": {"bix": 8,  "len": 8, "max": 918, "mul": 18, "div": 5, "unit": "celsius" }, "name": "Front right brake disc temperature, calculated"},
     {"id": "MAZDA_RL_BRAKE_DISC_T_CALC", "path": "Control", "fmt": {"bix": 16, "len": 8, "max": 918, "mul": 18, "div": 5, "unit": "celsius" }, "name": "Rear left brake disc temperature, calculated"},
     {"id": "MAZDA_RR_BRAKE_DISC_T_CALC", "path": "Control", "fmt": {"bix": 24, "len": 8, "max": 918, "mul": 18, "div": 5, "unit": "celsius" }, "name": "Rear right brake disc temperature, calculated"}
+  ]},
+{ "hdr": "760", "rax": "768", "dbg": true, "cmd": {"22": "F40D"}, "freq": 2,
+  "signals": [
+    {"id": "MAZDA_VSS_V2", "path": "Movement", "fmt": { "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Vehicle speed", "suggestedMetric": "speed"}
   ]},
 { "hdr": "760", "rax": "768", "dbg": true, "cmd": {"22": "FDC6"}, "freq": 15,
   "signals": [
@@ -1547,6 +1560,10 @@
   "signals": [
     {"id": "MAZDA_HVBAT_V", "path": "Battery", "fmt": {"bix": 16, "len": 16, "max": 1023,                   "mul": 156.25, "div": 10000,               "unit": "volts" }, "name": "HV battery voltage", "suggestedMetric": "tractionBatteryVoltage"},
     {"id": "MAZDA_HVBAT_C", "path": "Battery", "fmt": {"bix": 32, "len": 16, "max": 3276.7, "min": -3276.8,                "div": 10,    "sign": true, "unit": "amps"  }, "name": "HV battery current", "suggestedMetric": "tractionBatteryCurrent"}
+  ]},
+{ "hdr": "7D2", "rax": "7DA", "dbg": true, "cmd": {"22": "4888"}, "freq": 10,
+  "signals": [
+    {"id": "MAZDA_CPLR_TEMP_A", "path": "Battery", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Charge port coupler temp A"}
   ]},
 { "hdr": "7DF", "dbg": true, "cmd": {"22": "1310"}, "freq": 30,
   "signals": [
@@ -2774,6 +2791,23 @@
           "102": { "description": "Neutral", "value": "NEUTRAL" },
           "103": { "description": "Drive",   "value": "DRIVE" }
         }}
+    },
+    {"id": "MAZDA_GEAR_POS", "path": "Transmission", "name": "Gear position", "suggestedMetric": "gearSelector", "fmt": {"len": 8, "map": {
+          "20": { "description": "Low",     "value": "LOW" },
+          "21": { "description": "Low",     "value": "LOW" },
+          "22": { "description": "Low",     "value": "LOW" },
+          "23": { "description": "Low",     "value": "LOW" },
+          "40": { "description": "Drive",   "value": "DRIVE" },
+          "41": { "description": "Drive",   "value": "DRIVE" },
+          "42": { "description": "Drive",   "value": "DRIVE" },
+          "43": { "description": "Drive",   "value": "DRIVE" },
+          "44": { "description": "Drive",   "value": "DRIVE" },
+          "45": { "description": "Drive",   "value": "DRIVE" },
+          "46": { "description": "Drive",   "value": "DRIVE" },
+          "50": { "description": "Neutral", "value": "NEUTRAL" },
+          "60": { "description": "Reverse", "value": "REVERSE" },
+          "70": { "description": "Park",    "value": "PARK" }
+        }}
     }
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "1E35"}, "freq": 0.25,
@@ -2815,6 +2849,10 @@
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "9800"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_AC_P_SENS_V", "path": "Climate", "fmt": { "len": 16, "max": 5, "div": 1024, "sign": true, "unit": "volts" }, "name": "A/C compressor pressure sensor voltage"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "9859"}, "freq": 2,
+  "signals": [
+    {"id": "MAZDA_PTC_HTR_DUTY", "path": "Climate", "fmt": { "len": 8, "max": 100, "unit": "percent" }, "name": "Cabin PTC heater output control"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "A211"}, "freq": 0.25,
   "signals": [
@@ -2967,7 +3005,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "DA40"}, "freq": 0.25,
   "signals": [
-    {"id": "MAZDA_GEAR_POS", "path": "Transmission", "fmt": { "len": 8, "max": 127, "min": -128, "sign": true, "unit": "scalar" }, "name": "Gear, AT position"}
+    {"id": "MAZDA_GEAR_POS_V2", "path": "Transmission", "fmt": { "len": 8, "max": 127, "min": -128, "sign": true, "unit": "scalar" }, "name": "Gear, AT position"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "DA59"}, "freq": 1,
   "signals": [
@@ -3046,6 +3084,10 @@
     {"id": "MAZDA_ODO",         "path": "Trips", "fmt": { "len": 24, "max": 16777215,                      "unit": "kilometers" }, "name": "Odometer", "suggestedMetric": "odometer"},
     {"id": "MAZDA_ODO_7E0",     "path": "Trips", "fmt": { "len": 24, "max": 16777215,                      "unit": "kilometers" }, "name": "Odometer"},
     {"id": "MAZDA_MAX_ODO_7E0", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "nullmax": 16777215, "unit": "kilometers" }, "name": "Odometer", "suggestedMetric": "odometer"}
+  ]},
+{ "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "DD05"}, "freq": 10,
+  "signals": [
+    {"id": "MAZDA_EXT_TEMP", "path": "Climate", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Exterior ambient temperature"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "EE7F"}, "freq": 1,
   "signals": [
@@ -3587,6 +3629,10 @@
   "signals": [
     {"id": "MAZDA_HIGH_V_CHARGER_STAT_7E2", "path": "Battery", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "High voltage charger status"}
   ]},
+{ "hdr": "7E2", "rax": "7EA", "dbg": true, "cmd": {"22": "4850"}, "freq": 2,
+  "signals": [
+    {"id": "MAZDA_CHG_OUT_A_V2", "path": "Battery", "fmt": { "len": 16, "max": 655.35, "div": 100, "unit": "amps" }, "name": "Charger DC output current"}
+  ]},
 { "hdr": "7E2", "rax": "7EA", "dbg": true, "cmd": {"22": "4851"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_EVSE_CHG_RAW_CNT", "path": "Engine", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Charging station connection, raw count"},
@@ -3835,6 +3881,10 @@
     {"id": "MAZDA_CONTACTOR_V_NEGATIVE", "path": "Battery", "fmt": { "len": 16, "max": 655.34, "div": 100, "nullmax": 655.34, "unit": "volts" }, "name": "Contactor voltage negative"},
     {"id": "MAZDA_CONTACTOR_V_NEG",      "path": "Battery", "fmt": { "len": 16, "max": 300,    "div": 10,                     "unit": "volts" }, "name": "Contactor voltage negative"}
   ]},
+{ "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "4807"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_CONTACTOR_V_TOT", "path": "Battery", "fmt": { "len": 16, "max": 655.35, "div": 100, "unit": "volts" }, "name": "Contactor voltage total"}
+  ]},
 { "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "4808"}, "freq": 5,
   "signals": [
     {"id": "MAZDA_T_RANGE_MAX", "path": "Battery", "fmt": {           "len": 8, "max": 205, "min": -50, "add": -50, "nullmax": 205, "unit": "celsius" }, "name": "Temperature range, maximum"},
@@ -3857,7 +3907,8 @@
 { "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "480B"}, "freq": 1,
   "signals": [
     {"id": "MAZDA_HVBAT_CURRENT", "path": "Battery", "fmt": { "len": 16, "max": 655, "min": -655, "div": 50, "sign": true, "unit": "amps" }, "name": "High voltage battery current",  "suggestedMetric": "tractionBatteryCurrent"},
-    {"id": "MAZDA_HVBAT_A_ALT",   "path": "Battery", "fmt": { "len": 16, "max": 300, "min": -300, "div": 50, "sign": true, "unit": "amps" }, "name": "HV battery current, alternate"}
+    {"id": "MAZDA_HVBAT_A_ALT",   "path": "Battery", "fmt": { "len": 16, "max": 300, "min": -300, "div": 50, "sign": true, "unit": "amps" }, "name": "HV battery current, alternate"},
+    {"id": "MAZDA_HVBAT_A",       "path": "Battery", "fmt": { "len": 16, "max": 300, "min": -300, "div": 50, "sign": true, "unit": "amps" }, "name": "HV battery current",            "suggestedMetric": "tractionBatteryCurrent"}
   ]},
 { "hdr": "7E4", "rax": "7EC", "fcm1": true, "dbg": true, "cmd": {"22": "480D"}, "freq": 1,
   "signals": [
@@ -3878,8 +3929,9 @@
   ]},
 { "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "4813"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_LEAKAGE_RES_BUS",           "path": "Engine", "fmt": { "len": 16, "max": 65535, "nullmax": 65535, "unit": "kiloohms" }, "name": "Leakage resistance bus overall"},
-    {"id": "MAZDA_HIGH_V_LEAKAGE_RES_BUS_V2", "path": "Engine", "fmt": { "len": 16, "max": 65535,                   "unit": "scalar"   }, "name": "High voltage leakage resistance bus overall, raw count"}
+    {"id": "MAZDA_LEAKAGE_RES_BUS",           "path": "Engine",  "fmt": { "len": 16, "max": 65535,              "nullmax": 65535, "unit": "kiloohms" }, "name": "Leakage resistance bus overall"},
+    {"id": "MAZDA_HIGH_V_LEAKAGE_RES_BUS_V2", "path": "Engine",  "fmt": { "len": 16, "max": 65535,                                "unit": "scalar"   }, "name": "High voltage leakage resistance bus overall, raw count"},
+    {"id": "MAZDA_HV_ISOLATION_KOHM",         "path": "Battery", "fmt": { "len": 16, "max": 1638375, "mul": 25,                   "unit": "scalar"   }, "name": "HV isolation resistance"}
   ]},
 { "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "4815"}, "freq": 1,
   "signals": [
@@ -3926,7 +3978,13 @@
   ]},
 { "hdr": "7E4", "rax": "7EC", "fcm1": true, "dbg": true, "cmd": {"22": "4848"}, "freq": 5,
   "signals": [
-    {"id": "MAZDA_HVBAT_KWH", "path": "Battery", "fmt": { "len": 16, "max": 131.07, "div": 500, "unit": "kilowattHours" }, "name": "HV battery energy"}
+    {"id": "MAZDA_HVBAT_KWH",        "path": "Battery", "fmt": { "len": 16, "max": 131.07, "div": 500, "unit": "kilowattHours" }, "name": "HV battery energy"},
+    {"id": "MAZDA_BAT_TO_EMPTY_KWH", "path": "Battery", "fmt": { "len": 16, "max": 35,     "div": 500, "unit": "kilowattHours" }, "name": "HV battery energy remaining"}
+  ]},
+{ "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "4849"}, "freq": 5,
+  "signals": [
+    {"id": "MAZDA_LPACK_COOL_IN_T",  "path": "Battery", "fmt": {          "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Lower pack coolant inlet temp"},
+    {"id": "MAZDA_LPACK_COOL_OUT_T", "path": "Battery", "fmt": {"bix": 8, "len": 8, "max": 205, "min": -50, "add": -50, "unit": "celsius" }, "name": "Lower pack coolant outlet temp"}
   ]},
 { "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "484A"}, "freq": 1,
   "signals": [
@@ -3936,6 +3994,15 @@
   "signals": [
     {"id": "MAZDA_HVBAT_CHG_STATUS", "path": "Battery", "name": "HV battery charging status", "fmt": {"len": 8, "map": {
           "0": { "description": "Not ready", "value": "NOT_READY" },
+          "1": { "description": "Wait",      "value": "WAIT" },
+          "2": { "description": "Ready",     "value": "READY" },
+          "3": { "description": "Charging",  "value": "CHARGING" },
+          "4": { "description": "Done",      "value": "DONE" },
+          "5": { "description": "Fault",     "value": "FAULT" }
+        }}
+    },
+    {"id": "MAZDA_CHRG_STATE_V2", "path": "Battery", "name": "Charging state", "suggestedMetric": "isCharging", "fmt": {"len": 8, "map": {
+          "0": { "description": "Not Ready", "value": "NOT_CHARGING" },
           "1": { "description": "Wait",      "value": "WAIT" },
           "2": { "description": "Ready",     "value": "READY" },
           "3": { "description": "Charging",  "value": "CHARGING" },
@@ -3998,7 +4065,7 @@
   ]},
 { "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "48F9"}, "freq": 1,
   "signals": [
-    {"id": "MAZDA_HVBAT_A",     "path": "Battery", "fmt": { "len": 16, "max": 600,  "min": -600,  "div": 10, "sign": true, "unit": "amps" }, "name": "HV battery current",           "suggestedMetric": "tractionBatteryCurrent"},
+    {"id": "MAZDA_HVBAT_A_V2",  "path": "Battery", "fmt": { "len": 16, "max": 600,  "min": -600,  "div": 10, "sign": true, "unit": "amps" }, "name": "HV battery current",           "suggestedMetric": "tractionBatteryCurrent"},
     {"id": "MAZDA_HVB_CURRENT", "path": "Battery", "fmt": { "len": 16, "max": 3276, "min": -3276, "div": 10, "sign": true, "unit": "amps" }, "name": "High-voltage battery current"}
   ]},
 { "hdr": "7E4", "rax": "7EC", "dbg": true, "cmd": {"22": "48FB"}, "freq": 1,
@@ -4522,7 +4589,7 @@
   ]},
 { "hdr": "D016", "rax": "1EC6EE80", "pri": "1D", "tst": "37", "fcm1": true, "dbg": true, "cmd": {"22": "F40D"}, "freq": 0.25,
   "signals": [
-    {"id": "MAZDA_VSS_V2", "path": "Movement", "fmt": { "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Vehicle speed"}
+    {"id": "MAZDA_VSS_V3", "path": "Movement", "fmt": { "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Vehicle speed"}
   ]},
 { "hdr": "D016", "rax": "1EC70E80", "pri": "1D", "tst": "38", "fcm1": true, "dbg": true, "cmd": {"22": "1946"}, "freq": 1,
   "signals": [
